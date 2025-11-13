@@ -18,7 +18,7 @@ namespace Dominio
         public bool Activo { get; set; }
 
         public Categoria Categoria { get; set; }
-        public List<Imagen> Imagenes { get; set; } = new List<Imagen>();
+        public List<ProductoImagen> Imagenes { get; set; } = new List<ProductoImagen>();
         public List<Vehiculo> VehiculosCompatibles { get; set; } = new List<Vehiculo>();
     }
 }

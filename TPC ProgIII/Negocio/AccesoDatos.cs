@@ -54,9 +54,7 @@ namespace Negocio
             if (lector != null)
                 lector.Close();
             conexion.Close();
-        }
-
-
+        }                                                                                                                                            
         public void ejecutarAccion()
         {
             comando.Connection = conexion;
