@@ -1,0 +1,38 @@
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.log
+
+## Build results
+[Bb]in/
+[Oo]bj/
+Debug/
+Release/
+x64/
+x86/
+
+## Packages
+packages/
+*.nupkg
+*.snupkg
+
+## Publish files
+*.publish.xml
+*.pubxml
+*.pubxml.user
+
+## Other
+_ReSharper*/
+*.dbmdl
+*.bak
+*.ldf
+*.mdf
+*.sql
+*.cache
+*.pdb
+*.tmp
+*.config.user
+.env
