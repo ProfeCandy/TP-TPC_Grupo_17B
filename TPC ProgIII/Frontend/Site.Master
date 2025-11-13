@@ -40,7 +40,7 @@
 
                 <!-- Productos -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" href="/Productos.aspx" id="productosDropdown" role="button" data-bs-toggle="dropdown">
                         Productos
                     </a>
                     <ul class="dropdown-menu">
