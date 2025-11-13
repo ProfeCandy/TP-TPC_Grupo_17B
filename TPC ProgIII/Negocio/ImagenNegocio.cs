@@ -16,14 +16,14 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT Id, IdProducto, UrlImagen FROM Imagen WHERE IdProducto = @IdProducto");
+                datos.setearConsulta("SELECT IdImagen, IdProducto, UrlImagen FROM Imagen WHERE IdProducto = @IdProducto");
                 datos.setearParametro("@IdProducto", idProducto);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     ProductoImagen img = new ProductoImagen();
-                    img.IdImagen = (int)datos.Lector["Id"];
+                    img.IdImagen = (int)datos.Lector["IdImagen"];
                     img.UrlImagen = (string)datos.Lector["UrlImagen"];
                     lista.Add(img);
                 }

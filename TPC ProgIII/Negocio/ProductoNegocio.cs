@@ -68,7 +68,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta(@"INSERT INTO PRODUCTOS (NombreProducto, Descripcion, IdMarca, IdCategoria, Precio)
+                datos.setearConsulta(@"INSERT INTO Producto (NombreProducto, Descripcion, IdMarca, IdCategoria, Precio)
                                        VALUES (@NombreProducto, @Descripcion, @IdMarca, @IdCategoria, @Precio);
                                        SELECT SCOPE_IDENTITY() AS IdProducto");
 
@@ -92,7 +92,7 @@ namespace Negocio
                     foreach (ProductoImagen img in nuevo.Imagenes)
                     {
                         AccesoDatos datosImg = new AccesoDatos();
-                        datosImg.setearConsulta("INSERT INTO IMAGENES (IdProducto, UrlImagen) VALUES (@IdProducto, @UrlImagen)");
+                        datosImg.setearConsulta("INSERT INTO Imagen (IdProducto, UrlImagen) VALUES (@IdProducto, @UrlImagen)");
                         datosImg.setearParametro("@IdProducto", idProducto);
                         datosImg.setearParametro("@UrlImagen", img.UrlImagen);
                         datosImg.ejecutarAccion();
@@ -111,7 +111,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta(@"UPDATE PRODUCTOS 
+                datos.setearConsulta(@"UPDATE Producto 
                                        SET NombreProducto = @NombreProducto, Descripcion = @Descripcion, 
                                            IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @Precio 
                                        WHERE IdProducto = @IdProducto");
@@ -126,14 +126,14 @@ namespace Negocio
 
                 // Actualizar imágenes
                 AccesoDatos datosImg = new AccesoDatos();
-                datosImg.setearConsulta("DELETE FROM IMAGENES WHERE IdProducto = @IdProducto");
+                datosImg.setearConsulta("DELETE FROM Imagen WHERE IdProducto = @IdProducto");
                 datosImg.setearParametro("@IdProducto", producto.IdProducto);
                 datosImg.ejecutarAccion();
 
                 foreach (ProductoImagen img in producto.Imagenes)
                 {
                     AccesoDatos datosImgInsert = new AccesoDatos();
-                    datosImgInsert.setearConsulta("INSERT INTO IMAGENES (IdProducto, UrlImagen) VALUES (@IdProducto, @UrlImagen)");
+                    datosImgInsert.setearConsulta("INSERT INTO Imagen (IdProducto, UrlImagen) VALUES (@IdProducto, @UrlImagen)");
                     datosImgInsert.setearParametro("@IdProducto", producto.IdProducto);
                     datosImgInsert.setearParametro("@UrlImagen", img.UrlImagen);
                     datosImgInsert.ejecutarAccion();
@@ -151,7 +151,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("DELETE FROM PRODUCTOS WHERE IdProducto = @IdProducto");
+                datos.setearConsulta("DELETE FROM Producto WHERE IdProducto = @IdProducto");
                 datos.setearParametro("@IdProducto", id);
                 datos.ejecutarAccion();
             }
