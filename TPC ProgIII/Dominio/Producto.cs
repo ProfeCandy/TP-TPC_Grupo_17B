@@ -14,11 +14,10 @@ namespace Dominio
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
-        public string Marca { get; set; }
-        public bool Activo { get; set; }
-
+        public Marca Marca { get; set; }
         public Categoria Categoria { get; set; }
         public List<ProductoImagen> Imagenes { get; set; } = new List<ProductoImagen>();
         public List<Vehiculo> VehiculosCompatibles { get; set; } = new List<Vehiculo>();
+        public bool Activo { get; set; }
     }
 }
