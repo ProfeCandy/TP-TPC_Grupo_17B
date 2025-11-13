@@ -1,0 +1,11 @@
+@mixin icon($name, $width, $height) {
+  width: $width;
+  height: $height;
+  display: inline-block;
+  background: {
+    image: url('../img/custom_icons/#{$name}.webp');
+    size: contain;
+    repeat: no-repeat;
+  }
+}
+

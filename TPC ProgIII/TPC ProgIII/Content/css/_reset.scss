@@ -1,0 +1,90 @@
+* {
+  outline: none;
+}
+
+html,
+body,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: $theme-primary-color;
+}
+
+a:hover,
+a:active,
+a:focus,
+.btn:first-child:active {
+  transition: all ease-in-out 0.3s;
+  color: $theme-primary-color;
+
+}
+
+:focus-visible {
+  outline: none;
+}
+
+button:focus:not(:focus-visible) {
+  box-shadow: $theme-box-shadow;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+a {
+  -webkit-transition: all .3s ease 0s;
+  -o-transition: all .3s ease 0s;
+  transition: all .3s ease 0s;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: $theme-primary-color;
+}
+
+.dropdown-menu {
+  border-radius: $theme-border-radius;
+}
+
+.form-check-input:checked {
+  background-color: $theme-primary-color;
+  border-color: $theme-primary-color;
+}
+
+input::placeholder {
+  color: $theme-accent-one !important;
+}
+
+.form-control,
+.form-select,
+.form-select-lg,
+.form-control-lg {
+  font-size: $font-small;
+  padding: 1rem;
+}
+
+.form-control:focus {
+  color: $theme-primary-color;
+  background-color: $theme-color-white;
+  border-color: $theme-accent-two;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba($theme-primary-color, 0.2);
+}
+
+.btn.disabled,
+.btn:disabled,
+fieldset:disabled .btn {
+  color: $theme-color-white;
+  background-color: $theme-secondary-color;
+  border-color: transparent;
+  opacity: 0.5;
+}
