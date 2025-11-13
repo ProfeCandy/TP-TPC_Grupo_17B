@@ -86,10 +86,6 @@ namespace Negocio
             {
                 throw ex;
             }
-            finally
-            {
-                datos.cerrarConexion();
-            }
         }
 
         public void Modificar(Usuario usuario)
@@ -122,10 +118,6 @@ namespace Negocio
             {
                 throw ex;
             }
-            finally
-            {
-                datos.cerrarConexion();
-            }
         }
 
         // Eliminación Física
@@ -143,10 +135,6 @@ namespace Negocio
             {
                 throw ex;
             }
-            finally
-            {
-                datos.cerrarConexion();
-            }
         }
 
         // Eliminación Lógica
@@ -162,10 +150,6 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
             }
         }
     }

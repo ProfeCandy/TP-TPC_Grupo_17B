@@ -96,17 +96,12 @@ namespace Negocio
                         datosImg.setearParametro("@IdProducto", idProducto);
                         datosImg.setearParametro("@UrlImagen", img.UrlImagen);
                         datosImg.ejecutarAccion();
-                        datosImg.cerrarConexion();
                     }
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
             }
         }
 
@@ -128,14 +123,12 @@ namespace Negocio
                 datos.setearParametro("@Precio", producto.Precio);
                 datos.setearParametro("@IdProducto", producto.IdProducto);
                 datos.ejecutarAccion();
-                datos.cerrarConexion();
 
                 // Actualizar imágenes
                 AccesoDatos datosImg = new AccesoDatos();
                 datosImg.setearConsulta("DELETE FROM IMAGENES WHERE IdProducto = @IdProducto");
                 datosImg.setearParametro("@IdProducto", producto.IdProducto);
                 datosImg.ejecutarAccion();
-                datosImg.cerrarConexion();
 
                 foreach (ProductoImagen img in producto.Imagenes)
                 {
@@ -144,16 +137,11 @@ namespace Negocio
                     datosImgInsert.setearParametro("@IdProducto", producto.IdProducto);
                     datosImgInsert.setearParametro("@UrlImagen", img.UrlImagen);
                     datosImgInsert.ejecutarAccion();
-                    datosImgInsert.cerrarConexion();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
             }
         }
 
@@ -170,10 +158,6 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
             }
         }
     }

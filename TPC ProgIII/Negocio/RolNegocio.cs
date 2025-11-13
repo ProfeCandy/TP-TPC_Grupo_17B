@@ -53,10 +53,6 @@ namespace Negocio
             {
                 throw ex;
             }
-            finally
-            {
-                datos.cerrarConexion();
-            }
         }
 
         public void Modificar(Rol rol)
@@ -74,10 +70,6 @@ namespace Negocio
             {
                 throw ex;
             }
-            finally
-            {
-                datos.cerrarConexion();
-            }
         }
 
         public void Eliminar(int id)
@@ -93,10 +85,6 @@ namespace Negocio
             {
              //Esto fallará si un Usuario está usando este Rol.
                 throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
             }
         }
     }
