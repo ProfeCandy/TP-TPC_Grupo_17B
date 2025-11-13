@@ -18,9 +18,7 @@ namespace Negocio
                                               M.IdMarca, M.Descripcion AS Marca, 
                                               C.IdCategoria, C.Descripcion AS Categoria, 
                                               P.Precio
-                                       FROM PRODUCTOS P
-                                       INNER JOIN MARCAS M ON P.IdMarca = M.IdMarca
-                                       INNER JOIN CATEGORIAS C ON P.IdCategoria = C.IdCategoria");
+                                       FROM Producto P, Marcas M, Categoria C WHERE P.IdMarca = M.IdMarca AND P.IdCategoria = C.IdCategoria");
 
                 datos.ejecutarLectura();
 

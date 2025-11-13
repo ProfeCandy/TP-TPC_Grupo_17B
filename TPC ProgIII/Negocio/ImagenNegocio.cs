@@ -16,7 +16,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT Id, IdProducto, UrlImagen FROM IMAGENES WHERE IdProducto = @IdProducto");
+                datos.setearConsulta("SELECT Id, IdProducto, UrlImagen FROM Imagen WHERE IdProducto = @IdProducto");
                 datos.setearParametro("@IdProducto", idProducto);
                 datos.ejecutarLectura();
 
