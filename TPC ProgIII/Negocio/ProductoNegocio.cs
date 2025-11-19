@@ -123,6 +123,66 @@ namespace Negocio
             }
         }
 
+        public Producto ObtenerPorId(int idProducto)
+        {
+            Producto prod = null;
+            AccesoDatos datos = new AccesoDatos();
+            ImagenNegocio imgNegocio = new ImagenNegocio();
+
+            try
+            {
+                datos.setearConsulta(@"SELECT P.IdProducto, P.NombreProducto, P.Descripcion, 
+                                    M.IdMarca, M.Descripcion AS Marca, 
+                                    C.IdCategoria, C.Descripcion AS Categoria, 
+                                    P.Precio
+                               FROM Producto P, Marcas M, Categoria C 
+                               WHERE P.IdMarca = M.IdMarca 
+                               AND P.IdCategoria = C.IdCategoria
+                               AND P.IdProducto = @IdProducto");
+
+                datos.setearParametro("@IdProducto", idProducto);
+
+                datos.ejecutarLectura();
+
+                
+                if (datos.Lector.Read())
+                {
+                    prod = new Producto();
+                    prod.IdProducto = (int)datos.Lector["IdProducto"];
+                    prod.NombreProducto = (string)datos.Lector["NombreProducto"];
+                    prod.Descripcion = (string)datos.Lector["Descripcion"];
+                    prod.Precio = (decimal)datos.Lector["Precio"];
+
+                    prod.Marca = new Marca
+                    {
+                        IdMarca = (int)datos.Lector["IdMarca"],
+                        Descripcion = (string)datos.Lector["Marca"]
+                    };
+
+                    prod.Categoria = new Categoria
+                    {
+                        IdCategoria = (int)datos.Lector["IdCategoria"],
+                        Descripcion = (string)datos.Lector["Categoria"]
+                    };
+
+                    // Carga Imagenes
+                    prod.Imagenes = imgNegocio.ListarPorProducto(prod.IdProducto);
+                    if (prod.Imagenes.Count > 0)
+                        prod.ImagenPrincipal = prod.Imagenes[0].UrlImagen;
+                }
+
+                return prod;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void Agregar(Producto nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
