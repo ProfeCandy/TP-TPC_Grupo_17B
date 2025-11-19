@@ -40,15 +40,23 @@
 
                 <!-- Productos -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/Productos.aspx" id="productosDropdown" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown">
                         Productos
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Dirección</a></li>
-                        <li><a class="dropdown-item" href="#">Frenos</a></li>
-                        <li><a class="dropdown-item" href="#">Suspensión</a></li>
-                        <li><a class="dropdown-item" href="#">Transmisión</a></li>
-                        <li><a class="dropdown-item" href="#">Periféricos</a></li>
+                        <li><a class="dropdown-item" href="Productos.aspx">Ver Todos</a></li>
+        
+                        <li><hr class="dropdown-divider"></li>
+
+                        <asp:Repeater ID="repCategorias" runat="server">
+                            <ItemTemplate>
+                                <li>
+                                    <a class="dropdown-item" href="Productos.aspx?id=<%# Eval("IdCategoria") %>">
+                                        <%# Eval("Descripcion") %>
+                                    </a>
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </ul>
                 </li>
 
