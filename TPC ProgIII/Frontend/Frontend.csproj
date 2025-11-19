@@ -123,6 +123,7 @@
     <Content Include="Global.asax" />
     <Content Include="Productos.aspx" />
     <Content Include="QuienesSomos.aspx" />
+    <Content Include="Sucursales.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -224,6 +225,13 @@
     </Compile>
     <Compile Include="QuienesSomos.aspx.designer.cs">
       <DependentUpon>QuienesSomos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sucursales.aspx.cs">
+      <DependentUpon>Sucursales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sucursales.aspx.designer.cs">
+      <DependentUpon>Sucursales.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
