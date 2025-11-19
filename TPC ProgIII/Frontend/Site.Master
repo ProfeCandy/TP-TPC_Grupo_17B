@@ -76,7 +76,7 @@
                         Nosotros
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Quiénes somos</a></li>
+                        <li><a class="dropdown-item" href="/QuienesSomos.aspx">Quiénes somos</a></li>
                         <li><a class="dropdown-item" href="#">Sucursales</a></li>
                         <li><a class="dropdown-item" href="#">Proveedores</a></li>
                         <li><a class="dropdown-item" href="#">Preguntas frecuentes</a></li>
@@ -116,7 +116,7 @@
 
 
         <!-- Contenido de cada página -->
-        <main class="container mt-4">
+        <main>
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </main>
 

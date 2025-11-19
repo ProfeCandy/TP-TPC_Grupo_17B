@@ -22,7 +22,7 @@ namespace Negocio
         {
             // conexion mati = "(localdb)\MSSQLLocalDB".
             string connectionString = ConfigurationManager.ConnectionStrings["ConexionDB"]?.ConnectionString
-                ?? "server=(localdb)\\MSSQLLocalDB; database=TuBaseDeDatos; integrated security=true"
+                ?? "server=.; database=TuBaseDeDatos; integrated security=true"
 ;
             conexion = new SqlConnection(connectionString);
             comando = new SqlCommand();
