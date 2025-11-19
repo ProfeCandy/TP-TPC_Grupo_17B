@@ -78,7 +78,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="QuienesSomos.aspx">Quiénes somos</a></li>
                         <li><a class="dropdown-item" href="Sucursales.aspx">Sucursales</a></li>
-                        <li><a class="dropdown-item" href="#">Proveedores</a></li>
+                        <li><a class="dropdown-item" href="Proveedores.aspx">Proveedores</a></li>
                         <li><a class="dropdown-item" href="#">Preguntas frecuentes</a></li>
                         <li><a class="dropdown-item" href="#">Trabajá con nosotros</a></li>
                     </ul>
