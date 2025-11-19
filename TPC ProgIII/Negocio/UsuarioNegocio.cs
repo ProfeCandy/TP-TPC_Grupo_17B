@@ -152,5 +152,40 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        // Login
+        public bool Loguear(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                // Buscamos un usuario que tenga ESE email Y ESA clave
+                datos.setearConsulta("SELECT IdUsuario, IdRol FROM Usuario WHERE Email = @Email AND Clave = @Clave");
+                datos.setearParametro("@Email", usuario.Email);
+                datos.setearParametro("@Clave", usuario.Clave);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    // Si encontramos el usuario, cargamos sus IDs importantes
+                    usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    usuario.Rol = new Rol(); // Aseguramos que el objeto Rol no sea nulo
+                    usuario.Rol.IdRol = (int)datos.Lector["IdRol"];
+
+                    return true; // ¡Login exitoso!
+                }
+
+                return false; // No se encontró (credenciales mal)
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

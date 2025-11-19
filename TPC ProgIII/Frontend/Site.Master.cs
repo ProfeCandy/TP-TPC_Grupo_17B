@@ -17,8 +17,38 @@ namespace TPC_ProgIII
             {
                 CargarMenuCategorias();
             }
+
+            ActualizarEstadoUsuario();
+        }
+        private void ActualizarEstadoUsuario()
+        {
+            if (Session["usuario"] != null)
+            {
+                Usuario user = (Usuario)Session["usuario"];
+                lblUser.Text = user.Nombre;
+
+                pnlLogueado.Visible = true; 
+                pnlNoLogueado.Visible = false; 
+            }
+            else
+            {
+                lblUser.Text = "Cuenta";
+
+                pnlLogueado.Visible = false;  
+                pnlNoLogueado.Visible = true; 
+            }
+            if (Session["carrito"] != null)
+                lblCantidadCarrito.Text = "1";
+            else
+                lblCantidadCarrito.Text = "0";
         }
 
+        protected void btnSalir_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("Default.aspx");
+        }
         private void CargarMenuCategorias()
         {
 

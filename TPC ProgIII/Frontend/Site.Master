@@ -99,19 +99,32 @@
             <div class="d-flex align-items-center gap-3">
                 <div class="dropdown">
                     <a href="#" class="text-decoration-none text-dark dropdown-toggle d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle fs-4 me-1"></i> Cuenta
+                        <i class="bi bi-person-circle fs-4 me-1"></i> 
+                        <asp:Label ID="lblUser" runat="server" Text="Cuenta" CssClass="d-none d-sm-inline"></asp:Label>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
-                        <li><a class="dropdown-item" href="#">Ingresar</a></li>
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Salir</a></li>
+                        <asp:PlaceHolder ID="pnlNoLogueado" runat="server">
+                            <li><a class="dropdown-item" href="Login.aspx">Ingresar</a></li>
+                            <li><a class="dropdown-item" href="Registro.aspx">Registrarse</a></li>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder ID="pnlLogueado" runat="server" Visible="false">
+                            <li><a class="dropdown-item" href="MiPerfil.aspx">Mi Perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <asp:Button ID="btnSalir" runat="server" Text="Salir" 
+                                    CssClass="dropdown-item text-danger" OnClick="btnSalir_Click" />
+                            </li>
+                        </asp:PlaceHolder>
                     </ul>
                 </div>
-                <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" class="text-dark position-relative">
+                <a href="Carrito.aspx" class="text-dark position-relative">
                     <i class="bi bi-cart fs-4"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">1</span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <asp:Label ID="lblCantidadCarrito" runat="server" Text="0"></asp:Label>
+                    </span>
                 </a>
             </div>
+
         </div>
     </div>
 </nav>
