@@ -36,3 +36,4 @@ _ReSharper*/
 *.tmp
 *.config.user
 .env
+TPC ProgIII/Frontend/Web.config
