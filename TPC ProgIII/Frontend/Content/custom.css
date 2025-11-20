@@ -2,5 +2,37 @@
    CUSTOM APP Para la aplicación
    ============================================ */
 
+.navbar-brand span {
+    letter-spacing: -0.5px;
+}
 
-   
+.hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* Footer Estilos */
+.footer-link {
+    transition: all 0.3s ease;
+}
+.footer-link:hover {
+    color: #dc3545 !important; 
+    padding-left: 5px;
+}
+
+.social-icon-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+.social-icon-btn:hover {
+    background-color: #dc3545 !important;
+    color: white !important;
+    transform: translateY(-3px);
+}

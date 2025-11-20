@@ -13,130 +13,230 @@
     
     <!-- Custom CSS -->
     <link href="~/Content/custom.css" rel="stylesheet" runat="server" />
-
+    
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
 <body>
-    <form runat="server">
+    <form runat="server" class="d-flex flex-column min-vh-100">
 
         <!-- Header principal -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
-    <div class="container py-2">
-        <!-- Logo -->
-        <a class="navbar-brand d-flex align-items-center" href="~/Default.aspx" runat="server">
-            <img src="~/assets/img/lg_distry/DISTRYSER_MARCA.png" alt="Logo" height="50" class="me-2" />
-            <span class="fw-bold text-danger">AutoParts</span>
-        </a>
-
-        <!-- Botón menú móvil -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Enlaces -->
-        <div class="collapse navbar-collapse" id="navbarMenu">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 fw-semibold">
-                <!-- Inicio -->
-                <li class="nav-item">
-                    <a class="nav-link active" runat="server" href="~/Default.aspx">Inicio</a>
-                </li>
-
-                <!-- Productos -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown">
-                        Productos
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="Productos.aspx">Ver Todos</a></li>
-        
-                        <li><hr class="dropdown-divider"></li>
-
-                        <asp:Repeater ID="repCategorias" runat="server">
-                            <ItemTemplate>
-                                <li>
-                                    <a class="dropdown-item" href="Productos.aspx?id=<%# Eval("IdCategoria") %>">
-                                        <%# Eval("Descripcion") %>
-                                    </a>
-                                </li>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </ul>
-                </li>
-
-                <!-- Noticias -->
-                <li class="nav-item">
-                    <a class="nav-link" runat="server" href="~/Noticias.aspx">Noticias</a>
-                </li>
-
-                <!-- Contacto -->
-                <li class="nav-item">
-                    <a class="nav-link" runat="server" href="~/Contacto.aspx">Contacto</a>
-                </li>
-
-                <!-- Nosotros -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="nosotrosDropdown" role="button" data-bs-toggle="dropdown">
-                        Nosotros
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="QuienesSomos.aspx">Quiénes somos</a></li>
-                        <li><a class="dropdown-item" href="Sucursales.aspx">Sucursales</a></li>
-                        <li><a class="dropdown-item" href="Proveedores.aspx">Proveedores</a></li>
-                        <li><a class="dropdown-item" href="TrabajaConNosotros.aspx">Trabajá con nosotros</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <!-- Buscador -->
-            <form class="d-flex me-3" role="search">
-                <input class="form-control form-control-sm me-2" type="search" placeholder="Buscar productos..." aria-label="Buscar" />
-                <button class="btn btn-outline-danger btn-sm" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
-            </form>
-
-            <!-- Cuenta y carrito -->
-            <div class="d-flex align-items-center gap-3">
-                <div class="dropdown">
-                    <a href="#" class="text-decoration-none text-dark dropdown-toggle d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle fs-4 me-1"></i> 
-                        <asp:Label ID="lblUser" runat="server" Text="Cuenta" CssClass="d-none d-sm-inline"></asp:Label>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <asp:PlaceHolder ID="pnlNoLogueado" runat="server">
-                            <li><a class="dropdown-item" href="Login.aspx">Ingresar</a></li>
-                            <li><a class="dropdown-item" href="Registro.aspx">Registrarse</a></li>
-                        </asp:PlaceHolder>
-                        <asp:PlaceHolder ID="pnlLogueado" runat="server" Visible="false">
-                            <li><a class="dropdown-item" href="MiPerfil.aspx">Mi Perfil</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <asp:Button ID="btnSalir" runat="server" Text="Salir" 
-                                    CssClass="dropdown-item text-danger" OnClick="btnSalir_Click" />
-                            </li>
-                        </asp:PlaceHolder>
-                    </ul>
-                </div>
-                <a href="Carrito.aspx" class="text-dark position-relative">
-                    <i class="bi bi-cart fs-4"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        <asp:Label ID="lblCantidadCarrito" runat="server" Text="0"></asp:Label>
-                    </span>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow sticky-top py-3">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand d-flex align-items-center gap-2" href="~/Default.aspx" runat="server">
+                    <i class="bi bi-gear-wide-connected text-danger fs-3"></i>
+                    <span class="fw-bold text-white tracking-tight">Auto<span class="text-danger">Parts</span></span>
                 </a>
+
+                <!-- Botón menú móvil -->
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Enlaces -->
+                <div class="collapse navbar-collapse" id="navbarMenu">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 fw-medium">
+                        <!-- Inicio -->
+                        <li class="nav-item">
+                            <a class="nav-link px-3 text-uppercase" runat="server" href="~/Default.aspx">Inicio</a>
+                        </li>
+
+                        <!-- Productos -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle px-3 text-uppercase" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown">
+                                Productos
+                            </a>
+                            <ul class="dropdown-menu shadow border-0">
+                                <li><a class="dropdown-item" href="Productos.aspx">Ver Todos</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <asp:Repeater ID="repCategorias" runat="server">
+                                    <ItemTemplate>
+                                        <li>
+                                            <a class="dropdown-item" href="Productos.aspx?id=<%# Eval("IdCategoria") %>">
+                                                <%# Eval("Descripcion") %>
+                                            </a>
+                                        </li>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
+                        </li>
+
+                        <!-- Noticias -->
+                        <li class="nav-item">
+                            <a class="nav-link px-3 text-uppercase" runat="server" href="~/Noticias.aspx">Noticias</a>
+                        </li>
+
+                        <!-- Contacto -->
+                        <li class="nav-item">
+                            <a class="nav-link px-3 text-uppercase" runat="server" href="~/Contacto.aspx">Contacto</a>
+                        </li>
+
+                        <!-- Nosotros -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle px-3 text-uppercase" href="#" id="nosotrosDropdown" role="button" data-bs-toggle="dropdown">
+                                Nosotros
+                            </a>
+                            <ul class="dropdown-menu shadow border-0">
+                                <li><a class="dropdown-item" href="QuienesSomos.aspx">Quiénes somos</a></li>
+                                <li><a class="dropdown-item" href="Sucursales.aspx">Sucursales</a></li>
+                                <li><a class="dropdown-item" href="Proveedores.aspx">Proveedores</a></li>
+                                <li><a class="dropdown-item" href="TrabajaConNosotros.aspx">Trabajá con nosotros</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- Buscador y Acciones -->
+                    <div class="d-flex align-items-center gap-3">
+                        <!-- Buscador -->
+                        <div class="d-none d-lg-block">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control bg-dark text-white border-secondary" type="search" placeholder="Buscar..." aria-label="Buscar" style="max-width: 150px;" />
+                                <button class="btn btn-danger" type="submit">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Separador vertical -->
+                        <div class="vr text-secondary d-none d-lg-block"></div>
+
+                        <!-- Cuenta -->
+                        <div class="dropdown">
+                            <a href="#" class="text-decoration-none text-white dropdown-toggle d-flex align-items-center gap-2" id="userDropdown" data-bs-toggle="dropdown">
+                                <div class="bg-secondary bg-opacity-25 p-2 rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+                                <asp:Label ID="lblUser" runat="server" Text="Cuenta" CssClass="d-none d-xl-inline small fw-bold"></asp:Label>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                <asp:PlaceHolder ID="pnlNoLogueado" runat="server">
+                                    <li><a class="dropdown-item" href="Login.aspx"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar</a></li>
+                                    <li><a class="dropdown-item" href="Registro.aspx"><i class="bi bi-person-plus me-2"></i>Registrarse</a></li>
+                                </asp:PlaceHolder>
+                                <asp:PlaceHolder ID="pnlLogueado" runat="server" Visible="false">
+                                    <li><a class="dropdown-item" href="MiPerfil.aspx"><i class="bi bi-person-badge me-2"></i>Mi Perfil</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <asp:Button ID="btnSalir" runat="server" Text="Cerrar Sesión" 
+                                            CssClass="dropdown-item text-danger" OnClick="btnSalir_Click" />
+                                    </li>
+                                </asp:PlaceHolder>
+                            </ul>
+                        </div>
+
+                        <!-- Carrito -->
+                        <a href="Carrito.aspx" class="text-white position-relative p-2">
+                            <i class="bi bi-cart3 fs-5"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-dark">
+                                <asp:Label ID="lblCantidadCarrito" runat="server" Text="0"></asp:Label>
+                            </span>
+                        </a>
+                    </div>
+
+                </div>
             </div>
-
-        </div>
-    </div>
-</nav>
-
+        </nav>
 
         <!-- Contenido de cada página -->
-        <main>
+        <main class="flex-grow-1">
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </main>
 
-        <footer class="text-center py-4 mt-5 border-top text-muted">
-            <p>&copy; <%: DateTime.Now.Year %> - Auto-Parts - TP Programación III</p>
+        <!-- Footer -->
+        <footer class="bg-dark text-light pt-5 pb-2 mt-auto border-top border-secondary" style="background: linear-gradient(to bottom, #212529, #1a1d20);">
+            <div class="container">
+                <div class="row gy-5">
+                    <!-- Contacto -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <h5 class="text-uppercase fw-bold text-danger mb-4 tracking-wide">Contactanos</h5>
+                        <ul class="list-unstyled text-secondary">
+                            <li class="mb-3 d-flex gap-3">
+                                <i class="bi bi-geo-alt-fill text-danger fs-5"></i>
+                                <div>
+                                    <strong class="d-block text-white">Ubicación</strong>
+                                    UTN - Gral Pacheco, Av. Hipolito Yrigoyen 288
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3">
+                                <i class="bi bi-telephone-fill text-danger fs-5"></i>
+                                <div>
+                                    <strong class="d-block text-white">Teléfono</strong>
+                                    (011) 4740-5040
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3">
+                                <i class="bi bi-envelope-open-fill text-danger fs-5"></i>
+                                <div>
+                                    <strong class="d-block text-white">Email</strong>
+                                    info@autoparts.com.ar
+                                </div>
+                            </li>
+                            <li class="d-flex gap-3">
+                                <i class="bi bi-clock-fill text-danger fs-5"></i>
+                                <div>
+                                    <strong class="d-block text-white">Horarios</strong>
+                                    Lun-Vie: 8-22hs / Sáb: 9-12hs
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Enlaces Rápidos -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                         <h5 class="text-uppercase fw-bold text-danger mb-4 tracking-wide">Enlaces Rápidos</h5>
+                         <div class="row">
+                            <div class="col-6">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><a href="Default.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Inicio</a></li>
+                                    <li class="mb-2"><a href="Productos.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Productos</a></li>
+                                    <li class="mb-2"><a href="Noticias.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Noticias</a></li>
+                                    <li class="mb-2"><a href="Contacto.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Contacto</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><a href="Login.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Mi Cuenta</a></li>
+                                    <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Términos</a></li>
+                                    <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Privacidad</a></li>
+                                    <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Ayuda</a></li>
+                                </ul>
+                            </div>
+                         </div>
+                    </div>
+
+                    <!-- Brand & Social -->
+                    <div class="col-12 col-md-12 col-lg-4 text-center text-lg-start">
+                        <div class="mb-4">
+                            <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-3" href="~/Default.aspx" runat="server">
+                                <i class="bi bi-gear-wide-connected text-danger fs-1"></i>
+                                <span class="fw-bold text-white fs-3 tracking-tight">Auto<span class="text-danger">Parts</span></span>
+                            </a>
+                            <p class="text-secondary">
+                                Tu socio confiable en repuestos automotrices. Calidad garantizada y envíos a todo el país.
+                            </p>
+                        </div>
+                        
+                        <h6 class="text-white mb-3">Síguenos en redes</h6>
+                        <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                            <a href="#" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white"><i class="bi bi-twitter-x"></i></a>
+                            <a href="#" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="bg-black py-3 mt-5">
+                <div class="container text-center">
+                    <p class="mb-0 small text-secondary">
+                        &copy; <%: DateTime.Now.Year %> <strong class="text-white">AutoParts</strong>. Todos los derechos reservados.
+                        <span class="d-none d-sm-inline mx-2">|</span>
+                        <a href="#" class="text-secondary text-decoration-none small">Política de Privacidad</a>
+                    </p>
+                </div>
+            </div>
         </footer>
 
     </form>
