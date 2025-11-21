@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TPC_ProgIII
+namespace Frontend
 {
 
 
@@ -15,4 +15,3 @@ namespace TPC_ProgIII
     {
     }
 }
-
