@@ -1,0 +1,77 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Dash_client.master.cs" Inherits="Frontend.Dashboard_client.Dash_client" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-12 col-md-3">
+                    
+                    <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-3">
+                        <div class="d-flex p-3 align-items-center">
+                            <span class="text-center">
+                                <img src='<%= ResolveUrl("~/assets/images/icons/profile-icon.png") %>' 
+                                     alt="Profile Pic" title="Profile Pic" />
+                            </span>
+                            <span class="ms-3">
+                                <span class="font-extra-small">Hola!</span> <br />
+                                <span class="font-small fw-bold">
+                                    <asp:Literal ID="litUserName" runat="server" Text="Nombre de usuario"></asp:Literal>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-3 mb-lg-0">
+                        <ul id="dashboard" class="list-unstyled m-0"> <li class="fs-4 border-bottom py-4 ps-4 fw-bold">Mi cuenta</li>
+                            
+                            <li>
+                                <a href="Perfil.aspx" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
+                                    <i class="bi bi-speedometer fs-4 mx-3 align-middle"></i>
+                                    Principal
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="Configuracion.aspx" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
+                                    <i class="bi bi-gear fs-4 mx-3 align-middle"></i>
+                                    Configuración
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="HistorialPedidos.aspx" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
+                                    <i class="bi bi-box-seam fs-4 mx-3 align-middle"></i>
+                                    Historial de Pedidos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="RestaurarPassword.aspx" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
+                                    <i class="bi bi-shield-lock fs-4 mx-3 align-middle"></i>
+                                    Restaurar Contraseña
+                                </a>
+                            </li>
+
+                            <li>
+                                <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CssClass="d-block p-2 theme-text-accent-one text-decoration-none">
+                                    <i class="bi bi-box-arrow-right fs-4 mx-3 align-middle"></i>
+                                    Cerrar sesión
+                                </asp:LinkButton>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-9">
+                    <asp:ContentPlaceHolder ID="DashboardBody" runat="server">
+                        </asp:ContentPlaceHolder>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</asp:Content>
