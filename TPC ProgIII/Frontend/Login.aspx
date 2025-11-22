@@ -32,7 +32,9 @@
                         </div>
 
                         <div class="text-center">
-                            <a href="Registro.aspx" class="text-decoration-none text-secondary small">¿No tenés cuenta? <span class="text-danger fw-bold">Registrate acá</span></a>
+                            <a href="Register.aspx" class="text-decoration-none text-secondary small">
+                                ¿No tenés cuenta? <span class="text-danger fw-bold">Registrate acá</span>
+                            </a>
                         </div>
 
                     </div>
