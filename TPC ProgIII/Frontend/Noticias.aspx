@@ -40,18 +40,13 @@
                                 <p class="card-text text-secondary mt-3">
                                     <%# Eval("Cuerpo") %>
                                 </p>
-                                <a href="#" class="btn btn-outline-danger btn-sm mt-3">Leer m&aacute;s</a>
+                                <a href="DetalleNoticia.aspx?id=<%# Eval("IdNoticia") %>" class="btn btn-outline-danger btn-sm mt-3">Leer m&aacute;s</a>
                             </div>
                         </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
 
-        </div>
-
-        <!-- Botón para cargar más (simulado) -->
-        <div class="text-center mt-5">
-            <button class="btn btn-secondary" type="button">Cargar m&aacute;s noticias</button>
         </div>
     </div>
 </asp:Content>
