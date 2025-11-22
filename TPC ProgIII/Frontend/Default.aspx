@@ -52,187 +52,56 @@
     <!-- 🔽 Contenido principal de la página de inicio -->
     <!-- Hero con carrusel -->
     <section class="offer-banner pb-4" id="offer-banner">
-        <div class="container">
-            <div class="row">
-                <!-- Carrusel principal -->
-                <div class="col-12 col-lg-8 mb-4 mb-lg-0 mt-md-4">
-                    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner rounded-3 shadow">
-                            <div class="carousel-item active">
-                                <img src="assets/img/noticias/NOT_sport.webp" class="d-block w-100" alt="Slide 1" />
-                                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
-                                    <h5 class="fw-bold text-white">Líderes en venta mayorista de autopartes</h5>
-                                    <a href="~/Productos.aspx" runat="server" class="btn btn-danger btn-sm mt-2">
-                                        Ver Catálogo <i class="bi bi-arrow-right ms-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/noticias/NOT_park.webp" class="d-block w-100" alt="Slide 2" />
-                                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
-                                    <h5 class="fw-bold text-white">Calidad y confianza en cada repuesto</h5>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/img/noticias/noti_r21994.webp" class="d-block w-100" alt="Slide 3" />
-                                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
-                                    <h5 class="fw-bold text-white">Atención personalizada a talleres y minoristas</h5>
-                                </div>
-                            </div>
+        <div class="container-fluid p-0">
+            <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active" style="height: 450px;">
+                        <div class="overlay"></div>
+                        <img src="assets/img/Banner1.png" class="d-block w-100 h-100 object-fit-cover" alt="Banner 1" />
+                        <div class="carousel-caption d-none d-md-block pb-5">
+                            <h1 class="display-3 fw-bold text-uppercase mb-3">Líderes en Autopartes</h1>
+                            <p class="fs-4 mb-4">Encontrá todo lo que tu vehículo necesita con la mejor calidad del mercado.</p>
+                            <a href="~/Productos.aspx" runat="server" class="btn btn-danger btn-lg px-5 rounded-pill">
+                                Ver Catálogo <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
                     </div>
-                </div>
-
-                <!-- Cards laterales -->
-                <div class="col-12 col-lg-4 mt-lg-4">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <div class="card border-0 shadow-sm overflow-hidden">
-                                <img src="assets/img/noticias/NOT_sport.webp" class="card-img-top" alt="Card 1" />
-                            </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item" style="height: 450px;">
+                        <div class="overlay"></div>
+                        <img src="assets/img/Banner2.png" class="d-block w-100 h-100 object-fit-cover" alt="Banner 2" />
+                        <div class="carousel-caption d-none d-md-block pb-5">
+                            <h1 class="display-3 fw-bold text-uppercase mb-3">Calidad Garantizada</h1>
+                            <p class="fs-4 mb-4">Trabajamos con las mejores marcas para asegurar el rendimiento de tu auto.</p>
+                            <a href="~/Sucursales.aspx" runat="server" class="btn btn-danger btn-lg px-5 rounded-pill">
+                                Visitar Sucursales <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
                         </div>
-                        <div class="col-12">
-                            <div class="card border-0 shadow-sm overflow-hidden">
-                                <img src="assets/img/noticias/NOT_park.webp" class="card-img-top" alt="Card 2" />
-                            </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item" style="height: 450px;">
+                        <div class="overlay"></div>
+                        <img src="assets/img/Banner3.png" class="d-block w-100 h-100 object-fit-cover" alt="Banner 3" />
+                        <div class="carousel-caption d-none d-md-block pb-5">
+                            <h1 class="display-3 fw-bold text-uppercase mb-3">Atención Personalizada</h1>
+                            <p class="fs-4 mb-4">Asesoramiento experto para talleres y particulares.</p>
+                            <a href="~/Contacto.aspx" runat="server" class="btn btn-danger btn-lg px-5 rounded-pill">
+                                Contactanos
+                            </a>
                         </div>
                     </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
             </div>
         </div>
     </section>
-
-   <%-- <!-- Noticias -->
-    <section class="news py-5" id="news">
-        <div class="container">
-            <div class="row mb-5 text-center">
-                <div class="col">
-                    <h2 class="fw-bold text-uppercase text-danger">Noticias</h2>
-                    <p class="text-muted">Últimas novedades del sector automotor</p>
-                </div>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-6 col-lg-3">
-                    <div class="card border-0 shadow-sm h-100">
-                        <img src="assets/img/noticias/noti_r21994.webp" class="card-img-top" alt="Noticia 1" />
-                        <div class="card-body">
-                            <small class="text-muted d-block mb-2"><i class="bi bi-calendar4-week me-1"></i>18 Marzo, 2024</small>
-                            <h6 class="fw-bold">De colección</h6>
-                            <p class="small text-muted">Nuevas piezas exclusivas para vehículos clásicos.</p>
-                            <a href="#" class="btn btn-outline-danger btn-sm">Leer más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6 col-lg-3">
-                    <div class="card border-0 shadow-sm h-100">
-                        <img src="assets/img/noticias/NOT_llavemec.webp" class="card-img-top" alt="Noticia 2" />
-                        <div class="card-body">
-                            <small class="text-muted d-block mb-2"><i class="bi bi-calendar4-week me-1"></i>24 Marzo, 2024</small>
-                            <h6 class="fw-bold">Novedades motor</h6>
-                            <p class="small text-muted">Actualizaciones en líneas de motores y periféricos.</p>
-                            <a href="#" class="btn btn-outline-danger btn-sm">Leer más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6 col-lg-3">
-                    <div class="card border-0 shadow-sm h-100">
-                        <img src="assets/img/noticias/NOT_park.webp" class="card-img-top" alt="Noticia 3" />
-                        <div class="card-body">
-                            <small class="text-muted d-block mb-2"><i class="bi bi-calendar4-week me-1"></i>27 Marzo, 2024</small>
-                            <h6 class="fw-bold">Repuestos</h6>
-                            <p class="small text-muted">Amplia variedad de componentes disponibles.</p>
-                            <a href="#" class="btn btn-outline-danger btn-sm">Leer más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6 col-lg-3">
-                    <div class="card border-0 shadow-sm h-100">
-                        <img src="assets/img/noticias/NOT_sport.webp" class="card-img-top" alt="Noticia 4" />
-                        <div class="card-body">
-                            <small class="text-muted d-block mb-2"><i class="bi bi-calendar4-week me-1"></i>31 Mayo, 2024</small>
-                            <h6 class="fw-bold">Vehículos de lujo</h6>
-                            <p class="small text-muted">Lanzamientos y accesorios para autos premium.</p>
-                            <a href="#" class="btn btn-outline-danger btn-sm">Leer más</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>--%>
-
-        <!-- Marcas -->
-    <%--<section class="partner pb-5" id="partner">
-        <div class="container">
-            <div class="row my-5">
-                <div class="col-12 pb-4 border-bottom">
-                    <h3 class="fs-3 text-uppercase text-danger fw-bolder">Marcas top</h3>
-                </div>
-            </div>
-
-            <div class="row align-items-center text-center g-3">
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_suzuki.webp" alt="Suzuki" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_mitsu.webp" alt="Mitsubishi" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_citroen.webp" alt="Citroën" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_chevrolet.webp" alt="Chevrolet" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_peugeot.webp" alt="Peugeot" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_jeep.webp" alt="Jeep" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_audi.webp" alt="Audi" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_chery.webp" alt="Chery" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_fiat.webp" alt="Fiat" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_toyota.webp" alt="Toyota" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_volks.webp" alt="Volkswagen" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_ford.webp" alt="Ford" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_nissan.webp" alt="Nissan" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_mbenz.webp" alt="Mercedes-Benz" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_hyundai.webp" alt="Hyundai" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_renault.webp" alt="Renault" class="img-fluid" />
-                </div>
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                    <img src="~/assets/img/marcas-logos/logo_kia.webp" alt="Kia" class="img-fluid" />
-                </div>
-            </div>
-        </div>
-    </section>--%>
 
 </asp:Content>
