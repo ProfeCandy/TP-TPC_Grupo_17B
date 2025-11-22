@@ -160,7 +160,6 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                /
                 datos.setearConsulta("SELECT IdUsuario, IdRol FROM Usuario WHERE Email = @Email AND Clave = @Clave");
                 datos.setearParametro("@Email", usuario.Email);
                 datos.setearParametro("@Clave", usuario.Clave);
