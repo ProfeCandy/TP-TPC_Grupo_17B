@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="Ingresar" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Frontend.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="login">
+    <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-5">
+            <div class="col-12 col-md-8 col-lg-6">
                 
                 <div class="card border-0 shadow-lg rounded-4">
                     <div class="card-body p-5">
