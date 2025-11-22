@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Negocio;
 
 namespace Frontend
 {
@@ -11,8 +13,12 @@ namespace Frontend
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                NoticiaNegocio negocio = new NoticiaNegocio();
+                repNoticias.DataSource = negocio.Listar();
+                repNoticias.DataBind();
+            }
         }
     }
 }
-
