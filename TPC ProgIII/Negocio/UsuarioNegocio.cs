@@ -160,8 +160,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                /
-                datos.setearConsulta("SELECT IdUsuario, IdRol FROM Usuario WHERE Email = @Email AND Clave = @Clave");
+                datos.setearConsulta("SELECT IdUsuario, IdRol, Nombre, Apellido, Email, Telefono, Direccion, Localidad, Activo FROM Usuario WHERE Email = @Email AND Clave = @Clave");
                 datos.setearParametro("@Email", usuario.Email);
                 datos.setearParametro("@Clave", usuario.Clave);
 
@@ -169,14 +168,20 @@ namespace Negocio
 
                 if (datos.Lector.Read())
                 {
-                    
                     usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
-                    usuario.Rol = new Rol(); 
+                    usuario.Rol = new Rol();
                     usuario.Rol.IdRol = (int)datos.Lector["IdRol"];
 
-                    return true; 
-                }
+                    usuario.Nombre = datos.Lector["Nombre"] != DBNull.Value ? (string)datos.Lector["Nombre"] : "";
+                    usuario.Apellido = datos.Lector["Apellido"] != DBNull.Value ? (string)datos.Lector["Apellido"] : "";
+                    usuario.Email = datos.Lector["Email"] != DBNull.Value ? (string)datos.Lector["Email"] : "";
+                    usuario.Telefono = datos.Lector["Telefono"] != DBNull.Value ? (string)datos.Lector["Telefono"] : "";
+                    usuario.Direccion = datos.Lector["Direccion"] != DBNull.Value ? (string)datos.Lector["Direccion"] : "";
+                    usuario.Localidad = datos.Lector["Localidad"] != DBNull.Value ? (string)datos.Lector["Localidad"] : "";
+                    usuario.Activo = (bool)datos.Lector["Activo"];
 
+                    return true;
+                }
                 return false;
             }
             catch (Exception ex)
