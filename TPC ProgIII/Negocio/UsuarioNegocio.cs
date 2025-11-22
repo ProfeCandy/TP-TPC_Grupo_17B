@@ -67,8 +67,8 @@ namespace Negocio
             try
             {
                 string consulta = @"
-                    INSERT INTO Usuario (Nombre, Apellido, Email, Telefono, Direccion, Localidad, IdRol) 
-                    VALUES (@Nombre, @Apellido, @Email, @Telefono, @Direccion, @Localidad, @IdRol)";
+                    INSERT INTO Usuario (Nombre, Apellido, Email, Clave, Telefono, Direccion, Localidad, IdRol) 
+                    VALUES (@Nombre, @Apellido, @Email, @Clave, @Telefono, @Direccion, @Localidad, @IdRol)";
 
                 datos.setearConsulta(consulta);
                 datos.setearParametro("@Nombre", nuevo.Nombre);
@@ -77,6 +77,7 @@ namespace Negocio
                 datos.setearParametro("@Telefono", (object)nuevo.Telefono ?? DBNull.Value);
                 datos.setearParametro("@Direccion", (object)nuevo.Direccion ?? DBNull.Value);
                 datos.setearParametro("@Localidad", (object)nuevo.Localidad ?? DBNull.Value);
+                datos.setearParametro("@Clave", nuevo.Clave);
 
                 datos.setearParametro("@IdRol", nuevo.Rol.IdRol);
 
@@ -159,7 +160,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                // Buscamos un usuario que tenga ESE email Y ESA clave
+                /
                 datos.setearConsulta("SELECT IdUsuario, IdRol FROM Usuario WHERE Email = @Email AND Clave = @Clave");
                 datos.setearParametro("@Email", usuario.Email);
                 datos.setearParametro("@Clave", usuario.Clave);
@@ -168,15 +169,15 @@ namespace Negocio
 
                 if (datos.Lector.Read())
                 {
-                    // Si encontramos el usuario, cargamos sus IDs importantes
+                    
                     usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
-                    usuario.Rol = new Rol(); // Aseguramos que el objeto Rol no sea nulo
+                    usuario.Rol = new Rol(); 
                     usuario.Rol.IdRol = (int)datos.Lector["IdRol"];
 
-                    return true; // ¡Login exitoso!
+                    return true; 
                 }
 
-                return false; // No se encontró (credenciales mal)
+                return false;
             }
             catch (Exception ex)
             {
