@@ -27,66 +27,26 @@
         <!-- Lista de Noticias -->
         <div class="row g-4">
             
-            <!-- Noticia 1 -->
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 hover-shadow">
-                    <div class="card-body">
-                        <div class="mb-2">
-                            <span class="badge bg-danger">Novedades</span>
-                            <small class="text-muted ms-2">20 Nov, 2023</small>
+            <asp:Repeater ID="repNoticias" runat="server">
+                <ItemTemplate>
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 hover-shadow">
+                            <div class="card-body">
+                                <div class="mb-2">
+                                    <span class="badge bg-danger"><%# Eval("Categoria") %></span>
+                                    <small class="text-muted ms-2"><%# Convert.ToDateTime(Eval("FechaPublicacion")).ToString("dd MMM, yyyy") %></small>
+                                </div>
+                                <h4 class="card-title fw-bold mt-2"><%# Eval("Titulo") %></h4>
+                                <p class="card-text text-secondary mt-3">
+                                    <%# Eval("Cuerpo") %>
+                                </p>
+                                <a href="DetalleNoticia.aspx?id=<%# Eval("IdNoticia") %>" class="btn btn-outline-danger btn-sm mt-3">Leer m&aacute;s</a>
+                            </div>
                         </div>
-                        <h4 class="card-title fw-bold mt-2">Nueva sucursal en Cipolletti</h4>
-                        <p class="card-text text-secondary mt-3">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                        <a href="#" class="btn btn-outline-danger btn-sm mt-3">Leer m&aacute;s</a>
                     </div>
-                </div>
-            </div>
+                </ItemTemplate>
+            </asp:Repeater>
 
-            <!-- Noticia 2 -->
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 hover-shadow">
-                    <div class="card-body">
-                        <div class="mb-2">
-                            <span class="badge bg-primary">Tecnolog&iacute;a</span>
-                            <small class="text-muted ms-2">15 Nov, 2023</small>
-                        </div>
-                        <h4 class="card-title fw-bold mt-2">Avances en motores h&iacute;bridos</h4>
-                        <p class="card-text text-secondary mt-3">
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            Sed ut perspiciatis unde omnis iste natus error.
-                        </p>
-                        <a href="#" class="btn btn-outline-danger btn-sm mt-3">Leer m&aacute;s</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Noticia 3 -->
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 hover-shadow">
-                    <div class="card-body">
-                        <div class="mb-2">
-                            <span class="badge bg-success">Promociones</span>
-                            <small class="text-muted ms-2">10 Nov, 2023</small>
-                        </div>
-                        <h4 class="card-title fw-bold mt-2">Descuentos de verano</h4>
-                        <p class="card-text text-secondary mt-3">
-                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
-                            Similique sunt in culpa qui officia deserunt mollitia animi.
-                        </p>
-                        <a href="#" class="btn btn-outline-danger btn-sm mt-3">Leer m&aacute;s</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Botón para cargar más (simulado) -->
-        <div class="text-center mt-5">
-            <button class="btn btn-secondary" type="button">Cargar m&aacute;s noticias</button>
         </div>
     </div>
 </asp:Content>
