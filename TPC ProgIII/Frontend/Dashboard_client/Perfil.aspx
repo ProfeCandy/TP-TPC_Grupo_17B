@@ -4,46 +4,56 @@
 
     <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4">
         
-        <div class="d-flex justify-content-between p-3">
-            <span class="fs-4 noto-sans fw-bold">Información personal</span>
+        <div class="d-flex justify-content-between p-3 border-bottom">
+            <span class="fs-4 noto-sans fw-bold">Editar Información Personal</span>
         </div>
         
-        <div class="row g-0">
-            <div class="col-12 col-lg-6">
-                <div class="d-flex flex-column p-3">
+        <div class="row p-3">
+            <div class="col-12 col-lg-8">
+                <div class="row g-3">
                     
-                    <span class="noto-sans small fw-bold">Nombre / Razón Social</span>
-                    <span class="noto-sans small fw-normal">
-                        <asp:Literal ID="txtNombre" runat="server"></asp:Literal>
-                    </span>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label small fw-bold">Nombre / Razón Social</label>
+                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
 
-                    <span class="noto-sans small fw-bold">Apellido</span>
-                    <span class="noto-sans small fw-normal">
-                        <asp:Literal ID="txtApellido" runat="server"></asp:Literal>
-                    </span>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label small fw-bold">Apellido</label>
+                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
 
-                    <span class="noto-sans small fw-bold mt-3">Correo electrónico</span>
-                    <span class="noto-sans small fw-normal">
-                        <asp:Literal ID="txtEmail" runat="server"></asp:Literal>
-                    </span>
+                    <div class="col-12">
+                        <label class="form-label small fw-bold">Correo electrónico</label>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                    </div>
 
-                    <span class="noto-sans small fw-bold mt-3">Número de contacto</span>
-                    <span class="noto-sans small fw-normal">
-                        <asp:Literal ID="txtTelefono" runat="server" Text="{Teléfono}"></asp:Literal>
-                    </span>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label small fw-bold">Número de contacto</label>
+                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
 
-                    <span class="noto-sans small fw-bold mt-3">Dirección</span>
-                    <span class="noto-sans small fw-normal">
-                        <asp:Literal ID="txtDireccion" runat="server" Text="{Dirección}"></asp:Literal>
-                    </span>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label small fw-bold">Localidad</label>
+                        <asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
 
-                     <span class="noto-sans small fw-bold mt-3">Localidad</span>
-                     <span class="noto-sans small fw-normal">
-                         <asp:Literal ID="txtLocalidad" runat="server" Text="{Dirección}"></asp:Literal>
-                     </span>
+                    <div class="col-12">
+                        <label class="form-label small fw-bold">Dirección</label>
+                        <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
 
                 </div>
+                
+                <div class="mt-4 text-end">
+                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" CssClass="btn btn-primary theme-btn-primary" />
+                    <br />
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="small fw-bold mt-2 d-block" Visible="false"></asp:Label>
+                </div>
+
             </div>
+            
+            <div class="col-12 col-lg-4 d-none d-lg-block bg-light theme-border-radius ms-auto">
+                </div>
         </div>
     </div>
 
