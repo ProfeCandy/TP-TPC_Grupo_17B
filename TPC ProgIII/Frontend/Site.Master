@@ -200,9 +200,9 @@
                             <div class="col-6">
                                 <ul class="list-unstyled">
                                     <li class="mb-2"><a href="~/Login.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Mi Cuenta</a></li>
-                                    <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Términos</a></li>
-                                    <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Privacidad</a></li>
-                                    <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Ayuda</a></li>
+                                    <li class="mb-2"><a href="~/Terminos.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Términos</a></li>
+                                    <li class="mb-2"><a href="~/Privacidad.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Privacidad</a></li>
+                                    <li class="mb-2"><a href="~/Ayuda.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Ayuda</a></li>
                                 </ul>
                             </div>
                          </div>

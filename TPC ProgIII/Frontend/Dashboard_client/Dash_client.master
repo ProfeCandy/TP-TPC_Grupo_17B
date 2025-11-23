@@ -27,28 +27,28 @@
                         <ul id="dashboard" class="list-unstyled m-0"> <li class="fs-4 border-bottom py-4 ps-4 fw-bold">Mi cuenta</li>
                             
                             <li>
-                                <a href="Perfil.aspx" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
+                                <a href="~/Dashboard_client/Perfil.aspx" runat="server" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
                                     <i class="bi bi-speedometer fs-4 mx-3 align-middle"></i>
                                     Principal
                                 </a>
                             </li>
 
                             <li>
-                                <a href="Configuracion.aspx" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
+                                <a href="~/Dashboard_client/Configuracion.aspx" runat="server" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
                                     <i class="bi bi-gear fs-4 mx-3 align-middle"></i>
                                     Configuración
                                 </a>
                             </li>
 
                             <li>
-                                <a href="HistorialPedidos.aspx" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
+                                <a href="~/Dashboard_client/HistorialPedidos.aspx" runat="server" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
                                     <i class="bi bi-box-seam fs-4 mx-3 align-middle"></i>
                                     Historial de Pedidos
                                 </a>
                             </li>
 
                             <li>
-                                <a href="RestaurarPassword.aspx" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
+                                <a href="~/Dashboard_client/RestaurarPassword.aspx" runat="server" class="d-block border-bottom p-2 theme-text-accent-one text-decoration-none">
                                     <i class="bi bi-shield-lock fs-4 mx-3 align-middle"></i>
                                     Restaurar Contraseña
                                 </a>
