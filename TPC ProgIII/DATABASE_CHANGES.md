@@ -53,6 +53,23 @@ VALUES
     (3, 'Administrador', 'Gestiona el sistema y usuarios');
 ```
 
+```
+SET IDENTITY_INSERT Rol ON;
+GO
+
+-- 2. Hacemos el Insert (¡IMPORTANTE! Mencionar las columnas explícitamente)
+INSERT INTO Rol (IdRol, NombreRol, Descripcion)
+VALUES
+    (1, 'Cliente', 'Usuario comprador del sistema'),
+    (2, 'Vendedor', 'Encargado de publicar productos'),
+    (3, 'Administrador', 'Gestiona el sistema y usuarios');
+GO
+
+-- 3. Volvemos a bloquear la inserción manual (Buena práctica)
+SET IDENTITY_INSERT Rol OFF;
+GO
+
+```
 
 **Imagenes de noticias:**
 //Tabla para las imagenes de las noticias
