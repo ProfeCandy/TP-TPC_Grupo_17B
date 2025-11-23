@@ -7,7 +7,7 @@
             <h1 class="fw-bold display-4">Quiénes Somos</h1>
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="Default.aspx" class="text-white-50 text-decoration-none">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="../Default.aspx" class="text-white-50 text-decoration-none">Inicio</a></li>
                     <li class="breadcrumb-item active text-white" aria-current="page">Quiénes Somos</li>
                 </ol>
             </nav>
@@ -31,13 +31,13 @@
                 <div class="d-flex flex-column gap-3">
                     <!-- Imagen 1: Logo -->
                     <!-- Nota: Reemplazar src con la ruta real de la imagen si es diferente -->
-                    <img src="assets/img/lg_distry/DISTRYSER_MARCA.png" class="img-fluid w-100 rounded" alt="Distryser Logo" onerror="this.onerror=null;this.src='https://placehold.co/600x200/FFC107/000?text=DISTRYSER+Logo';" />
+                    <img src="../assets/img/lg_distry/DISTRYSER_MARCA.png" class="img-fluid w-100 rounded" alt="Distryser Logo" onerror="this.onerror=null;this.src='https://placehold.co/600x200/FFC107/000?text=DISTRYSER+Logo';" />
                     
                     <!-- Imagen 2: Banner Suspensión -->
-                    <img src="assets/img/banner_suspension.png" class="img-fluid w-100 rounded" alt="Calidad Confianza Durabilidad" onerror="this.onerror=null;this.src='https://placehold.co/600x200/FFC107/000?text=Somos+Calidad+Confianza+Durabilidad';" />
+                    <img src="../assets/img/banner_suspension.png" class="img-fluid w-100 rounded" alt="Calidad Confianza Durabilidad" onerror="this.onerror=null;this.src='https://placehold.co/600x200/FFC107/000?text=Somos+Calidad+Confianza+Durabilidad';" />
                     
                     <!-- Imagen 3: Banner Contacto -->
-                    <img src="assets/img/banner_contacto.png" class="img-fluid w-100 rounded" alt="Información de Contacto" onerror="this.onerror=null;this.src='https://placehold.co/600x200/1a1a1a/FFF?text=Informacion+de+Contacto';" />
+                    <img src="../assets/img/banner_contacto.png" class="img-fluid w-100 rounded" alt="Información de Contacto" onerror="this.onerror=null;this.src='https://placehold.co/600x200/1a1a1a/FFF?text=Informacion+de+Contacto';" />
                 </div>
             </div>
         </div>

@@ -100,7 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Contacto.aspx" />
+    <Content Include="Nosotros\Contacto.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -133,11 +133,11 @@
     <Content Include="MiPerfil.aspx" />
     <Content Include="Noticias.aspx" />
     <Content Include="Productos.aspx" />
-    <Content Include="QuienesSomos.aspx" />
+    <Content Include="Nosotros\QuienesSomos.aspx" />
     <Content Include="Register.aspx" />
-    <Content Include="Sucursales.aspx" />
-    <Content Include="Proveedores.aspx" />
-    <Content Include="TrabajaConNosotros.aspx" />
+    <Content Include="Nosotros\Sucursales.aspx" />
+    <Content Include="Nosotros\Proveedores.aspx" />
+    <Content Include="Nosotros\TrabajaConNosotros.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -210,11 +210,11 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contacto.aspx.cs">
+    <Compile Include="Nosotros\Contacto.aspx.cs">
       <DependentUpon>Contacto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contacto.aspx.designer.cs">
+    <Compile Include="Nosotros\Contacto.aspx.designer.cs">
       <DependentUpon>Contacto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard_client\Configuracion.aspx.cs">
@@ -311,11 +311,11 @@
     <Compile Include="Productos.aspx.designer.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="QuienesSomos.aspx.cs">
+    <Compile Include="Nosotros\QuienesSomos.aspx.cs">
       <DependentUpon>QuienesSomos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="QuienesSomos.aspx.designer.cs">
+    <Compile Include="Nosotros\QuienesSomos.aspx.designer.cs">
       <DependentUpon>QuienesSomos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Register.aspx.cs">
@@ -325,25 +325,25 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sucursales.aspx.cs">
+    <Compile Include="Nosotros\Sucursales.aspx.cs">
       <DependentUpon>Sucursales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Sucursales.aspx.designer.cs">
+    <Compile Include="Nosotros\Sucursales.aspx.designer.cs">
       <DependentUpon>Sucursales.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Proveedores.aspx.cs">
+    <Compile Include="Nosotros\Proveedores.aspx.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Proveedores.aspx.designer.cs">
+    <Compile Include="Nosotros\Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TrabajaConNosotros.aspx.cs">
+    <Compile Include="Nosotros\TrabajaConNosotros.aspx.cs">
       <DependentUpon>TrabajaConNosotros.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TrabajaConNosotros.aspx.designer.cs">
+    <Compile Include="Nosotros\TrabajaConNosotros.aspx.designer.cs">
       <DependentUpon>TrabajaConNosotros.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

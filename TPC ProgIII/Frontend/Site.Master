@@ -68,7 +68,7 @@
 
                         <!-- Contacto -->
                         <li class="nav-item">
-                            <a class="nav-link px-3 text-uppercase" runat="server" href="~/Contacto.aspx">Contacto</a>
+                            <a class="nav-link px-3 text-uppercase" runat="server" href="~/Nosotros/Contacto.aspx">Contacto</a>
                         </li>
 
                         <!-- Nosotros -->
@@ -77,10 +77,10 @@
                                 Nosotros
                             </a>
                             <ul class="dropdown-menu shadow border-0">
-                                <li><a class="dropdown-item" href="QuienesSomos.aspx">Quiénes somos</a></li>
-                                <li><a class="dropdown-item" href="Sucursales.aspx">Sucursales</a></li>
-                                <li><a class="dropdown-item" href="Proveedores.aspx">Proveedores</a></li>
-                                <li><a class="dropdown-item" href="TrabajaConNosotros.aspx">Trabajá con nosotros</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/Nosotros/QuienesSomos.aspx">Quiénes somos</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/Nosotros/Sucursales.aspx">Sucursales</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/Nosotros/Proveedores.aspx">Proveedores</a></li>
+                                <li><a class="dropdown-item" runat="server" href="~/Nosotros/TrabajaConNosotros.aspx">Trabajá con nosotros</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -110,14 +110,14 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0">
                                 <asp:PlaceHolder ID="pnlNoLogueado" runat="server">
-                                    <li><a class="dropdown-item" href="Login.aspx"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar</a></li>
-                                    <li><a class="dropdown-item" href="Register.aspx"><i class="bi bi-person-plus me-2"></i>Registrarse</a></li>
+                                    <li><a class="dropdown-item" runat="server" href="~/Login.aspx"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar</a></li>
+                                    <li><a class="dropdown-item" runat="server" href="~/Register.aspx"><i class="bi bi-person-plus me-2"></i>Registrarse</a></li>
                                 </asp:PlaceHolder>
                                 <asp:PlaceHolder ID="pnlLogueado" runat="server" Visible="false">
-                                    <li><a class="dropdown-item" href="MiPerfil.aspx"><i class="bi bi-person-badge me-2"></i>Mi Perfil</a></li>
+                                    <li><a class="dropdown-item" runat="server" href="~/MiPerfil.aspx"><i class="bi bi-person-badge me-2"></i>Mi Perfil</a></li>
                                     <asp:PlaceHolder ID="pnlAdmin" runat="server" Visible="false">
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item text-danger fw-bold" href="Configuracion.aspx"><i class="bi bi-gear-fill me-2"></i>Configuración Admin</a></li>
+                                        <li><a class="dropdown-item text-danger fw-bold" runat="server" href="~/Dashboard_client/Configuracion.aspx"><i class="bi bi-gear-fill me-2"></i>Configuración Admin</a></li>
                                     </asp:PlaceHolder>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
@@ -129,7 +129,7 @@
                         </div>
 
                         <!-- Carrito -->
-                        <a href="Carrito.aspx" class="text-white position-relative p-2">
+                        <a href="~/Carrito.aspx" runat="server" class="text-white position-relative p-2">
                             <i class="bi bi-cart3 fs-5"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-dark">
                                 <asp:Label ID="lblCantidadCarrito" runat="server" Text="0"></asp:Label>
@@ -193,13 +193,13 @@
                                 <ul class="list-unstyled">
                                     <li class="mb-2"><a href="Default.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Inicio</a></li>
                                     <li class="mb-2"><a href="Productos.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Productos</a></li>
-                                    <li class="mb-2"><a href="Noticias.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Noticias</a></li>
-                                    <li class="mb-2"><a href="Contacto.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Contacto</a></li>
+                                    <li class="mb-2"><a href="~/Noticias.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Noticias</a></li>
+                                    <li class="mb-2"><a href="~/Nosotros/Contacto.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Contacto</a></li>
                                 </ul>
                             </div>
                             <div class="col-6">
                                 <ul class="list-unstyled">
-                                    <li class="mb-2"><a href="Login.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Mi Cuenta</a></li>
+                                    <li class="mb-2"><a href="~/Login.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Mi Cuenta</a></li>
                                     <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Términos</a></li>
                                     <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Privacidad</a></li>
                                     <li class="mb-2"><a href="#" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Ayuda</a></li>

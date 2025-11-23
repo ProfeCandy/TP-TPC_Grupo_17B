@@ -10,7 +10,7 @@
             <h1 class="fw-bold display-4">Proveedores</h1>
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="Default.aspx" class="text-white-50 text-decoration-none">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="../Default.aspx" class="text-white-50 text-decoration-none">Inicio</a></li>
                     <li class="breadcrumb-item active text-white" aria-current="page">Proveedores</li>
                 </ol>
             </nav>
@@ -33,7 +33,7 @@
 
                     <div class="mt-4">
                         <!-- Placeholder para el logo DISTRYSER -->
-                        <img src="assets/img/lg_distry/DISTRYSER_MARCA.png" alt="Distryser Logo" class="img-fluid" style="max-width: 250px;" onerror="this.onerror=null;this.src='https://placehold.co/250x80/fff/000?text=DISTRYSER';" />
+                        <img src="../assets/img/lg_distry/DISTRYSER_MARCA.png" alt="Distryser Logo" class="img-fluid" style="max-width: 250px;" onerror="this.onerror=null;this.src='https://placehold.co/250x80/fff/000?text=DISTRYSER';" />
                     </div>
                 </div>
 

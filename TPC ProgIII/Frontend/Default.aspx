@@ -74,7 +74,7 @@
                         <div class="carousel-caption d-none d-md-block pb-5">
                             <h1 class="display-3 fw-bold text-uppercase mb-3">Calidad Garantizada</h1>
                             <p class="fs-4 mb-4">Trabajamos con las mejores marcas para asegurar el rendimiento de tu auto.</p>
-                            <a href="~/Sucursales.aspx" runat="server" class="btn btn-danger btn-lg px-5 rounded-pill">
+                            <a href="~/Nosotros/Sucursales.aspx" runat="server" class="btn btn-danger btn-lg px-5 rounded-pill">
                                 Visitar Sucursales <i class="bi bi-arrow-right ms-2"></i>
                             </a>
                         </div>
@@ -86,7 +86,7 @@
                         <div class="carousel-caption d-none d-md-block pb-5">
                             <h1 class="display-3 fw-bold text-uppercase mb-3">Atención Personalizada</h1>
                             <p class="fs-4 mb-4">Asesoramiento experto para talleres y particulares.</p>
-                            <a href="~/Contacto.aspx" runat="server" class="btn btn-danger btn-lg px-5 rounded-pill">
+                            <a href="~/Nosotros/Contacto.aspx" runat="server" class="btn btn-danger btn-lg px-5 rounded-pill">
                                 Contactanos
                             </a>
                         </div>
