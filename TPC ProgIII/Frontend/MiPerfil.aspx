@@ -45,7 +45,7 @@
 
                         <div class="d-end">
                             <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" CssClass="btn btn-danger px-4" />
-                            <a href="Default.aspx" class="btn btn-outline-secondary ms-2">Volver</a>
+                            <a href="Inicio.aspx" class="btn btn-outline-secondary ms-2">Volver</a>
                         </div>
 
                     </div>

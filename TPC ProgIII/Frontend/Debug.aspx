@@ -98,7 +98,7 @@
 
                 <!-- Botones de Acción -->
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <a href="Default.aspx" class="btn btn-outline-secondary">
+                    <a href="Inicio.aspx" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left me-2"></i> Volver al Inicio
                     </a>
                     <asp:LinkButton ID="btnRefresh" runat="server" CssClass="btn btn-danger" OnClick="btnRefresh_Click">

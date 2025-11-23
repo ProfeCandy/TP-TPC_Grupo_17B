@@ -49,7 +49,7 @@ namespace Frontend
 
                 Session.Add("usuario", user);
 
-                Response.Redirect("Default.aspx", false);
+                Response.Redirect("Inicio.aspx", false);
             }
             catch (Exception ex)
             {

@@ -15,7 +15,7 @@ namespace Frontend
         {
             if (Session["usuario"] != null)
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Inicio.aspx");
             }
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -31,7 +31,7 @@ namespace Frontend
                 if (negocio.Loguear(usuario))
                 {  
                     Session.Add("usuario", usuario);
-                    Response.Redirect("Default.aspx", false);
+                    Response.Redirect("Inicio.aspx", false);
                 }
                 else
                 {

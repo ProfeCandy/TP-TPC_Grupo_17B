@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow sticky-top py-3">
             <div class="container">
                 <!-- Logo -->
-                <a class="navbar-brand d-flex align-items-center gap-2" href="~/Default.aspx" runat="server">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="~/Inicio.aspx" runat="server">
                     <i class="bi bi-gear-wide-connected text-danger fs-3"></i>
                     <span class="fw-bold text-white tracking-tight">Auto<span class="text-danger">Parts</span></span>
                 </a>
@@ -38,7 +38,7 @@
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0 fw-medium">
                         <!-- Inicio -->
                         <li class="nav-item">
-                            <a class="nav-link px-3 text-uppercase" runat="server" href="~/Default.aspx">Inicio</a>
+                            <a class="nav-link px-3 text-uppercase" runat="server" href="~/Inicio.aspx">Inicio</a>
                         </li>
 
                         <!-- Productos -->
@@ -191,7 +191,7 @@
                          <div class="row">
                             <div class="col-6">
                                 <ul class="list-unstyled">
-                                    <li class="mb-2"><a href="Default.aspx" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Inicio</a></li>
+                                    <li class="mb-2"><a href="~/Inicio.aspx" class="text-decoration-none text-secondary footer-link" runat="server"><i class="bi bi-chevron-right small me-1"></i>Inicio</a></li>
                                     <li class="mb-2"><a href="~/Productos/Productos.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Productos</a></li>
                                     <li class="mb-2"><a href="~/Noticias.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Noticias</a></li>
                                     <li class="mb-2"><a href="~/Nosotros/Contacto.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Contacto</a></li>
@@ -211,7 +211,7 @@
                     <!-- Brand & Social -->
                     <div class="col-12 col-md-12 col-lg-4 text-center text-lg-start">
                         <div class="mb-4">
-                            <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-3" href="~/Default.aspx" runat="server">
+                            <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-3" href="~/Inicio.aspx" runat="server">
                                 <i class="bi bi-gear-wide-connected text-danger fs-1"></i>
                                 <span class="fw-bold text-white fs-3 tracking-tight">Auto<span class="text-danger">Parts</span></span>
                             </a>

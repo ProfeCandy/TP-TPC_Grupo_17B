@@ -124,7 +124,7 @@
     <Content Include="Dashboard_client\Perfil.aspx" />
     <Content Include="Dashboard_client\RestaurarPassword.aspx" />
     <Content Include="Debug.aspx" />
-    <Content Include="Default.aspx" />
+    <Content Include="Inicio.aspx" />
     <Content Include="DetalleNoticia.aspx" />
     <Content Include="Productos\DetalleProducto.aspx" />
     <Content Include="favicon.ico" />
@@ -259,12 +259,12 @@
     <Compile Include="Debug.aspx.designer.cs">
       <DependentUpon>Debug.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="DetalleNoticia.aspx.cs">
       <DependentUpon>DetalleNoticia.aspx</DependentUpon>

@@ -10,7 +10,7 @@
             <h1 class="fw-bold display-4">Pong&aacute;monos en contacto</h1>
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../Default.aspx" class="text-white-50 text-decoration-none">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="../Inicio.aspx" class="text-white-50 text-decoration-none">Inicio</a></li>
                     <li class="breadcrumb-item active text-white" aria-current="page">Contacto</li>
                 </ol>
             </nav>

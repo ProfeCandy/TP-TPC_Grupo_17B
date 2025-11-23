@@ -11,7 +11,7 @@ namespace TPC_ProgIII
 {
 
 
-    public partial class _Default
+    public partial class Inicio
     {
     }
 }

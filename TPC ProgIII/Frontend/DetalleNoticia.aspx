@@ -11,7 +11,7 @@
                 <!-- Navegación -->
                 <nav aria-label="breadcrumb" class="mb-4">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="Default.aspx" class="text-decoration-none text-danger">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="Inicio.aspx" class="text-decoration-none text-danger">Inicio</a></li>
                         <li class="breadcrumb-item"><a href="Noticias.aspx" class="text-decoration-none text-danger">Noticias</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Detalle</li>
                     </ol>

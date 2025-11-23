@@ -15,7 +15,7 @@ namespace Frontend
         {
             if (Session["usuario"] != null)
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Inicio.aspx");
             }
         }
 
@@ -48,7 +48,7 @@ namespace Frontend
                 // Como ya sabemos que los datos son válidos, lo metemos en sesión directamente
                 Session.Add("usuario", user);
 
-                Response.Redirect("Default.aspx", false);
+                Response.Redirect("Inicio.aspx", false);
 
             }
             catch (Exception ex)
