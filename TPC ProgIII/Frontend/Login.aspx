@@ -17,15 +17,25 @@
                             <asp:Label ID="lblError" runat="server"></asp:Label>
                         </asp:Panel>
 
+                        <%--/ Validacion de Mail--%>
                         <div class="form-floating mb-3">
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Placeholder="name@example.com" TextMode="Email"></asp:TextBox>
                             <label for="txtEmail">Correo Electrónico</label>
+    
+                            <asp:RequiredFieldValidator ErrorMessage="El email es requerido." ControlToValidate="txtEmail" runat="server" 
+                                CssClass="text-danger small" Display="Dynamic" />
+                            <asp:RegularExpressionValidator ErrorMessage="Formato de email inválido." ControlToValidate="txtEmail" runat="server" 
+                                ValidationExpression="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" CssClass="text-danger small" Display="Dynamic" />
                         </div>
 
+                        <%--/ Validacion de Pass--%>
                         <div class="form-floating mb-4">
                             <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" Placeholder="Password" TextMode="Password"></asp:TextBox>
                             <label for="txtPassword">Contraseña</label>
-                        </div>
+    
+                            <asp:RequiredFieldValidator ErrorMessage="La contraseña es requerida." ControlToValidate="txtPassword" runat="server" 
+                                CssClass="text-danger small" Display="Dynamic" />
+                        </div>                   
 
                         <div class="d-grid gap-2 mb-4">
                             <asp:Button ID="btnIngresar" runat="server" Text="INGRESAR" OnClick="btnIngresar_Click" CssClass="btn btn-danger btn-lg fw-bold" />
