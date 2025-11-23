@@ -15,15 +15,6 @@ namespace Frontend.Dashboard_client
     {
 
         /// <summary>
-        /// Control btnGuardarTodo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarTodo;
-
-        /// <summary>
         /// Control txtGanancia.
         /// </summary>
         /// <remarks>
@@ -42,33 +33,6 @@ namespace Frontend.Dashboard_client
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chkIvaSwitch;
 
         /// <summary>
-        /// Control chkNotifPedidos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkNotifPedidos;
-
-        /// <summary>
-        /// Control chkNotifOfertas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkNotifOfertas;
-
-        /// <summary>
-        /// Control chkNotifStock.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkNotifStock;
-
-        /// <summary>
         /// Control btnDesactivar.
         /// </summary>
         /// <remarks>
@@ -76,5 +40,14 @@ namespace Frontend.Dashboard_client
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDesactivar;
+
+        /// <summary>
+        /// Control Button1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

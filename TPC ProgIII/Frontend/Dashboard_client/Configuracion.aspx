@@ -4,7 +4,6 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4 class="noto-sans fw-bold m-0">Configuración de cuenta</h4>
-        <asp:Button ID="btnGuardarTodo" runat="server" Text="Guardar cambios" CssClass="btn btn-primary fw-bold shadow-sm" OnClick="btnGuardarTodo_Click" />
     </div>
 
     <div class="row">
@@ -70,7 +69,7 @@
 
         <div class="col-12 col-lg-5">
             
-            <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4 p-4">
+            <%--<div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4 p-4">
                 <div class="border-bottom pb-3 mb-3">
                     <h5 class="fw-bold noto-sans"><i class="bi bi-bell me-2 text-warning"></i>Notificaciones</h5>
                     <small class="text-muted">Elige qué correos quieres recibir.</small>
@@ -88,9 +87,9 @@
                     <asp:CheckBox ID="chkNotifStock" runat="server" CssClass="form-check-input" />
                     <label class="form-check-label small ms-2" for="<%= chkNotifStock.ClientID %>">Avisos de reposición de stock</label>
                 </div>
-            </div>
+            </div>--%>
 
-            <div class="d-flex flex-column theme-border-radius border border-danger bg-light mb-4 p-4">
+            <div class="d-flex flex-column theme-border-radius border border-danger bg-light mb-4 my-4 p-4">
                 <h6 class="fw-bold text-danger mb-3">Zona de peligro</h6>
                 <p class="font-extra-small text-muted mb-3">
                     Si desactivas tu cuenta, no podrás realizar nuevos pedidos y perderás tu historial.
@@ -98,6 +97,9 @@
                 <asp:Button ID="btnDesactivar" runat="server" Text="Desactivar cuenta" CssClass="btn btn-outline-danger btn-sm fw-bold w-100" OnClick="btnDesactivar_Click" OnClientClick="return confirm('¿Estás seguro de que deseas desactivar tu cuenta?');" />
             </div>
 
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <asp:Button ID="Button1" runat="server" Text="Guardar cambios" CssClass="btn btn-primary fw-bold shadow-sm" OnClick="btnGuardarTodo_Click" />
         </div>
     </div>
 </asp:Content>
