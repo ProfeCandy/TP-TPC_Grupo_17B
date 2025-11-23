@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="Crear Cuenta" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Frontend.Register" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6">
                 
                 <div class="card border-0 shadow-lg rounded-4">
-                    <div class="card-body p-5">
+
+                    <asp:Panel ID="pnlRegistro" runat="server" DefaultButton="btnRegistrarse" CssClass="card-body p-5">
                         
                         <div class="text-center mb-4">
                             <h3 class="fw-bold text-danger text-uppercase">Crear Cuenta</h3>
@@ -52,24 +54,20 @@
                                 <label for="txtPassword">Contraseña</label>
                             </div>
 
-                            <div class="mt-2 ps-2 small text-muted">
-                                <p class="mb-1 fw-bold">Tu contraseña debe tener:</p>
-                                
-                                <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="Dynamic" CssClass="d-block text-danger"
-                                    ValidationExpression="^.{6,}$">
-                                    <i class="bi bi-x-circle"></i> Al menos 6 caracteres
-                                </asp:RegularExpressionValidator>
-
-                                <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="Dynamic" CssClass="d-block text-danger"
-                                    ValidationExpression="(?=.*[A-Z])">
-                                    <i class="bi bi-x-circle"></i> Al menos una mayúscula
-                                </asp:RegularExpressionValidator>
-
-                                <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="Dynamic" CssClass="d-block text-danger"
-                                    ValidationExpression="(?=.*\d)">
-                                    <i class="bi bi-x-circle"></i> Al menos un número
-                                </asp:RegularExpressionValidator>
-                            </div>
+                            <%-- Validaciones de contraseña --%>
+                            <asp:RequiredFieldValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="La contraseña es obligatoria." />
+    
+                            <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="La contraseña debe tener al menos 6 caracteres." ValidationExpression="^.{6,}$" />
+    
+                            <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="La contraseña debe tener al menos una mayúscula." ValidationExpression="^.*[A-Z].*$" />
+    
+                            <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="La contraseña debe tener al menos un número." ValidationExpression="^.*[0-9].*$" />
+                        </div>
+                        <%--Prueba--%>
+                        <div class="text-center mb-3">
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
+                                CssClass="alert alert-danger small text-start" 
+                                HeaderText="Corrija los siguientes errores:" />
                         </div>
 
                         <div class="d-grid gap-2 mb-4">
@@ -80,7 +78,7 @@
                             <a href="Login.aspx" class="text-decoration-none text-secondary small">¿Ya tenés cuenta? <span class="text-danger fw-bold">Ingresá acá</span></a>
                         </div>
 
-                    </div>
+                    </asp:Panel>
                 </div>
 
             </div>

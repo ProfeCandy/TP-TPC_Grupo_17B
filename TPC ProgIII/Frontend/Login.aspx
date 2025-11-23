@@ -6,7 +6,7 @@
             <div class="col-12 col-md-8 col-lg-6">
                 
                 <div class="card border-0 shadow-lg rounded-4">
-                    <div class="card-body p-5">
+                    <asp:Panel ID="pnlLogin" runat="server" DefaultButton="btnIngresar" CssClass="card-body p-5">
                         
                         <div class="text-center mb-4">
                             <h3 class="fw-bold text-danger text-uppercase">Bienvenido</h3>
@@ -47,7 +47,7 @@
                             </a>
                         </div>
 
-                    </div>
+                    </asp:Panel>
                 </div>
 
             </div>
