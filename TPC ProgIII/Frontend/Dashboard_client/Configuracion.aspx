@@ -10,7 +10,6 @@
     <div class="row">
         
         <div class="col-12 col-lg-7">
-            
             <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4 p-4">
                 <div class="border-bottom pb-3 mb-3">
                     <h5 class="fw-bold noto-sans"><i class="bi bi-calculator me-2 text-primary"></i>Preferencias de Venta</h5>
@@ -43,9 +42,9 @@
                 <div class="border-bottom pb-3 mb-3">
                     <h5 class="fw-bold noto-sans"><i class="bi bi-download me-2 text-success"></i>Centro de Descargas</h5>
                     <small class="text-muted">Descarga listas actualizadas para tu negocio.</small>
-                </div>--%>
+                </div>
                 
-               <%-- <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="d-flex align-items-center">
                         <i class="bi bi-file-earmark-excel fs-3 text-success me-3"></i>
                         <div class="d-flex flex-column">
@@ -67,7 +66,6 @@
                     <button type="button" class="btn btn-outline-secondary btn-sm"><i class="bi bi-download"></i> Descargar</button>
                 </div>
             </div>--%>
-
         </div>
 
         <div class="col-12 col-lg-5">
