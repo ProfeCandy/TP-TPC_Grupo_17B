@@ -30,6 +30,7 @@ namespace Frontend
         private void CargarDetalle(int id)
         {
             NoticiaNegocio negocio = new NoticiaNegocio();
+            NoticiaImagenNegocio imagenNegocio = new NoticiaImagenNegocio();
             Noticia noticia = negocio.ObtenerPorId(id);
 
             if (noticia != null)
@@ -39,15 +40,19 @@ namespace Frontend
                 lblFecha.Text = noticia.FechaPublicacion.ToString("dd 'de' MMMM 'de' yyyy");
                 lblCategoria.Text = noticia.Categoria ?? "General";
 
-                if (!string.IsNullOrEmpty(noticia.ImagenUrl))
+                noticia.Imagenes = imagenNegocio.ObtenerPorNoticia(noticia.IdNoticia);
+                if (noticia.Imagenes != null && noticia.Imagenes.Count > 0)
                 {
-                    imgNoticia.ImageUrl = noticia.ImagenUrl;
-                    imgNoticia.Visible = true;
+                    string imagenUrl = noticia.Imagenes[0].UrlImagen;
+                    if (!string.IsNullOrEmpty(imagenUrl))
+                    {
+                        imgNoticia.ImageUrl = ResolveUrl(imagenUrl);
+                        imgNoticia.Visible = true;
+                    }
                 }
             }
             else
             {
-                // Si no encuentra la noticia, vuelve al listado
                 Response.Redirect("Noticias.aspx");
             }
         }

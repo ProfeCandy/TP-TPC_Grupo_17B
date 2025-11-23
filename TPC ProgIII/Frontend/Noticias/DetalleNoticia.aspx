@@ -11,7 +11,7 @@
                 <!-- Navegación -->
                 <nav aria-label="breadcrumb" class="mb-4">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="Inicio.aspx" class="text-decoration-none text-danger">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="../Inicio.aspx" class="text-decoration-none text-danger">Inicio</a></li>
                         <li class="breadcrumb-item"><a href="Noticias.aspx" class="text-decoration-none text-danger">Noticias</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Detalle</li>
                     </ol>
@@ -29,7 +29,7 @@
 
                 <!-- Imagen (Opcional) -->
                 <div class="mb-5 text-center">
-                    <asp:Image ID="imgNoticia" runat="server" CssClass="img-fluid rounded shadow-sm w-100" Visible="false" style="max-height: 500px; object-fit: cover;" />
+                    <asp:Image ID="imgNoticia" runat="server" CssClass="img-fluid rounded shadow-sm" Visible="false" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
                 </div>
 
                 <!-- Cuerpo -->

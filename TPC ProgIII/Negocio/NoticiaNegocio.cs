@@ -76,9 +76,93 @@ namespace Negocio
                         noticia.ImagenUrl = (string)datos.Lector["ImagenUrl"];
 
                     noticia.Activa = (bool)datos.Lector["Activa"];
+
+                    // Cargar imágenes relacionadas
+                    NoticiaImagenNegocio imagenNegocio = new NoticiaImagenNegocio();
+                    noticia.Imagenes = imagenNegocio.ObtenerPorNoticia(noticia.IdNoticia);
                 }
 
                 return noticia;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Eliminación lógica (marca como inactiva)
+        public void Eliminar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Noticias SET Activa = 0 WHERE IdNoticia = @Id");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Agregar noticia y retornar el ID generado
+        public int Agregar(Noticia noticia)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO Noticias (Titulo, Cuerpo, FechaPublicacion, Categoria, ImagenUrl, Activa) VALUES (@Titulo, @Cuerpo, @FechaPublicacion, @Categoria, @ImagenUrl, @Activa); SELECT SCOPE_IDENTITY()");
+                datos.setearParametro("@Titulo", noticia.Titulo);
+                datos.setearParametro("@Cuerpo", noticia.Cuerpo);
+                datos.setearParametro("@FechaPublicacion", noticia.FechaPublicacion);
+                datos.setearParametro("@Categoria", (object)noticia.Categoria ?? DBNull.Value);
+                datos.setearParametro("@ImagenUrl", (object)noticia.ImagenUrl ?? DBNull.Value);
+                datos.setearParametro("@Activa", noticia.Activa);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    return (int)Convert.ToDecimal(datos.Lector[0]);
+                }
+                
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Modificar noticia
+        public void Modificar(Noticia noticia)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Noticias SET Titulo = @Titulo, Cuerpo = @Cuerpo, Categoria = @Categoria, ImagenUrl = @ImagenUrl, Activa = @Activa WHERE IdNoticia = @IdNoticia");
+                datos.setearParametro("@IdNoticia", noticia.IdNoticia);
+                datos.setearParametro("@Titulo", noticia.Titulo);
+                datos.setearParametro("@Cuerpo", noticia.Cuerpo);
+                datos.setearParametro("@Categoria", (object)noticia.Categoria ?? DBNull.Value);
+                datos.setearParametro("@ImagenUrl", (object)noticia.ImagenUrl ?? DBNull.Value);
+                datos.setearParametro("@Activa", noticia.Activa);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

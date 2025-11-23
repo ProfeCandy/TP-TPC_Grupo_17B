@@ -44,7 +44,7 @@ GO
 
 **Descripción:** Cargar los tres roles base del sistema: Cliente, Vendedor y Administrador.
 
-**SQL:**
+**Roles:**
 ```sql
 INSERT INTO Rol (IdRol, NombreRol, Descripcion)
 VALUES
@@ -53,3 +53,16 @@ VALUES
     (3, 'Administrador', 'Gestiona el sistema y usuarios');
 ```
 
+
+**Imagenes de noticias:**
+//Tabla para las imagenes de las noticias
+```sql
+CREATE TABLE NoticiaImagen (
+    IdNoticiaImagen INT IDENTITY(1,1) PRIMARY KEY,
+    IdNoticia INT NOT NULL,
+    UrlImagen VARCHAR(MAX) NOT NULL,
+    Orden INT DEFAULT 0,
+    FechaSubida DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (IdNoticia) REFERENCES Noticias(IdNoticia) ON DELETE CASCADE
+);
+```

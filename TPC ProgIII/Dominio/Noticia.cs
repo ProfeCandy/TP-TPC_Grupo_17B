@@ -15,6 +15,11 @@ namespace Dominio
         public string Categoria { get; set; }
         public string ImagenUrl { get; set; }
         public bool Activa { get; set; }
+        public List<NoticiaImagen> Imagenes { get; set; }
+
+        public Noticia()
+        {
+            Imagenes = new List<NoticiaImagen>();
+        }
     }
 }
-

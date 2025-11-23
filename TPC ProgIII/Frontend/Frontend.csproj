@@ -125,14 +125,15 @@
     <Content Include="Dashboard_client\RestaurarPassword.aspx" />
     <Content Include="Debug.aspx" />
     <Content Include="Inicio.aspx" />
-    <Content Include="DetalleNoticia.aspx" />
+    <Content Include="Noticias\DetalleNoticia.aspx" />
     <Content Include="Productos\DetalleProducto.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="Noticias\FormularioNoticia.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="MiPerfil.aspx" />
-    <Content Include="Noticias.aspx" />
+    <Content Include="Noticias\Noticias.aspx" />
     <Content Include="Productos\Productos.aspx" />
     <Content Include="Nosotros\QuienesSomos.aspx" />
     <Content Include="Register.aspx" />
@@ -267,11 +268,11 @@
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DetalleNoticia.aspx.cs">
+    <Compile Include="Noticias\DetalleNoticia.aspx.cs">
       <DependentUpon>DetalleNoticia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DetalleNoticia.aspx.designer.cs">
+    <Compile Include="Noticias\DetalleNoticia.aspx.designer.cs">
       <DependentUpon>DetalleNoticia.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos\DetalleProducto.aspx.cs">
@@ -287,6 +288,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Noticias\FormularioNoticia.aspx.cs">
+      <DependentUpon>FormularioNoticia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Noticias\FormularioNoticia.aspx.designer.cs">
+      <DependentUpon>FormularioNoticia.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -305,11 +313,11 @@
     <Compile Include="MiPerfil.aspx.designer.cs">
       <DependentUpon>MiPerfil.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Noticias.aspx.cs">
+    <Compile Include="Noticias\Noticias.aspx.cs">
       <DependentUpon>Noticias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Noticias.aspx.designer.cs">
+    <Compile Include="Noticias\Noticias.aspx.designer.cs">
       <DependentUpon>Noticias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos\Productos.aspx.cs">

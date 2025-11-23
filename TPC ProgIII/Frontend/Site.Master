@@ -17,7 +17,7 @@
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
 <body>
-    <form runat="server" class="d-flex flex-column min-vh-100">
+    <form runat="server" class="d-flex flex-column min-vh-100" enctype="multipart/form-data">
 
         <!-- Header principal -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow sticky-top py-3">
@@ -63,7 +63,7 @@
 
                         <!-- Noticias -->
                         <li class="nav-item">
-                            <a class="nav-link px-3 text-uppercase" runat="server" href="~/Noticias.aspx">Noticias</a>
+                            <a class="nav-link px-3 text-uppercase" runat="server" href="~/Noticias/Noticias.aspx">Noticias</a>
                         </li>
 
                         <!-- Contacto -->
@@ -193,7 +193,7 @@
                                 <ul class="list-unstyled">
                                     <li class="mb-2"><a href="~/Inicio.aspx" class="text-decoration-none text-secondary footer-link" runat="server"><i class="bi bi-chevron-right small me-1"></i>Inicio</a></li>
                                     <li class="mb-2"><a href="~/Productos/Productos.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Productos</a></li>
-                                    <li class="mb-2"><a href="~/Noticias.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Noticias</a></li>
+                                    <li class="mb-2"><a href="~/Noticias/Noticias.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Noticias</a></li>
                                     <li class="mb-2"><a href="~/Nosotros/Contacto.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Contacto</a></li>
                                 </ul>
                             </div>

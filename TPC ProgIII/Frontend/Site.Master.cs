@@ -34,7 +34,7 @@ namespace TPC_ProgIII
                 PlaceHolder pnlAdmin = (PlaceHolder)pnlLogueado.FindControl("pnlAdmin");
                 if (pnlAdmin != null)
                 {
-                    if (user.Rol != null && user.Rol.NombreRol.ToLower() == "admin")
+                    if (user.Rol != null && user.Rol.NombreRol.ToLower() == "administrador")
                     {
                         pnlAdmin.Visible = true;
                     }
