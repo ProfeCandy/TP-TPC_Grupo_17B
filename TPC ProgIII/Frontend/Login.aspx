@@ -35,7 +35,11 @@
     
                             <asp:RequiredFieldValidator ErrorMessage="La contraseña es requerida." ControlToValidate="txtPassword" runat="server" 
                                 CssClass="text-danger small" Display="Dynamic" />
-                        </div>                   
+                        </div>
+                        
+                        <div class="mb-3 text-end">
+                            <a href="RecuperarPassword.aspx" class="text-secondary text-decoration-none small">¿Olvidaste tu contraseña?</a>
+                        </div>
 
                         <div class="d-grid gap-2 mb-4">
                             <asp:Button ID="btnIngresar" runat="server" Text="INGRESAR" OnClick="btnIngresar_Click" CssClass="btn btn-danger btn-lg fw-bold" />
