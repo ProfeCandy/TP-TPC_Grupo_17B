@@ -15,48 +15,57 @@ namespace Frontend.Dashboard_client
     {
 
         /// <summary>
-        /// Control litRazonSocial.
+        /// Control txtNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litRazonSocial;
+        protected global::System.Web.UI.WebControls.Literal txtNombre;
 
         /// <summary>
-        /// Control litCuit.
+        /// Control txtApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litCuit;
+        protected global::System.Web.UI.WebControls.Literal txtApellido;
 
         /// <summary>
-        /// Control litEmail.
+        /// Control txtEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litEmail;
+        protected global::System.Web.UI.WebControls.Literal txtEmail;
 
         /// <summary>
-        /// Control litTelefono.
+        /// Control txtTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTelefono;
+        protected global::System.Web.UI.WebControls.Literal txtTelefono;
 
         /// <summary>
-        /// Control litDireccion.
+        /// Control txtDireccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litDireccion;
+        protected global::System.Web.UI.WebControls.Literal txtDireccion;
+
+        /// <summary>
+        /// Control txtLocalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal txtLocalidad;
     }
 }

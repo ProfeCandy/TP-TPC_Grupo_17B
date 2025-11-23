@@ -12,30 +12,35 @@
             <div class="col-12 col-lg-6">
                 <div class="d-flex flex-column p-3">
                     
-                    <span class="noto-sans small fw-bold">Razón social</span>
+                    <span class="noto-sans small fw-bold">Nombre / Razón Social</span>
                     <span class="noto-sans small fw-normal">
-                        <asp:Literal ID="litRazonSocial" runat="server"></asp:Literal>
+                        <asp:Literal ID="txtNombre" runat="server"></asp:Literal>
                     </span>
 
-                    <span class="noto-sans small fw-bold mt-3">CUIT</span>
+                    <span class="noto-sans small fw-bold">Apellido</span>
                     <span class="noto-sans small fw-normal">
-                        <asp:Literal ID="litCuit" runat="server"></asp:Literal>
+                        <asp:Literal ID="txtApellido" runat="server"></asp:Literal>
                     </span>
 
                     <span class="noto-sans small fw-bold mt-3">Correo electrónico</span>
                     <span class="noto-sans small fw-normal">
-                        <asp:Literal ID="litEmail" runat="server"></asp:Literal>
+                        <asp:Literal ID="txtEmail" runat="server"></asp:Literal>
                     </span>
 
                     <span class="noto-sans small fw-bold mt-3">Número de contacto</span>
                     <span class="noto-sans small fw-normal">
-                        <asp:Literal ID="litTelefono" runat="server" Text="{Teléfono}"></asp:Literal>
+                        <asp:Literal ID="txtTelefono" runat="server" Text="{Teléfono}"></asp:Literal>
                     </span>
 
                     <span class="noto-sans small fw-bold mt-3">Dirección</span>
                     <span class="noto-sans small fw-normal">
-                        <asp:Literal ID="litDireccion" runat="server" Text="{Dirección}"></asp:Literal>
+                        <asp:Literal ID="txtDireccion" runat="server" Text="{Dirección}"></asp:Literal>
                     </span>
+
+                     <span class="noto-sans small fw-bold mt-3">Localidad</span>
+                     <span class="noto-sans small fw-normal">
+                         <asp:Literal ID="txtLocalidad" runat="server" Text="{Dirección}"></asp:Literal>
+                     </span>
 
                 </div>
             </div>

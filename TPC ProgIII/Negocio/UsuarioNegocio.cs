@@ -61,6 +61,69 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public Usuario BuscarUsuarioPorId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = @"
+                    SELECT u.IdUsuario, u.Nombre, u.Apellido, u.Email, u.Telefono, 
+                           u.Direccion, u.Localidad, u.FechaRegistro, u.Activo, 
+                           u.IdRol, r.NombreRol
+                    FROM Usuario u
+                    INNER JOIN Rol r ON u.IdRol = r.IdRol
+                    WHERE u.IdUsuario = @IdUsuario";
+
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@IdUsuario", id);
+                datos.ejecutarLectura();
+
+                Usuario usuario = null;
+
+                if (datos.Lector.Read())
+                {
+                    usuario = new Usuario();
+                    usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    usuario.Nombre = (string)datos.Lector["Nombre"];
+                    usuario.Apellido = (string)datos.Lector["Apellido"];
+                    usuario.Email = (string)datos.Lector["Email"];
+
+                    // Validaciones de nulos (DBNull)
+                    if (!(datos.Lector["Telefono"] is DBNull))
+                        usuario.Telefono = (string)datos.Lector["Telefono"];
+
+                    if (!(datos.Lector["Direccion"] is DBNull))
+                        usuario.Direccion = (string)datos.Lector["Direccion"];
+
+                    if (!(datos.Lector["Localidad"] is DBNull))
+                        usuario.Localidad = (string)datos.Lector["Localidad"];
+
+                    // Validar FechaRegistro x las dudas
+                    if (!(datos.Lector["FechaRegistro"] is DBNull))
+                        usuario.FechaRegistro = (DateTime)datos.Lector["FechaRegistro"];
+
+                    usuario.Activo = (bool)datos.Lector["Activo"];
+
+                    usuario.Rol = new Rol();
+                    usuario.Rol.IdRol = (int)datos.Lector["IdRol"];
+
+                    if (!(datos.Lector["NombreRol"] is DBNull))
+                        usuario.Rol.NombreRol = (string)datos.Lector["NombreRol"];
+                }
+
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        
         public void Agregar(Usuario nuevo)
         {
             AccesoDatos datos = new AccesoDatos();

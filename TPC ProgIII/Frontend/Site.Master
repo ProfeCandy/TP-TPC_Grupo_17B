@@ -114,7 +114,7 @@
                                     <li><a class="dropdown-item" runat="server" href="~/Register.aspx"><i class="bi bi-person-plus me-2"></i>Registrarse</a></li>
                                 </asp:PlaceHolder>
                                 <asp:PlaceHolder ID="pnlLogueado" runat="server" Visible="false">
-                                    <li><a class="dropdown-item" runat="server" href="~/MiPerfil.aspx"><i class="bi bi-person-badge me-2"></i>Mi Perfil</a></li>
+                                    <li><a class="dropdown-item" runat="server" href="~/Dashboard_client/Perfil.aspx"><i class="bi bi-person-badge me-2"></i>Mi Perfil</a></li>
                                     <asp:PlaceHolder ID="pnlAdmin" runat="server" Visible="false">
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item text-danger fw-bold" runat="server" href="~/Dashboard_client/Configuracion.aspx"><i class="bi bi-gear-fill me-2"></i>Configuración Admin</a></li>
