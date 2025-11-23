@@ -61,7 +61,7 @@
                         <!-- Breadcrumb -->
                         <nav aria-label="breadcrumb" class="mb-3">
                             <ol class="breadcrumb small text-uppercase">
-                                <li class="breadcrumb-item"><a href="Default.aspx" class="text-decoration-none text-muted">Inicio</a></li>
+                                <li class="breadcrumb-item"><a href="../Default.aspx" class="text-decoration-none text-muted">Inicio</a></li>
                                 <li class="breadcrumb-item"><a href="Productos.aspx" class="text-decoration-none text-muted">Productos</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Detalle</li>
                             </ol>

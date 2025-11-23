@@ -126,13 +126,13 @@
     <Content Include="Debug.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleNoticia.aspx" />
-    <Content Include="DetalleProducto.aspx" />
+    <Content Include="Productos\DetalleProducto.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="MiPerfil.aspx" />
     <Content Include="Noticias.aspx" />
-    <Content Include="Productos.aspx" />
+    <Content Include="Productos\Productos.aspx" />
     <Content Include="Nosotros\QuienesSomos.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Nosotros\Sucursales.aspx" />
@@ -273,11 +273,11 @@
     <Compile Include="DetalleNoticia.aspx.designer.cs">
       <DependentUpon>DetalleNoticia.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DetalleProducto.aspx.cs">
+    <Compile Include="Productos\DetalleProducto.aspx.cs">
       <DependentUpon>DetalleProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DetalleProducto.aspx.designer.cs">
+    <Compile Include="Productos\DetalleProducto.aspx.designer.cs">
       <DependentUpon>DetalleProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -304,11 +304,11 @@
     <Compile Include="Noticias.aspx.designer.cs">
       <DependentUpon>Noticias.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Productos.aspx.cs">
+    <Compile Include="Productos\Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Productos.aspx.designer.cs">
+    <Compile Include="Productos\Productos.aspx.designer.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Nosotros\QuienesSomos.aspx.cs">

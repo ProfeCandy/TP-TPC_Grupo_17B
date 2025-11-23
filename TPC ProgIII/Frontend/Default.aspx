@@ -62,7 +62,7 @@
                         <div class="carousel-caption d-none d-md-block pb-5">
                             <h1 class="display-3 fw-bold text-uppercase mb-3">Líderes en Autopartes</h1>
                             <p class="fs-4 mb-4">Encontrá todo lo que tu vehículo necesita con la mejor calidad del mercado.</p>
-                            <a href="~/Productos.aspx" runat="server" class="btn btn-danger btn-lg px-5 rounded-pill">
+                            <a href="~/Productos/Productos.aspx" runat="server" class="btn btn-danger btn-lg px-5 rounded-pill">
                                 Ver Catálogo <i class="bi bi-arrow-right ms-2"></i>
                             </a>
                         </div>
