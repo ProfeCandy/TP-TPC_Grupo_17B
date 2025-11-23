@@ -65,8 +65,8 @@
                         </div>
                     </div>
                     <button type="button" class="btn btn-outline-secondary btn-sm"><i class="bi bi-download"></i> Descargar</button>
-                </div>--%>
-            </div>
+                </div>
+            </div>--%>
 
         </div>
 
