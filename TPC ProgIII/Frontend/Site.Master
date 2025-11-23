@@ -115,6 +115,10 @@
                                 </asp:PlaceHolder>
                                 <asp:PlaceHolder ID="pnlLogueado" runat="server" Visible="false">
                                     <li><a class="dropdown-item" href="MiPerfil.aspx"><i class="bi bi-person-badge me-2"></i>Mi Perfil</a></li>
+                                    <asp:PlaceHolder ID="pnlAdmin" runat="server" Visible="false">
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-danger fw-bold" href="Configuracion.aspx"><i class="bi bi-gear-fill me-2"></i>Configuración Admin</a></li>
+                                    </asp:PlaceHolder>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <asp:Button ID="btnSalir" runat="server" Text="Cerrar Sesión" 

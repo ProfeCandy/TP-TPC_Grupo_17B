@@ -123,6 +123,7 @@
     <Content Include="Dashboard_client\HistorialPedidos.aspx" />
     <Content Include="Dashboard_client\Perfil.aspx" />
     <Content Include="Dashboard_client\RestaurarPassword.aspx" />
+    <Content Include="Debug.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleNoticia.aspx" />
     <Content Include="DetalleProducto.aspx" />
@@ -250,6 +251,13 @@
     </Compile>
     <Compile Include="Dashboard_client\RestaurarPassword.aspx.designer.cs">
       <DependentUpon>RestaurarPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Debug.aspx.cs">
+      <DependentUpon>Debug.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Debug.aspx.designer.cs">
+      <DependentUpon>Debug.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

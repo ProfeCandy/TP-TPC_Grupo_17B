@@ -28,7 +28,21 @@ namespace TPC_ProgIII
                 lblUser.Text = user.Nombre;
 
                 pnlLogueado.Visible = true; 
-                pnlNoLogueado.Visible = false; 
+                pnlNoLogueado.Visible = false;
+                
+                // Mostrar opción de Configuración solo si es admin
+                PlaceHolder pnlAdmin = (PlaceHolder)pnlLogueado.FindControl("pnlAdmin");
+                if (pnlAdmin != null)
+                {
+                    if (user.Rol != null && user.Rol.NombreRol.ToLower() == "admin")
+                    {
+                        pnlAdmin.Visible = true;
+                    }
+                    else
+                    {
+                        pnlAdmin.Visible = false;
+                    }
+                }
             }
             else
             {

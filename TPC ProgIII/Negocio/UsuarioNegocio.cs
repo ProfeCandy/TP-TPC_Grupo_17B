@@ -160,7 +160,11 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("SELECT IdUsuario, IdRol, Nombre, Apellido, Email, Telefono, Direccion, Localidad, Activo FROM Usuario WHERE Email = @Email AND Clave = @Clave");
+                datos.setearConsulta(@"
+                    SELECT u.IdUsuario, u.IdRol, u.Nombre, u.Apellido, u.Email, u.Telefono, u.Direccion, u.Localidad, u.Activo, r.NombreRol 
+                    FROM Usuario u
+                    LEFT JOIN Rol r ON u.IdRol = r.IdRol
+                    WHERE u.Email = @Email AND u.Clave = @Clave");
                 datos.setearParametro("@Email", usuario.Email);
                 datos.setearParametro("@Clave", usuario.Clave);
 
@@ -171,6 +175,7 @@ namespace Negocio
                     usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
                     usuario.Rol = new Rol();
                     usuario.Rol.IdRol = (int)datos.Lector["IdRol"];
+                    usuario.Rol.NombreRol = datos.Lector["NombreRol"] != DBNull.Value ? (string)datos.Lector["NombreRol"] : "";
 
                     usuario.Nombre = datos.Lector["Nombre"] != DBNull.Value ? (string)datos.Lector["Nombre"] : "";
                     usuario.Apellido = datos.Lector["Apellido"] != DBNull.Value ? (string)datos.Lector["Apellido"] : "";
