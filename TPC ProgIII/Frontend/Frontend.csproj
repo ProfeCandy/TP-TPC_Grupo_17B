@@ -141,6 +141,9 @@
     <Content Include="Nosotros\Sucursales.aspx" />
     <Content Include="Nosotros\Proveedores.aspx" />
     <Content Include="Nosotros\TrabajaConNosotros.aspx" />
+    <Content Include="Nosotros\Terminos.aspx" />
+    <Content Include="Nosotros\Privacidad.aspx" />
+    <Content Include="Nosotros\Ayuda.aspx" />
     <Content Include="RestablecerPassword.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -370,6 +373,27 @@
     </Compile>
     <Compile Include="Nosotros\TrabajaConNosotros.aspx.designer.cs">
       <DependentUpon>TrabajaConNosotros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Nosotros\Terminos.aspx.cs">
+      <DependentUpon>Terminos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Nosotros\Terminos.aspx.designer.cs">
+      <DependentUpon>Terminos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Nosotros\Privacidad.aspx.cs">
+      <DependentUpon>Privacidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Nosotros\Privacidad.aspx.designer.cs">
+      <DependentUpon>Privacidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Nosotros\Ayuda.aspx.cs">
+      <DependentUpon>Ayuda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Nosotros\Ayuda.aspx.designer.cs">
+      <DependentUpon>Ayuda.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestablecerPassword.aspx.cs">
