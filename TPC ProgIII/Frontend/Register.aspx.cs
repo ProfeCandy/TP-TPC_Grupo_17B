@@ -36,26 +36,33 @@ namespace Frontend
                 user.Email = txtEmail.Text;
                 user.Clave = txtPassword.Text;
 
-                // Configuración por defecto para nuevos usuarios
                 user.Activo = true;
                 user.Rol = new Rol();
                 user.Rol.IdRol = 1; 
 
                 UsuarioNegocio negocio = new UsuarioNegocio();
-                negocio.Agregar(user);
-                negocio.Loguear(user);
-
-                // Como ya sabemos que los datos son válidos, lo metemos en sesión directamente
-                Session.Add("usuario", user);
-
-                Response.Redirect("Inicio.aspx", false);
-
+                
+                // Agregar usuario y obtener el IdUsuario generado
+                int idUsuario = negocio.Agregar(user);
+                
+                // Generar token único de confirmación
+                string token = Guid.NewGuid().ToString();
+                
+                // Guardar token en la base de datos
+                negocio.GenerarTokenConfirmacion(idUsuario, token);
+                
+                // Enviar email de confirmación
+                EmailServicio emailServicio = new EmailServicio();
+                string nombreCompleto = $"{user.Nombre} {user.Apellido}";
+                emailServicio.EnviarConfirmacionRegistro(user.Email, nombreCompleto, token);
+                
+                // Redirigir a página de confirmación (sin hacer login)
+                Response.Redirect(ResolveUrl($"~/ConfirmarEmail.aspx?email={Server.UrlEncode(user.Email)}"), false);
             }
             catch (Exception ex)
             {
                 panelError.Visible = true;
-                lblError.Text = "Hubo un error al registrarse. Intente nuevamente.";
-                throw ex;
+                lblError.Text = $"Hubo un error al registrarse: {ex.Message}";
             }
         }
     }

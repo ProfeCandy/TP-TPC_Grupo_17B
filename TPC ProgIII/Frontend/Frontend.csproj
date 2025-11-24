@@ -127,6 +127,7 @@
     <Content Include="Inicio.aspx" />
     <Content Include="Noticias\DetalleNoticia.aspx" />
     <Content Include="Productos\DetalleProducto.aspx" />
+    <Content Include="ConfirmarEmail.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Noticias\FormularioNoticia.aspx" />
     <Content Include="favicon.ico" />
@@ -286,6 +287,13 @@
     </Compile>
     <Compile Include="Productos\DetalleProducto.aspx.designer.cs">
       <DependentUpon>DetalleProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmarEmail.aspx.cs">
+      <DependentUpon>ConfirmarEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmarEmail.aspx.designer.cs">
+      <DependentUpon>ConfirmarEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>

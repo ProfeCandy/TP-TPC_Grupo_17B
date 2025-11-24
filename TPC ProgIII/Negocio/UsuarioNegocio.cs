@@ -124,14 +124,15 @@ namespace Negocio
             }
         }
         
-        public void Agregar(Usuario nuevo)
+        public int Agregar(Usuario nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 string consulta = @"
                     INSERT INTO Usuario (Nombre, Apellido, Email, Clave, Telefono, Direccion, Localidad, IdRol) 
-                    VALUES (@Nombre, @Apellido, @Email, @Clave, @Telefono, @Direccion, @Localidad, @IdRol)";
+                    VALUES (@Nombre, @Apellido, @Email, @Clave, @Telefono, @Direccion, @Localidad, @IdRol);
+                    SELECT CAST(SCOPE_IDENTITY() as int);";
 
                 datos.setearConsulta(consulta);
                 datos.setearParametro("@Nombre", nuevo.Nombre);
@@ -141,14 +142,23 @@ namespace Negocio
                 datos.setearParametro("@Direccion", (object)nuevo.Direccion ?? DBNull.Value);
                 datos.setearParametro("@Localidad", (object)nuevo.Localidad ?? DBNull.Value);
                 datos.setearParametro("@Clave", nuevo.Clave);
-
                 datos.setearParametro("@IdRol", nuevo.Rol.IdRol);
 
-                datos.ejecutarAccion();
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    int idUsuario = (int)datos.Lector[0];
+                    return idUsuario;
+                }
+                return 0;
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 
@@ -224,7 +234,7 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-                    SELECT u.IdUsuario, u.IdRol, u.Nombre, u.Apellido, u.Email, u.Telefono, u.Direccion, u.Localidad, u.Activo, r.NombreRol 
+                    SELECT u.IdUsuario, u.IdRol, u.Nombre, u.Apellido, u.Email, u.Telefono, u.Direccion, u.Localidad, u.Activo, u.EmailConfirmado, r.NombreRol 
                     FROM Usuario u
                     LEFT JOIN Rol r ON u.IdRol = r.IdRol
                     WHERE u.Email = @Email AND u.Clave = @Clave");
@@ -247,10 +257,160 @@ namespace Negocio
                     usuario.Direccion = datos.Lector["Direccion"] != DBNull.Value ? (string)datos.Lector["Direccion"] : "";
                     usuario.Localidad = datos.Lector["Localidad"] != DBNull.Value ? (string)datos.Lector["Localidad"] : "";
                     usuario.Activo = (bool)datos.Lector["Activo"];
+                    usuario.EmailConfirmado = datos.Lector["EmailConfirmado"] != DBNull.Value ? (bool)datos.Lector["EmailConfirmado"] : false;
 
                     return true;
                 }
                 return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Método para generar token de confirmación
+        public void GenerarTokenConfirmacion(int idUsuario, string token)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuario SET TokenConfirmacion = @Token WHERE IdUsuario = @IdUsuario");
+                datos.setearParametro("@Token", token);
+                datos.setearParametro("@IdUsuario", idUsuario);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Método para confirmar email
+        public void ConfirmarEmail(string token)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuario SET EmailConfirmado = 1, TokenConfirmacion = NULL WHERE TokenConfirmacion = @Token");
+                datos.setearParametro("@Token", token);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Método para buscar usuario por email
+        public Usuario BuscarPorEmail(string email)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT IdUsuario, Nombre, Apellido, Email FROM Usuario WHERE Email = @Email");
+                datos.setearParametro("@Email", email);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    usuario.Nombre = (string)datos.Lector["Nombre"];
+                    usuario.Apellido = (string)datos.Lector["Apellido"];
+                    usuario.Email = (string)datos.Lector["Email"];
+                    return usuario;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Método para generar token de recuperación
+        public void GenerarTokenRecuperacion(string email, string token)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                DateTime expiracion = DateTime.Now.AddHours(24);
+                datos.setearConsulta("UPDATE Usuario SET TokenRecuperacion = @Token, TokenRecuperacionExpiracion = @Expiracion WHERE Email = @Email");
+                datos.setearParametro("@Token", token);
+                datos.setearParametro("@Expiracion", expiracion);
+                datos.setearParametro("@Email", email);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Método para buscar usuario por token de recuperación (validando expiración)
+        public Usuario BuscarPorTokenRecuperacion(string token)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta(@"SELECT IdUsuario, Email, Nombre, Apellido FROM Usuario 
+                                       WHERE TokenRecuperacion = @Token 
+                                       AND TokenRecuperacionExpiracion > GETDATE()");
+                datos.setearParametro("@Token", token);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    usuario.Email = (string)datos.Lector["Email"];
+                    usuario.Nombre = (string)datos.Lector["Nombre"];
+                    usuario.Apellido = (string)datos.Lector["Apellido"];
+                    return usuario;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        // Método para actualizar contraseña y limpiar token
+        public void ActualizarPassword(int idUsuario, string nuevaPassword)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuario SET Clave = @Clave, TokenRecuperacion = NULL, TokenRecuperacionExpiracion = NULL WHERE IdUsuario = @IdUsuario");
+                datos.setearParametro("@Clave", nuevaPassword);
+                datos.setearParametro("@IdUsuario", idUsuario);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

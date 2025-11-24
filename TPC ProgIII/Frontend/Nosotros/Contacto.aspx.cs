@@ -22,7 +22,6 @@ namespace Frontend
         {
             try
             {
-                // Cargar URLs desde Web.config
                 string facebookUrl = ConfigurationManager.AppSettings["FacebookUrl"] ?? "#";
                 string instagramUrl = ConfigurationManager.AppSettings["InstagramUrl"] ?? "#";
                 string whatsAppUrl = ConfigurationManager.AppSettings["WhatsAppUrl"] ?? "#";
