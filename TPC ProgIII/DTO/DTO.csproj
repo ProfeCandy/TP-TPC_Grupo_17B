@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B547BBA-BBC1-4184-B430-28FB9314F93E}</ProjectGuid>
+    <ProjectGuid>{BE4C8330-F50F-492A-94A1-0BA76EAA47DF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Negocio</RootNamespace>
-    <AssemblyName>Negocio</AssemblyName>
+    <RootNamespace>DTO</RootNamespace>
+    <AssemblyName>DTO</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,30 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccesoDatos.cs" />
-    <Compile Include="CarritoNegocio.cs" />
-    <Compile Include="CategoriaNegocio.cs" />
-    <Compile Include="EmailServicio.cs" />
-    <Compile Include="ImagenNegocio.cs" />
-    <Compile Include="MarcaNegocio.cs" />
-    <Compile Include="NoticiaNegocio.cs" />
-    <Compile Include="NoticiaImagenNegocio.cs" />
-    <Compile Include="ProductoNegocio.cs" />
-    <Compile Include="ProductoVehiculoNegocio.cs" />
+    <Compile Include="CarritoItemDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolNegocio.cs" />
-    <Compile Include="UsuarioNegocio.cs" />
-    <Compile Include="VehiculoNegocio.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Dominio\Dominio.csproj">
-      <Project>{2fc1a9da-0503-454b-bce7-9dd1ff130fae}</Project>
-      <Name>Dominio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DTO\DTO.csproj">
-      <Project>{be4c8330-f50f-492a-94a1-0ba76eaa47df}</Project>
-      <Name>DTO</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
