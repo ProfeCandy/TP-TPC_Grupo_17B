@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="text-center">
-                            <a href="Login.aspx" class="text-decoration-none text-secondary small">¿Ya tenés cuenta? <span class="text-danger fw-bold">Ingresá acá</span></a>
+                            <a href="Login.aspx" class="text-decoration-none text-secondary small">&iquest;Ya ten&eacute;s cuenta? <span class="text-danger fw-bold">Ingres&aacute; ac&aacute;</span></a>
                         </div>
 
                     </asp:Panel>

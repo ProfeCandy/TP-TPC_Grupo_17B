@@ -17,7 +17,7 @@
 
                         <asp:Panel ID="panelExito" runat="server" Visible="false">
                             <div class="alert alert-success text-center mb-4">
-                                <h5 class="fw-bold mb-3">¡Email Confirmado!</h5>
+                                <h5 class="fw-bold mb-3">&iexcl;Email Confirmado!</h5>
                                 <asp:Label ID="lblMensajeExito" runat="server"></asp:Label>
                             </div>
                             <div class="d-grid gap-2">

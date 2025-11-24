@@ -90,7 +90,7 @@
                             <div class="alert alert-info mb-0">
                                 <i class="bi bi-exclamation-circle me-2"></i>
                                 <strong>No hay usuario logueado.</strong> 
-                                <a href="Login.aspx" class="alert-link">Haz login aqu&#237;</a>
+                                <a href="~/Usuarios/Login.aspx" runat="server" class="alert-link">Haz login aqu&iacute;</a>
                             </div>
                         </asp:Panel>
                     </div>

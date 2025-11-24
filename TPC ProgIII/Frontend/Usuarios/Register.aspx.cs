@@ -15,7 +15,7 @@ namespace Frontend
         {
             if (Session["usuario"] != null)
             {
-                Response.Redirect("Inicio.aspx");
+                Response.Redirect("~/Inicio.aspx");
             }
         }
 
@@ -61,11 +61,11 @@ namespace Frontend
                 string modoDesarrollo = System.Configuration.ConfigurationManager.AppSettings["EmailModoDesarrollo"];
                 if (modoDesarrollo == "true")
                 {
-                    Response.Redirect(ResolveUrl($"~/ConfirmarEmail.aspx?email={Server.UrlEncode(user.Email)}&token={Server.UrlEncode(token)}&modoDev=true"), false);
+                    Response.Redirect(ResolveUrl($"~/Usuarios/ConfirmarEmail.aspx?email={Server.UrlEncode(user.Email)}&token={Server.UrlEncode(token)}&modoDev=true"), false);
                 }
                 else
                 {
-                    Response.Redirect(ResolveUrl($"~/ConfirmarEmail.aspx?email={Server.UrlEncode(user.Email)}"), false);
+                    Response.Redirect(ResolveUrl($"~/Usuarios/ConfirmarEmail.aspx?email={Server.UrlEncode(user.Email)}"), false);
                 }
             }
             catch (Exception ex)

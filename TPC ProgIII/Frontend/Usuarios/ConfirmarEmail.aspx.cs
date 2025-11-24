@@ -33,7 +33,7 @@ namespace Frontend
                 panelExito.Visible = false;
                 panelError.Visible = false;
                 string sitioUrl = System.Configuration.ConfigurationManager.AppSettings["SitioUrl"] ?? "https://localhost:44324";
-                string urlConfirmacion = $"{sitioUrl}/ConfirmarEmail.aspx?token={Server.UrlEncode(token)}";
+                string urlConfirmacion = $"{sitioUrl}/Usuarios/ConfirmarEmail.aspx?token={Server.UrlEncode(token)}";
                 lblMensajeEspera.Text = $@"
                     <p>Hemos enviado un email de confirmaci&oacute;n a <strong>{Server.HtmlEncode(email)}</strong>.</p>
                     <p class='mb-3'>Haz clic en el siguiente enlace para activar tu cuenta:</p>

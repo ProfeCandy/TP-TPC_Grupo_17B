@@ -110,8 +110,8 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0">
                                 <asp:PlaceHolder ID="pnlNoLogueado" runat="server">
-                                    <li><a class="dropdown-item" runat="server" href="~/Login.aspx"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar</a></li>
-                                    <li><a class="dropdown-item" runat="server" href="~/Register.aspx"><i class="bi bi-person-plus me-2"></i>Registrarse</a></li>
+                                    <li><a class="dropdown-item" runat="server" href="~/Usuarios/Login.aspx"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar</a></li>
+                                    <li><a class="dropdown-item" runat="server" href="~/Usuarios/Register.aspx"><i class="bi bi-person-plus me-2"></i>Registrarse</a></li>
                                 </asp:PlaceHolder>
                                 <asp:PlaceHolder ID="pnlLogueado" runat="server" Visible="false">
                                     <li><a class="dropdown-item" runat="server" href="~/Dashboard_client/Perfil.aspx"><i class="bi bi-person-badge me-2"></i>Mi Perfil</a></li>
@@ -199,7 +199,7 @@
                             </div>
                             <div class="col-6">
                                 <ul class="list-unstyled">
-                                    <li class="mb-2"><a href="~/Login.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Mi Cuenta</a></li>
+                                    <li class="mb-2"><a href="~/Usuarios/Login.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Mi Cuenta</a></li>
                                     <li class="mb-2"><a href="~/Nosotros/Terminos.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Términos</a></li>
                                     <li class="mb-2"><a href="~/Nosotros/Privacidad.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Privacidad</a></li>
                                     <li class="mb-2"><a href="~/Nosotros/Ayuda.aspx" runat="server" class="text-decoration-none text-secondary footer-link"><i class="bi bi-chevron-right small me-1"></i>Ayuda</a></li>

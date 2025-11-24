@@ -15,7 +15,7 @@ namespace Frontend
         {
             if (Session["usuario"] != null)
             {
-                Response.Redirect("Inicio.aspx");
+                Response.Redirect("~/Inicio.aspx");
             }
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace Frontend
                     if (!usuario.EmailConfirmado)
                     {
                         panelError.Visible = true;
-                        lblError.Text = $"Tu cuenta no ha sido confirmada. Por favor, revisa tu email y haz clic en el enlace de confirmaci&oacute;n.<br/>Si no recibiste el email, puedes <a href='ConfirmarEmail.aspx?email={Server.UrlEncode(usuario.Email)}' class='alert-link'>solicitar uno nuevo</a>.";
+                        lblError.Text = $"Tu cuenta no ha sido confirmada. Por favor, revisa tu email y haz clic en el enlace de confirmaci&oacute;n.<br/>Si no recibiste el email, puedes <a href='~/Usuarios/ConfirmarEmail.aspx?email={Server.UrlEncode(usuario.Email)}' class='alert-link'>solicitar uno nuevo</a>.";
                         return;
                     }
 
@@ -47,7 +47,7 @@ namespace Frontend
                     }
 
                     Session.Add("usuario", usuario);
-                    Response.Redirect("Inicio.aspx", false);
+                    Response.Redirect("~/Inicio.aspx", false);
                 }
                 else
                 {

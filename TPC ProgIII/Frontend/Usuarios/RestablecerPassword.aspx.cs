@@ -17,7 +17,7 @@ namespace Frontend
         protected void btnCambiar_Click(object sender, EventArgs e)
         {
             // Logica incompleta, aca iria la actualizacion de la clave en la base de datos.
-            Response.Redirect("Login.aspx");
+            Response.Redirect("~/Usuarios/Login.aspx");
         }
     }
 }

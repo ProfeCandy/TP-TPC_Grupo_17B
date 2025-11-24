@@ -127,25 +127,25 @@
     <Content Include="Inicio.aspx" />
     <Content Include="Noticias\DetalleNoticia.aspx" />
     <Content Include="Productos\DetalleProducto.aspx" />
-    <Content Include="ConfirmarEmail.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Noticias\FormularioNoticia.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Login.aspx" />
     <Content Include="MiPerfil.aspx" />
     <Content Include="Noticias\Noticias.aspx" />
     <Content Include="Productos\Productos.aspx" />
     <Content Include="Nosotros\QuienesSomos.aspx" />
-    <Content Include="RecuperarPassword.aspx" />
-    <Content Include="Register.aspx" />
     <Content Include="Nosotros\Sucursales.aspx" />
     <Content Include="Nosotros\Proveedores.aspx" />
     <Content Include="Nosotros\TrabajaConNosotros.aspx" />
     <Content Include="Nosotros\Terminos.aspx" />
     <Content Include="Nosotros\Privacidad.aspx" />
     <Content Include="Nosotros\Ayuda.aspx" />
-    <Content Include="RestablecerPassword.aspx" />
+    <Content Include="Usuarios\ConfirmarEmail.aspx" />
+    <Content Include="Usuarios\Login.aspx" />
+    <Content Include="Usuarios\RecuperarPassword.aspx" />
+    <Content Include="Usuarios\Register.aspx" />
+    <Content Include="Usuarios\RestablecerPassword.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -288,11 +288,11 @@
     <Compile Include="Productos\DetalleProducto.aspx.designer.cs">
       <DependentUpon>DetalleProducto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ConfirmarEmail.aspx.cs">
+    <Compile Include="Usuarios\ConfirmarEmail.aspx.cs">
       <DependentUpon>ConfirmarEmail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ConfirmarEmail.aspx.designer.cs">
+    <Compile Include="Usuarios\ConfirmarEmail.aspx.designer.cs">
       <DependentUpon>ConfirmarEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
@@ -312,11 +312,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
+    <Compile Include="Usuarios\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
+    <Compile Include="Usuarios\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="MiPerfil.aspx.cs">
@@ -347,18 +347,18 @@
     <Compile Include="Nosotros\QuienesSomos.aspx.designer.cs">
       <DependentUpon>QuienesSomos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RecuperarPassword.aspx.cs">
+    <Compile Include="Usuarios\RecuperarPassword.aspx.cs">
       <DependentUpon>RecuperarPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RecuperarPassword.aspx.designer.cs">
+    <Compile Include="Usuarios\RecuperarPassword.aspx.designer.cs">
       <DependentUpon>RecuperarPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Register.aspx.cs">
+    <Compile Include="Usuarios\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Register.aspx.designer.cs">
+    <Compile Include="Usuarios\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Nosotros\Sucursales.aspx.cs">
@@ -404,11 +404,11 @@
       <DependentUpon>Ayuda.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestablecerPassword.aspx.cs">
+    <Compile Include="Usuarios\RestablecerPassword.aspx.cs">
       <DependentUpon>RestablecerPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RestablecerPassword.aspx.designer.cs">
+    <Compile Include="Usuarios\RestablecerPassword.aspx.designer.cs">
       <DependentUpon>RestablecerPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">

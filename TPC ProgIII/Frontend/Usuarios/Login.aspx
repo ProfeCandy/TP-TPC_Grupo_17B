@@ -38,7 +38,7 @@
                         </div>
                         
                         <div class="mb-3 text-end">
-                            <a href="RecuperarPassword.aspx" class="text-secondary text-decoration-none small">¿Olvidaste tu contraseña?</a>
+                            <a href="RecuperarPassword.aspx" class="text-secondary text-decoration-none small">&iquest;Olvidaste tu contrase&ntilde;a?</a>
                         </div>
 
                         <div class="d-grid gap-2 mb-4">
@@ -47,7 +47,7 @@
 
                         <div class="text-center">
                             <a href="Register.aspx" class="text-decoration-none text-secondary small">
-                                ¿No tenés cuenta? <span class="text-danger fw-bold">Registrate acá</span>
+                                &iquest;No ten&eacute;s cuenta? <span class="text-danger fw-bold">Registrate ac&aacute;</span>
                             </a>
                         </div>
 
