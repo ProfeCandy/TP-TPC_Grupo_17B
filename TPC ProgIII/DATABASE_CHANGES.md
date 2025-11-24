@@ -92,3 +92,9 @@ ADD EmailConfirmado BIT DEFAULT 0,
     TokenRecuperacion VARCHAR(100) NULL,
     TokenRecuperacionExpiracion DATETIME NULL;
 ```
+
+**BORRA TABLAS Carrito y CarritoItem**
+```sql
+DROP TABLE CarritoItem;
+DROP TABLE Carrito;
+```
