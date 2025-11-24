@@ -142,6 +142,7 @@
     <Content Include="Nosotros\Terminos.aspx" />
     <Content Include="Nosotros\Privacidad.aspx" />
     <Content Include="Nosotros\Ayuda.aspx" />
+    <Content Include="store\Carrito.aspx" />
     <Content Include="Usuarios\ConfirmarEmail.aspx" />
     <Content Include="Usuarios\Login.aspx" />
     <Content Include="Usuarios\RecuperarPassword.aspx" />
@@ -295,6 +296,13 @@
     </Compile>
     <Compile Include="Productos\DetalleProducto.aspx.designer.cs">
       <DependentUpon>DetalleProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="store\Carrito.aspx.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="store\Carrito.aspx.designer.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios\ConfirmarEmail.aspx.cs">
       <DependentUpon>ConfirmarEmail.aspx</DependentUpon>

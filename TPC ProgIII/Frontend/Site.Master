@@ -129,7 +129,7 @@
                         </div>
 
                         <!-- Carrito -->
-                        <a href="~/Carrito.aspx" runat="server" class="text-white position-relative p-2">
+                        <a href="~/store/Carrito.aspx" runat="server" class="text-white position-relative p-2">
                             <i class="bi bi-cart3 fs-5"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-dark">
                                 <asp:Label ID="lblCantidadCarrito" runat="server" Text="0"></asp:Label>
