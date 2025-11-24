@@ -29,7 +29,23 @@ namespace Frontend
                 usuario.Clave = txtPassword.Text;
 
                 if (negocio.Loguear(usuario))
-                {  
+                {
+                    // Verificar si el email está confirmado
+                    if (!usuario.EmailConfirmado)
+                    {
+                        panelError.Visible = true;
+                        lblError.Text = $"Tu cuenta no ha sido confirmada. Por favor, revisa tu email y haz clic en el enlace de confirmaci&oacute;n.<br/>Si no recibiste el email, puedes <a href='ConfirmarEmail.aspx?email={Server.UrlEncode(usuario.Email)}' class='alert-link'>solicitar uno nuevo</a>.";
+                        return;
+                    }
+
+                    // Verificar si el usuario está activo
+                    if (!usuario.Activo)
+                    {
+                        panelError.Visible = true;
+                        lblError.Text = "Tu cuenta ha sido desactivada. Contacta al administrador.";
+                        return;
+                    }
+
                     Session.Add("usuario", usuario);
                     Response.Redirect("Inicio.aspx", false);
                 }
