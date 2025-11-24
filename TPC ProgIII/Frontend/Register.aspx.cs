@@ -54,10 +54,19 @@ namespace Frontend
                 // Enviar email de confirmación
                 EmailServicio emailServicio = new EmailServicio();
                 string nombreCompleto = $"{user.Nombre} {user.Apellido}";
-                emailServicio.EnviarConfirmacionRegistro(user.Email, nombreCompleto, token);
+                bool emailEnviado = emailServicio.EnviarConfirmacionRegistro(user.Email, nombreCompleto, token);
                 
                 // Redirigir a página de confirmación (sin hacer login)
-                Response.Redirect(ResolveUrl($"~/ConfirmarEmail.aspx?email={Server.UrlEncode(user.Email)}"), false);
+                // En modo desarrollo, también pasamos el token para mostrarlo en la página
+                string modoDesarrollo = System.Configuration.ConfigurationManager.AppSettings["EmailModoDesarrollo"];
+                if (modoDesarrollo == "true")
+                {
+                    Response.Redirect(ResolveUrl($"~/ConfirmarEmail.aspx?email={Server.UrlEncode(user.Email)}&token={Server.UrlEncode(token)}&modoDev=true"), false);
+                }
+                else
+                {
+                    Response.Redirect(ResolveUrl($"~/ConfirmarEmail.aspx?email={Server.UrlEncode(user.Email)}"), false);
+                }
             }
             catch (Exception ex)
             {
