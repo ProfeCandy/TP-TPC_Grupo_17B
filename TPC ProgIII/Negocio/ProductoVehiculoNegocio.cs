@@ -52,7 +52,6 @@ namespace Negocio
                         IdVehiculo = (int)datos.Lector["IdVehiculo"],
                         Marca = (string)datos.Lector["Marca"],
                         Modelo = (string)datos.Lector["Modelo"]
-                        // Puedes agregar más campos de Vehiculo al SELECT si los necesitas
                     };
 
                     // 3. Llenar los campos de la tabla de unión

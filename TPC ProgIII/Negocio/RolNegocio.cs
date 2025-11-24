@@ -83,7 +83,6 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-             //Esto fallará si un Usuario está usando este Rol.
                 throw ex;
             }
         }
