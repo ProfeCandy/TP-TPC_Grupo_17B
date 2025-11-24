@@ -15,6 +15,24 @@ namespace Frontend.Dashboard_client
     {
 
         /// <summary>
+        /// Control imgFotoPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgFotoPerfil;
+
+        /// <summary>
+        /// Control fileFotoPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileFotoPerfil;
+
+        /// <summary>
         /// Control txtNombre.
         /// </summary>
         /// <remarks>

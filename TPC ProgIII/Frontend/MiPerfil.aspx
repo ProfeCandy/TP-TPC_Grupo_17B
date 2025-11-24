@@ -10,6 +10,24 @@
                         
                         <h3 class="fw-bold text-danger mb-4 border-bottom pb-2">Mi Perfil</h3>
 
+                        <div class="row mb-4">
+                            <div class="col-12 text-center">
+                                <div class="mb-3">
+                                    <asp:Image ID="imgFotoPerfil" runat="server" 
+                                        CssClass="rounded-circle border border-3 border-danger" 
+                                        Width="150" Height="150" 
+                                        style="object-fit: cover;" 
+                                        ImageUrl="~/assets/images/icons/profile-icon.png" />
+                                </div>
+                                <asp:FileUpload ID="fileFotoPerfil" runat="server" 
+                                    CssClass="form-control" 
+                                    accept="image/jpeg,image/jpg,image/png,image/gif" />
+                                <small class="text-muted d-block mt-2">
+                                    Formatos permitidos: JPG, PNG, GIF. Tama&ntilde;o m&aacute;ximo: 2MB. Dimensiones recomendadas: 300x300px
+                                </small>
+                            </div>
+                        </div>
+
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">Email</label>

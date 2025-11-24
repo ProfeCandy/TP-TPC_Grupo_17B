@@ -12,6 +12,22 @@
             <div class="col-12 col-lg-8">
                 <div class="row g-3">
                     
+                    <div class="col-12 text-center mb-3">
+                        <div class="mb-3">
+                            <asp:Image ID="imgFotoPerfil" runat="server" 
+                                CssClass="rounded-circle border border-3 border-primary" 
+                                Width="150" Height="150" 
+                                style="object-fit: cover;" 
+                                ImageUrl="~/assets/images/icons/profile-icon.png" />
+                        </div>
+                        <asp:FileUpload ID="fileFotoPerfil" runat="server" 
+                            CssClass="form-control" 
+                            accept="image/jpeg,image/jpg,image/png,image/gif" />
+                        <small class="text-muted d-block mt-2">
+                            Formatos permitidos: JPG, PNG, GIF. Tama&ntilde;o m&aacute;ximo: 2MB. Dimensiones recomendadas: 300x300px
+                        </small>
+                    </div>
+                    
                     <div class="col-12 col-md-6">
                         <label class="form-label small fw-bold">Nombre / Razón Social</label>
                         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
