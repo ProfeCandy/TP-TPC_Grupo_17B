@@ -25,5 +25,8 @@ namespace Dominio
         public string TokenConfirmacion { get; set; }
         public string TokenRecuperacion { get; set; }
         public DateTime? TokenRecuperacionExpiracion { get; set; }
+        
+        // Propiedad para la foto de perfil
+        public string UrlFotoPerfil { get; set; }
     }
 }

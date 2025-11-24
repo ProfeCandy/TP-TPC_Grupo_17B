@@ -36,7 +36,7 @@ namespace Frontend
             if (noticia != null)
             {
                 lblTitulo.Text = noticia.Titulo;
-                lblCuerpo.Text = noticia.Cuerpo;
+                lblCuerpo.Text = noticia.Cuerpo; 
                 lblFecha.Text = noticia.FechaPublicacion.ToString("dd 'de' MMMM 'de' yyyy");
                 lblCategoria.Text = noticia.Categoria ?? "General";
 

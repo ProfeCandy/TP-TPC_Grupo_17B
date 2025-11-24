@@ -96,7 +96,6 @@ namespace Frontend
             }
             catch (Exception ex)
             {
-                // Puedes mostrar un mensaje de error aquí si lo deseas
                 System.Diagnostics.Debug.WriteLine("Error al eliminar noticia: " + ex.Message);
             }
         }

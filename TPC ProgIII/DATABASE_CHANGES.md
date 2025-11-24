@@ -98,3 +98,10 @@ ADD EmailConfirmado BIT DEFAULT 0,
 DROP TABLE CarritoItem;
 DROP TABLE Carrito;
 ```
+
+**AGREGAR LA COLUMNA PARA FOTO DE PERFIL**
+```sql
+ALTER TABLE Usuario
+ADD UrlFotoPerfil NVARCHAR(500) NULL;
+```
+

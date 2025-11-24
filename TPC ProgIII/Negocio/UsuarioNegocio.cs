@@ -19,7 +19,7 @@ namespace Negocio
             SELECT 
                 IdUsuario, Nombre, Apellido, Email, Telefono, 
                 Direccion, Localidad, FechaRegistro, Activo,
-                IdRol 
+                IdRol, UrlFotoPerfil
             FROM 
                 Usuario";
 
@@ -45,6 +45,10 @@ namespace Negocio
 
                     aux.FechaRegistro = (DateTime)datos.Lector["FechaRegistro"];
                     aux.Activo = (bool)datos.Lector["Activo"];
+                    
+                    if (datos.Lector["UrlFotoPerfil"] != DBNull.Value)
+                        aux.UrlFotoPerfil = (string)datos.Lector["UrlFotoPerfil"];
+                    
                     int idRolDelUsuario = (int)datos.Lector["IdRol"];
                     aux.Rol = listaDeRoles.Find(r => r.IdRol == idRolDelUsuario);
 
@@ -70,7 +74,7 @@ namespace Negocio
                 string consulta = @"
                     SELECT u.IdUsuario, u.Nombre, u.Apellido, u.Email, u.Telefono, 
                            u.Direccion, u.Localidad, u.FechaRegistro, u.Activo, 
-                           u.IdRol, r.NombreRol
+                           u.IdRol, u.UrlFotoPerfil, r.NombreRol
                     FROM Usuario u
                     INNER JOIN Rol r ON u.IdRol = r.IdRol
                     WHERE u.IdUsuario = @IdUsuario";
@@ -99,11 +103,13 @@ namespace Negocio
                     if (!(datos.Lector["Localidad"] is DBNull))
                         usuario.Localidad = (string)datos.Lector["Localidad"];
 
-                    // Validar FechaRegistro x las dudas
                     if (!(datos.Lector["FechaRegistro"] is DBNull))
                         usuario.FechaRegistro = (DateTime)datos.Lector["FechaRegistro"];
 
                     usuario.Activo = (bool)datos.Lector["Activo"];
+
+                    if (!(datos.Lector["UrlFotoPerfil"] is DBNull))
+                        usuario.UrlFotoPerfil = (string)datos.Lector["UrlFotoPerfil"];
 
                     usuario.Rol = new Rol();
                     usuario.Rol.IdRol = (int)datos.Lector["IdRol"];
@@ -171,7 +177,8 @@ namespace Negocio
                     UPDATE Usuario SET 
                         Nombre = @Nombre, Apellido = @Apellido, Email = @Email, 
                         Telefono = @Telefono, Direccion = @Direccion, 
-                        Localidad = @Localidad, IdRol = @IdRol, Activo = @Activo 
+                        Localidad = @Localidad, IdRol = @IdRol, Activo = @Activo,
+                        UrlFotoPerfil = @UrlFotoPerfil
                     WHERE 
                         IdUsuario = @IdUsuario";
 
@@ -184,6 +191,7 @@ namespace Negocio
                 datos.setearParametro("@Localidad", (object)usuario.Localidad ?? DBNull.Value);
                 datos.setearParametro("@IdRol", usuario.Rol.IdRol);
                 datos.setearParametro("@Activo", usuario.Activo);
+                datos.setearParametro("@UrlFotoPerfil", (object)usuario.UrlFotoPerfil ?? DBNull.Value);
                 datos.setearParametro("@IdUsuario", usuario.IdUsuario);
 
                 datos.ejecutarAccion();
@@ -204,7 +212,6 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                // Esto fallará si el usuario tiene Pedidos o Carrito asociados, por las claves foráneas.
                 datos.setearConsulta("DELETE FROM Usuario WHERE IdUsuario = @IdUsuario");
                 datos.setearParametro("@IdUsuario", id);
                 datos.ejecutarAccion();
@@ -246,7 +253,7 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-                    SELECT u.IdUsuario, u.IdRol, u.Nombre, u.Apellido, u.Email, u.Telefono, u.Direccion, u.Localidad, u.Activo, u.EmailConfirmado, r.NombreRol 
+                    SELECT u.IdUsuario, u.IdRol, u.Nombre, u.Apellido, u.Email, u.Telefono, u.Direccion, u.Localidad, u.Activo, u.EmailConfirmado, u.UrlFotoPerfil, r.NombreRol 
                     FROM Usuario u
                     LEFT JOIN Rol r ON u.IdRol = r.IdRol
                     WHERE u.Email = @Email AND u.Clave = @Clave");
@@ -270,6 +277,7 @@ namespace Negocio
                     usuario.Localidad = datos.Lector["Localidad"] != DBNull.Value ? (string)datos.Lector["Localidad"] : "";
                     usuario.Activo = (bool)datos.Lector["Activo"];
                     usuario.EmailConfirmado = datos.Lector["EmailConfirmado"] != DBNull.Value ? (bool)datos.Lector["EmailConfirmado"] : false;
+                    usuario.UrlFotoPerfil = datos.Lector["UrlFotoPerfil"] != DBNull.Value ? (string)datos.Lector["UrlFotoPerfil"] : null;
 
                     return true;
                 }
