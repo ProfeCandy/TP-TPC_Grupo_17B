@@ -83,3 +83,12 @@ CREATE TABLE NoticiaImagen (
     FOREIGN KEY (IdNoticia) REFERENCES Noticias(IdNoticia) ON DELETE CASCADE
 );
 ```
+
+**Modificación para envio de confirmacion de email:**
+```sql
+ALTER TABLE Usuario
+ADD EmailConfirmado BIT DEFAULT 0,
+    TokenConfirmacion VARCHAR(100) NULL,
+    TokenRecuperacion VARCHAR(100) NULL,
+    TokenRecuperacionExpiracion DATETIME NULL;
+```

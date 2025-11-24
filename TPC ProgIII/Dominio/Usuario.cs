@@ -19,5 +19,11 @@ namespace Dominio
         public bool Activo { get; set; }
         public string Clave { get; set; }
         public Rol Rol { get; set; }
+
+        // Propiedades para confirmación de email y recuperación de contraseña
+        public bool EmailConfirmado { get; set; }
+        public string TokenConfirmacion { get; set; }
+        public string TokenRecuperacion { get; set; }
+        public DateTime? TokenRecuperacionExpiracion { get; set; }
     }
 }
