@@ -29,10 +29,18 @@ namespace TPC_ProgIII
                 Usuario user = (Usuario)Session["usuario"];
                 lblUser.Text = user.Nombre;
 
+                if (!string.IsNullOrEmpty(user.UrlFotoPerfil))
+                {
+                    imgFotoPerfilNavbar.ImageUrl = ResolveUrl(user.UrlFotoPerfil) + "?t=" + DateTime.Now.Ticks;
+                }
+                else
+                {
+                    imgFotoPerfilNavbar.ImageUrl = ResolveUrl("~/assets/images/icons/profile-icon.png");
+                }
+
                 pnlLogueado.Visible = true; 
                 pnlNoLogueado.Visible = false;
                 
-                // Mostrar opción de Configuración solo si es admin
                 PlaceHolder pnlAdmin = (PlaceHolder)pnlLogueado.FindControl("pnlAdmin");
                 if (pnlAdmin != null)
                 {
@@ -49,6 +57,7 @@ namespace TPC_ProgIII
             else
             {
                 lblUser.Text = "Cuenta";
+                imgFotoPerfilNavbar.ImageUrl = ResolveUrl("~/assets/images/icons/profile-icon.png");
 
                 pnlLogueado.Visible = false;  
                 pnlNoLogueado.Visible = true; 

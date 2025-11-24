@@ -11,8 +11,11 @@
                     <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-3">
                         <div class="d-flex p-3 align-items-center">
                             <span class="text-center">
-                                <img src='<%= ResolveUrl("~/assets/images/icons/profile-icon.png") %>' 
-                                     alt="Profile Pic" title="Profile Pic" />
+                                <asp:Image ID="imgFotoPerfilSidebar" runat="server" 
+                                    CssClass="rounded-circle border border-2" 
+                                    Width="60" Height="60" 
+                                    style="object-fit: cover;" 
+                                    ImageUrl="~/assets/images/icons/profile-icon.png" />
                             </span>
                             <span class="ms-3">
                                 <span class="font-extra-small">Hola!</span> <br />

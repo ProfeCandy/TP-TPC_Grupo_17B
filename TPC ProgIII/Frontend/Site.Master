@@ -103,9 +103,11 @@
                         <!-- Cuenta -->
                         <div class="dropdown">
                             <a href="#" class="text-decoration-none text-white dropdown-toggle d-flex align-items-center gap-2" id="userDropdown" data-bs-toggle="dropdown">
-                                <div class="bg-secondary bg-opacity-25 p-2 rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
-                                    <i class="bi bi-person-fill"></i>
-                                </div>
+                                <asp:Image ID="imgFotoPerfilNavbar" runat="server" 
+                                    CssClass="rounded-circle border border-2 border-white" 
+                                    Width="35" Height="35" 
+                                    style="object-fit: cover;" 
+                                    ImageUrl="~/assets/images/icons/profile-icon.png" />
                                 <asp:Label ID="lblUser" runat="server" Text="Cuenta" CssClass="d-none d-xl-inline small fw-bold"></asp:Label>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0">

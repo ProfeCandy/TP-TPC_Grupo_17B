@@ -11,8 +11,25 @@ namespace Frontend.Dashboard_client
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // --- DATOS PLACEHOLDER ---
-            litUserName.Text = "Usuario de Prueba";
+            if (Session["usuario"] != null)
+            {
+                Dominio.Usuario user = (Dominio.Usuario)Session["usuario"];
+                litUserName.Text = user.Nombre;
+
+                if (!string.IsNullOrEmpty(user.UrlFotoPerfil))
+                {
+                    imgFotoPerfilSidebar.ImageUrl = ResolveUrl(user.UrlFotoPerfil) + "?t=" + DateTime.Now.Ticks;
+                }
+                else
+                {
+                    imgFotoPerfilSidebar.ImageUrl = ResolveUrl("~/assets/images/icons/profile-icon.png");
+                }
+            }
+            else
+            {
+                litUserName.Text = "Usuario";
+                imgFotoPerfilSidebar.ImageUrl = ResolveUrl("~/assets/images/icons/profile-icon.png");
+            }
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
