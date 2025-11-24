@@ -220,12 +220,12 @@
                             </p>
                         </div>
                         
-                        <h6 class="text-white mb-3">Síguenos en redes</h6>
+                        <h6 class="text-white mb-3">S&iacute;guenos en redes</h6>
                         <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
-                            <a href="#" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white"><i class="bi bi-facebook"></i></a>
-                            <a href="#" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white"><i class="bi bi-instagram"></i></a>
-                            <a href="#" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white"><i class="bi bi-twitter-x"></i></a>
-                            <a href="#" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white"><i class="bi bi-linkedin"></i></a>
+                            <a id="lnkFacebook" href="#" runat="server" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white" target="_blank"><i class="bi bi-facebook"></i></a>
+                            <a id="lnkInstagram" href="#" runat="server" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white" target="_blank"><i class="bi bi-instagram"></i></a>
+                            <a id="lnkTwitter" href="#" runat="server" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                            <a id="lnkLinkedIn" href="#" runat="server" class="social-icon-btn btn btn-outline-secondary rounded-circle border-0 bg-dark bg-opacity-25 text-white" target="_blank"><i class="bi bi-linkedin"></i></a>
                         </div>
                     </div>
                 </div>

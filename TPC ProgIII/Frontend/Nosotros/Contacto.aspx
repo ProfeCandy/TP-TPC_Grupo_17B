@@ -75,16 +75,16 @@
                     <div class="mt-5 pt-4 border-top">
                         <h6 class="fw-bold mb-3">S&iacute;guenos en:</h6>
                         <div class="d-flex gap-3">
-                            <a href="#" class="text-dark text-decoration-none fs-5" title="Facebook">
+                            <a id="lnkFacebookContacto" href="#" runat="server" class="text-dark text-decoration-none fs-5" title="Facebook" target="_blank">
                                 <i class="bi bi-facebook"></i>
                             </a>
-                            <a href="#" class="text-dark text-decoration-none fs-5" title="Instagram">
+                            <a id="lnkInstagramContacto" href="#" runat="server" class="text-dark text-decoration-none fs-5" title="Instagram" target="_blank">
                                 <i class="bi bi-instagram"></i>
                             </a>
-                            <a href="#" class="text-dark text-decoration-none fs-5" title="WhatsApp">
+                            <a id="lnkWhatsAppContacto" href="#" runat="server" class="text-dark text-decoration-none fs-5" title="WhatsApp" target="_blank">
                                 <i class="bi bi-whatsapp"></i>
                             </a>
-                            <a href="#" class="text-dark text-decoration-none fs-5" title="LinkedIn">
+                            <a id="lnkLinkedInContacto" href="#" runat="server" class="text-dark text-decoration-none fs-5" title="LinkedIn" target="_blank">
                                 <i class="bi bi-linkedin"></i>
                             </a>
                         </div>

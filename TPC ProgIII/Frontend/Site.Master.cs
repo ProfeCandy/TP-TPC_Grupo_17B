@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,6 +17,7 @@ namespace TPC_ProgIII
             if (!IsPostBack)
             {
                 CargarMenuCategorias();
+                CargarRedesSociales();
             }
 
             ActualizarEstadoUsuario();
@@ -76,6 +78,30 @@ namespace TPC_ProgIII
             catch (Exception)
             {
 
+            }
+        }
+
+        private void CargarRedesSociales()
+        {
+            try
+            {
+                string facebookUrl = ConfigurationManager.AppSettings["FacebookUrl"] ?? "#";
+                string instagramUrl = ConfigurationManager.AppSettings["InstagramUrl"] ?? "#";
+                string twitterUrl = ConfigurationManager.AppSettings["TwitterUrl"] ?? "#";
+                string linkedInUrl = ConfigurationManager.AppSettings["LinkedInUrl"] ?? "#";
+
+                System.Web.UI.HtmlControls.HtmlAnchor lnkFacebook = FindControl("lnkFacebook") as System.Web.UI.HtmlControls.HtmlAnchor;
+                System.Web.UI.HtmlControls.HtmlAnchor lnkInstagram = FindControl("lnkInstagram") as System.Web.UI.HtmlControls.HtmlAnchor;
+                System.Web.UI.HtmlControls.HtmlAnchor lnkTwitter = FindControl("lnkTwitter") as System.Web.UI.HtmlControls.HtmlAnchor;
+                System.Web.UI.HtmlControls.HtmlAnchor lnkLinkedIn = FindControl("lnkLinkedIn") as System.Web.UI.HtmlControls.HtmlAnchor;
+
+                if (lnkFacebook != null) lnkFacebook.HRef = facebookUrl;
+                if (lnkInstagram != null) lnkInstagram.HRef = instagramUrl;
+                if (lnkTwitter != null) lnkTwitter.HRef = twitterUrl;
+                if (lnkLinkedIn != null) lnkLinkedIn.HRef = linkedInUrl;
+            }
+            catch (Exception)
+            {
             }
         }
 
