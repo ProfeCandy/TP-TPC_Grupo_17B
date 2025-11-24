@@ -51,10 +51,7 @@ namespace Frontend.Dashboard_client
             {
                 UsuarioNegocio negocio = new UsuarioNegocio();
 
-                // Obtenemos el usuario de la sesión para tener el ID
                 Usuario usuarioSesion = (Usuario)Session["usuario"];
-
-                // objeto completo de la BD.
                 Usuario usuarioAEditar = negocio.BuscarUsuarioPorId(usuarioSesion.IdUsuario);
 
                 usuarioAEditar.Nombre = txtNombre.Text;
@@ -64,29 +61,64 @@ namespace Frontend.Dashboard_client
                 usuarioAEditar.Direccion = txtDireccion.Text;
                 usuarioAEditar.Localidad = txtLocalidad.Text;
 
-                if (fileFotoPerfil.HasFile)
+                string imagenBase64 = hiddenImagenRecortada.Value;
+                if (!string.IsNullOrEmpty(imagenBase64) && imagenBase64.StartsWith("data:image"))
                 {
-                    string urlFoto = GuardarFotoPerfil(fileFotoPerfil, usuarioAEditar.IdUsuario);
-                    if (!string.IsNullOrEmpty(urlFoto))
+                    try
                     {
-                        if (!string.IsNullOrEmpty(usuarioAEditar.UrlFotoPerfil))
+                        string urlFoto = GuardarFotoPerfilDesdeBase64(imagenBase64, usuarioAEditar.IdUsuario);
+                        if (!string.IsNullOrEmpty(urlFoto))
                         {
-                            EliminarFotoAnterior(usuarioAEditar.UrlFotoPerfil);
+                            if (!string.IsNullOrEmpty(usuarioAEditar.UrlFotoPerfil))
+                            {
+                                EliminarFotoAnterior(usuarioAEditar.UrlFotoPerfil);
+                            }
+                            usuarioAEditar.UrlFotoPerfil = urlFoto;
                         }
-                        usuarioAEditar.UrlFotoPerfil = urlFoto;
+                    }
+                    catch (Exception exFoto)
+                    {
+                        lblMensaje.Text = exFoto.Message;
+                        lblMensaje.ForeColor = System.Drawing.Color.Red;
+                        lblMensaje.Visible = true;
+                        return;
+                    }
+                }
+                else if (fileFotoPerfil.HasFile)
+                {
+                    try
+                    {
+                        string urlFoto = GuardarFotoPerfil(fileFotoPerfil, usuarioAEditar.IdUsuario);
+                        if (!string.IsNullOrEmpty(urlFoto))
+                        {
+                            if (!string.IsNullOrEmpty(usuarioAEditar.UrlFotoPerfil))
+                            {
+                                EliminarFotoAnterior(usuarioAEditar.UrlFotoPerfil);
+                            }
+                            usuarioAEditar.UrlFotoPerfil = urlFoto;
+                        }
+                    }
+                    catch (Exception exFoto)
+                    {
+                        lblMensaje.Text = exFoto.Message;
+                        lblMensaje.ForeColor = System.Drawing.Color.Red;
+                        lblMensaje.Visible = true;
+                        return;
                     }
                 }
 
-                // Guardo en BD
                 negocio.Modificar(usuarioAEditar);
+                
+                Usuario usuarioActualizado = negocio.BuscarUsuarioPorId(usuarioAEditar.IdUsuario);
+                Session["usuario"] = usuarioActualizado;
 
-                //Actualizo sesión
-                Session["usuario"] = usuarioAEditar;
+                CargarFotoPerfil(usuarioActualizado);
 
-                //Msj success
                 lblMensaje.Text = "¡Perfil actualizado correctamente!";
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Visible = true;
+                
+                hiddenImagenRecortada.Value = "";
             }
             catch (Exception ex)
             {
@@ -100,7 +132,8 @@ namespace Frontend.Dashboard_client
         {
             if (!string.IsNullOrEmpty(user.UrlFotoPerfil))
             {
-                imgFotoPerfil.ImageUrl = ResolveUrl(user.UrlFotoPerfil);
+                string url = ResolveUrl(user.UrlFotoPerfil);
+                imgFotoPerfil.ImageUrl = url + "?t=" + DateTime.Now.Ticks;
             }
             else
             {
@@ -112,17 +145,22 @@ namespace Frontend.Dashboard_client
         {
             try
             {
+                if (!fileUpload.HasFile)
+                {
+                    return null;
+                }
+
                 string extension = Path.GetExtension(fileUpload.FileName).ToLower();
                 string[] extensionesPermitidas = { ".jpg", ".jpeg", ".png", ".gif" };
 
                 if (!extensionesPermitidas.Contains(extension))
                 {
-                    return null;
+                    throw new Exception("Formato de imagen no válido. Use JPG, PNG o GIF.");
                 }
 
                 if (fileUpload.PostedFile.ContentLength > 2 * 1024 * 1024)
                 {
-                    return null;
+                    throw new Exception("La imagen es demasiado grande. Tamaño máximo: 2MB.");
                 }
 
                 byte[] imagenBytes = new byte[fileUpload.PostedFile.ContentLength];
@@ -137,7 +175,7 @@ namespace Frontend.Dashboard_client
 
                         if (img.Width > anchoMaximo || img.Height > altoMaximo)
                         {
-                            return null;
+                            throw new Exception($"Las dimensiones de la imagen son demasiado grandes. Máximo: {anchoMaximo}x{altoMaximo}px. Tu imagen: {img.Width}x{img.Height}px");
                         }
                     }
                 }
@@ -155,9 +193,47 @@ namespace Frontend.Dashboard_client
 
                 return $"~/assets/img/perfiles/{nombreArchivo}";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                throw new Exception("Error al guardar la foto de perfil: " + ex.Message);
+            }
+        }
+
+        private string GuardarFotoPerfilDesdeBase64(string base64String, int idUsuario)
+        {
+            try
+            {
+                string base64Data = base64String.Contains(",") ? base64String.Split(',')[1] : base64String;
+                byte[] imagenBytes = Convert.FromBase64String(base64Data);
+
+                if (imagenBytes.Length > 2 * 1024 * 1024)
+                {
+                    throw new Exception("La imagen es demasiado grande. Tamaño máximo: 2MB.");
+                }
+
+                using (MemoryStream ms = new MemoryStream(imagenBytes))
+                {
+                    using (System.Drawing.Image img = System.Drawing.Image.FromStream(ms))
+                    {
+                    }
+                }
+
+                string carpetaImagenes = Server.MapPath("~/assets/img/perfiles/");
+                if (!Directory.Exists(carpetaImagenes))
+                {
+                    Directory.CreateDirectory(carpetaImagenes);
+                }
+
+                string nombreArchivo = $"perfil_{idUsuario}_{DateTime.Now.Ticks}.jpg";
+                string rutaCompleta = Path.Combine(carpetaImagenes, nombreArchivo);
+
+                File.WriteAllBytes(rutaCompleta, imagenBytes);
+
+                return $"~/assets/img/perfiles/{nombreArchivo}";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al guardar la foto de perfil: " + ex.Message);
             }
         }
 
