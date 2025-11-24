@@ -2,12 +2,12 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
 
 namespace TPC_ProgIII
 {
     public partial class Productos : System.Web.UI.Page
     {
-        // Propiedad pública por si necesitas acceder a la lista desde el aspx (opcional)
         public List<Producto> ListaProductos { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -20,7 +20,6 @@ namespace TPC_ProgIII
                 if (idCategoria != null)
                 {
                     // Si hay ID, cargamos filtrado
-                    // (Asegurate de que el ID en la URL sea un número válido)
                     int idParsed;
                     if (int.TryParse(idCategoria, out idParsed))
                     {
@@ -28,7 +27,7 @@ namespace TPC_ProgIII
                     }
                     else
                     {
-                        // Si el ID no es un número, cargamos todo
+                        // Si el ID no es número, cargamos todo
                         cargarProductos(0);
                     }
                 }
@@ -47,24 +46,64 @@ namespace TPC_ProgIII
             {
                 if (idCategoria != 0)
                 {
-                    // Usamos el nuevo método que agregaste a ProductoNegocio
+                    // Usamos ProductoNegocio
                     ListaProductos = negocio.ListarPorCategoria(idCategoria);
                 }
                 else
                 {
-                    // Usamos el método clásico que trae todo
+                    // Usamos el método listar
                     ListaProductos = negocio.Listar();
                 }
 
-                // Enlazamos la lista al Repeater (el visualizador de tarjetas)
+                // Enlazamos la lista al Repeater
                 repProductos.DataSource = ListaProductos;
                 repProductos.DataBind();
             }
             catch (Exception ex)
             {
-                // Si falla, mostramos el error en el panel rojo
+                // Si falla, mostramos error 
                 panelMensajes.Visible = true;
                 lblMensaje.Text = "Hubo un problema al cargar los productos. Detalle técnico: " + ex.Message;
+            }
+        }
+
+        protected void repProductos_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Agregar")
+            {
+                // ID del producto desde CommandArgument
+                string idString = e.CommandArgument.ToString();
+                int idProducto = int.Parse(idString);
+
+                // producto de BD
+                ProductoNegocio negocioProducto = new ProductoNegocio();
+                Producto productoSeleccionado = negocioProducto.ObtenerPorId(idProducto);
+
+                if (productoSeleccionado != null)
+                {
+                    // Obtener/Iniciar Carrito en Session
+                    Carrito carritoActual;
+                    if (Session["Carrito"] == null)
+                    {
+                        carritoActual = new Carrito();
+                    }
+                    else
+                    {
+                        carritoActual = (Carrito)Session["Carrito"];
+                    }
+
+                    // agregar item
+                    CarritoNegocio negocioCarrito = new CarritoNegocio();
+                    negocioCarrito.AgregarItem(carritoActual, productoSeleccionado, 1);
+
+                    // guardar en Sesión
+                    Session["Carrito"] = carritoActual;
+
+                    // msj exito
+                    lblMensaje.Text = "Producto agregado!";
+                    panelMensajes.Visible = true;
+                    panelMensajes.CssClass = "alert alert-success"; 
+                }
             }
         }
     }
