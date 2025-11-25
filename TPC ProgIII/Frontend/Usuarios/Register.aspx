@@ -23,7 +23,7 @@
                                 <div class="form-floating">
                                     <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" Placeholder="Nombre"></asp:TextBox>
                                     <label for="txtNombre">Nombre</label>
-                                    
+                                    <%--Validaciones Nombre--%>
                                     <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtNombre" runat="server" CssClass="text-danger small" Display="Dynamic" />
                                     <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtNombre" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
                                 </div>
@@ -33,7 +33,7 @@
                                 <div class="form-floating">
                                     <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" Placeholder="Apellido"></asp:TextBox>
                                     <label for="txtApellido">Apellido</label>
-                                    
+                                    <%--Validacion Apellido--%>
                                     <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtApellido" runat="server" CssClass="text-danger small" Display="Dynamic" />
                                     <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtApellido" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
                                 </div>
@@ -43,7 +43,7 @@
                         <div class="form-floating mb-3">
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Placeholder="name@example.com" TextMode="Email"></asp:TextBox>
                             <label for="txtEmail">Correo Electrónico</label>
-                            
+                             <%--Validacion Email--%>
                             <asp:RequiredFieldValidator ErrorMessage="El email es requerido" ControlToValidate="txtEmail" runat="server" CssClass="text-danger small" Display="Dynamic" />
                             <asp:RegularExpressionValidator ErrorMessage="Formato inválido" ControlToValidate="txtEmail" runat="server" ValidationExpression="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" CssClass="text-danger small" Display="Dynamic" />
                         </div>

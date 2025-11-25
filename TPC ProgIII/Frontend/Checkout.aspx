@@ -24,7 +24,12 @@
                             <div class="form-floating mb-3">
                                 <asp:TextBox ID="txtEmailCheckout" runat="server" CssClass="form-control" TextMode="Email" Placeholder="Email"></asp:TextBox>
                                 <label>Correo Electrónico</label>
+                                <%--Validacion Email--%>
                                 <asp:RequiredFieldValidator ControlToValidate="txtEmailCheckout" runat="server" CssClass="text-danger small" ErrorMessage="Email requerido" Display="Dynamic" />
+                                <asp:RequiredFieldValidator ErrorMessage="El email es requerido." ControlToValidate="txtEmailCheckout" runat="server" 
+                                    CssClass="text-danger small" Display="Dynamic" />
+                                <asp:RegularExpressionValidator ErrorMessage="Formato de email inválido." ControlToValidate="txtEmailCheckout" runat="server" 
+                                    ValidationExpression="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" CssClass="text-danger small" Display="Dynamic" />
                             </div>
                             
                             <div class="row">
@@ -32,14 +37,20 @@
                                     <div class="form-floating">
                                         <asp:TextBox ID="txtNombreFacturacion" runat="server" CssClass="form-control" Placeholder="Nombre"></asp:TextBox>
                                         <label>Nombre</label>
-                                        <asp:RequiredFieldValidator ControlToValidate="txtNombreFacturacion" runat="server" CssClass="text-danger small" ErrorMessage="Requerido" Display="Dynamic" />
+                                        <%--Validacion Nombre--%>
+                                            <asp:RequiredFieldValidator ControlToValidate="txtNombreFacturacion" runat="server" CssClass="text-danger small" ErrorMessage="Campo Obligatorio" Display="Dynamic" />
+                                            <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtNombreFacturacion" runat="server" CssClass="text-danger small" Display="Dynamic" />
+                                            <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtNombreFacturacion" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="form-floating">
                                         <asp:TextBox ID="txtApellidoFacturacion" runat="server" CssClass="form-control" Placeholder="Apellido"></asp:TextBox>
                                         <label>Apellido</label>
-                                        <asp:RequiredFieldValidator ControlToValidate="txtApellidoFacturacion" runat="server" CssClass="text-danger small" ErrorMessage="Requerido" Display="Dynamic" />
+                                        <%--Validacion Apellido--%>
+                                            <asp:RequiredFieldValidator ControlToValidate="txtApellidoFacturacion" runat="server" CssClass="text-danger small" ErrorMessage="Campo Obligatorio" Display="Dynamic" />
+                                            <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtApellidoFacturacion" runat="server" CssClass="text-danger small" Display="Dynamic" />
+                                            <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtApellidoFacturacion" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
                                     </div>
                                 </div>
                             </div>
@@ -94,23 +105,75 @@
                         <%--FORMULARIO DIRECCIÓN (Solo si elige Domicilio)--%>
                         <asp:Panel ID="pnlDatosEnvio" runat="server" Visible="false" CssClass="mb-4 ps-4 border-start border-3 border-danger bg-light py-3 pe-3 rounded-end">
                             <h6 class="fw-bold mb-3 text-danger">Datos del destinatario</h6>
+    
                             <div class="row">
                                 <div class="col-md-6 mb-2">
-                                    <div class="form-floating"><asp:TextBox ID="txtCalle" runat="server" CssClass="form-control" Placeholder="Calle"></asp:TextBox><label>Calle</label></div>
+                                    <div class="form-floating">
+                                        <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control" Placeholder="Calle"></asp:TextBox>
+                                        <label>Calle</label>
+                                        <%--Validacion Calle--%>
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCalle" 
+                                            ValidationGroup="Entrega" ErrorMessage="Calle requerida" 
+                                            CssClass="text-danger small" Display="Dynamic" />
+                                        <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtCalle" runat="server" CssClass="text-danger small" Display="Dynamic" />
+                                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtCalle" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
+                                    </div>
                                 </div>
+        
                                 <div class="col-md-3 mb-2">
-                                    <div class="form-floating"><asp:TextBox ID="txtAltura" runat="server" CssClass="form-control" Placeholder="Altura"></asp:TextBox><label>Altura</label></div>
+                                    <div class="form-floating">
+                                        <asp:TextBox ID="txtAltura" runat="server" CssClass="form-control" Placeholder="Altura"></asp:TextBox>
+                                        <label>Altura</label>
+                                        <%--Validacion Altura--%>
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtAltura" 
+                                            ValidationGroup="Entrega" ErrorMessage="Altura requerida" 
+                                            CssClass="text-danger small" Display="Dynamic" />
+                                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtAltura"
+                                            ValidationGroup="Entrega" ErrorMessage="Solo números" 
+                                            ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />
+                                    </div>
                                 </div>
+        
                                 <div class="col-md-3 mb-2">
-                                    <div class="form-floating"><asp:TextBox ID="txtCP" runat="server" CssClass="form-control" Placeholder="CP"></asp:TextBox><label>C.P.</label></div>
+                                    <div class="form-floating">
+                                        <asp:TextBox ID="txtCP" runat="server" CssClass="form-control" Placeholder="CP"></asp:TextBox>
+                                        <label>C.P.</label>
+                                        <%--Validacion CP--%>
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCP" 
+                                            ValidationGroup="Entrega" ErrorMessage="C.P requerido" 
+                                            CssClass="text-danger small" Display="Dynamic" />
+                                         <asp:RegularExpressionValidator runat="server" ControlToValidate="txtCP"
+                                            ValidationGroup="Entrega" ErrorMessage="Solo números" 
+                                            ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6 mb-2">
-                                    <div class="form-floating"><asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control" Placeholder="Localidad"></asp:TextBox><label>Localidad</label></div>
+                                    <div class="form-floating">
+                                        <asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control" Placeholder="Localidad"></asp:TextBox>
+                                        <label>Localidad</label>
+                                        <%--Validacion Localidad--%>
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtLocalidad" 
+                                            ValidationGroup="Entrega" ErrorMessage="Localidad requerida" 
+                                            CssClass="text-danger small" Display="Dynamic" />
+                                        <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtLocalidad" runat="server" CssClass="text-danger small" Display="Dynamic" />
+                                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtLocalidad" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
+                                    </div>
                                 </div>
+        
                                 <div class="col-md-6 mb-2">
-                                    <div class="form-floating"><asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control" Placeholder="Provincia"></asp:TextBox><label>Provincia</label></div>
+                                    <div class="form-floating">
+                                        <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control" Placeholder="Provincia"></asp:TextBox>
+                                        <label>Provincia</label>
+                                        <%--Validacion Provincia--%>
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtProvincia" 
+                                            ValidationGroup="Entrega" ErrorMessage="Provincia requerida" 
+                                            CssClass="text-danger small" Display="Dynamic" />
+                                        <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtProvincia" runat="server" CssClass="text-danger small" Display="Dynamic" />
+                                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtProvincia" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
+                                    </div>
                                 </div>
                             </div>
                         </asp:Panel>
@@ -138,7 +201,10 @@
                         </div>
 
                         <div class="d-flex justify-content-end">
-                            <asp:Button ID="btnSiguientePago" runat="server" Text="Continuar a Pago" OnClick="btnSiguientePago_Click" CssClass="btn btn-danger" Visible="false" />
+                            <%--<asp:Button ID="btnSiguientePago" runat="server" Text="Continuar a Pago" OnClick="btnSiguientePago_Click" CssClass="btn btn-danger" Visible="false" />--%>
+                            <asp:Button ID="btnSiguientePago" runat="server" Text="Continuar a Pago" 
+                            OnClick="btnSiguientePago_Click" CssClass="btn btn-danger" Visible="false" 
+                            ValidationGroup="Entrega" />
                         </div>
 
                     </asp:Panel>
@@ -218,12 +284,18 @@
                                                 <div class="form-floating">
                                                     <asp:TextBox ID="txtBancoOrigen" runat="server" CssClass="form-control" Placeholder="Banco"></asp:TextBox>
                                                     <label>Tu Banco</label>
+                                                    <%--Validacion Banco--%>
+                                                        <asp:RequiredFieldValidator ControlToValidate="txtBancoOrigen" runat="server" CssClass="text-danger small" ErrorMessage="Campo Obligatorio" Display="Dynamic" />
+                                                        <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtBancoOrigen" runat="server" CssClass="text-danger small" Display="Dynamic" />
+                                                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtBancoOrigen" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-2">
                                                 <div class="form-floating">
                                                     <asp:TextBox ID="txtNumeroComprobante" runat="server" CssClass="form-control" Placeholder="Nro Comprobante"></asp:TextBox>
                                                     <label>Nro. Comprobante / Alias</label>
+                                                    <%--Validacion Nro. Comprobante / Alias--%>
+                                                        <asp:RequiredFieldValidator ControlToValidate="txtNumeroComprobante" runat="server" CssClass="text-danger small" ErrorMessage="Campo Obligatorio" Display="Dynamic" />
                                                 </div>
                                             </div>
                                         </div>
