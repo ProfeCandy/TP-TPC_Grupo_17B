@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,41 @@ namespace Frontend.Dashboard_client
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("../Usuarios/Login.aspx");
+            }
 
+            if (!IsPostBack)
+            {
+                CargarPedidos();
+            }
+        }
+
+        private void CargarPedidos()
+        {
+            try
+            {
+                Usuario user = (Usuario)Session["usuario"];
+
+                PedidoNegocio negocio = new PedidoNegocio();
+                List<Pedido> lista = negocio.ListarPorUsuario(user.IdUsuario);
+
+                if (lista.Count > 0)
+                {
+                    repPedidos.DataSource = lista;
+                    repPedidos.DataBind();
+                }
+                else
+                {
+                    pnlSinPedidos.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("../Error.aspx");
+            }
         }
     }
 }

@@ -2,60 +2,78 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="DashboardBody" runat="server">
 
-    <!-- dashboard content section -->
-					<div class="col-12 col-md-9">
-						<!-- recent activity section -->
-						<div
-							class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4"
-						>
-							<!-- title section -->
-							<div class="d-flex justify-content-between p-3">
-								<span class="noto-sans fs-4 fw-bold">Historial de Pedidos</span>
-							</div>
-							<!-- order history section -->
-							<div class="p-3">
-								<div class="row g-0">
-									<table>
-										<thead>
-											<tr>
-												<th>Fecha Pedido</th>
-												<th>Nro factura</th>
-												<th>Monto</th>
-												<th>Detalle</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>2024-08-01</td>
-												<td>45978856</td>
-												<td>$150.00</td>
-												<td>
-													<a
-														href="#"
-														data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"
-														>Ver Detalle</a
-													>
-												</td>
-											</tr>
-											<tr>
-												<td>2024-08-05</td>
-												<td>45978859</td>
-												<td>$200.00</td>
-												<td>
-													<a
-														href="#"
-														data-bs-toggle="modal"
-														data-bs-target="#quickViewModal"
-														>Ver Detalle</a
-													>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
+    <div class="col-12 col-md-9">
+        <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4">
+            
+            <div class="d-flex justify-content-between p-4 border-bottom">
+                <span class="noto-sans fs-4 fw-bold text-danger">Mis Compras</span>
+            </div>
+
+            <div class="p-4">
+               <%-- Historial de compras--%>
+                <asp:Panel ID="pnlSinPedidos" runat="server" Visible="false">
+                    <div class="text-center py-5">
+                        <i class="bi bi-bag-x fs-1 text-muted mb-3 d-block"></i>
+                        <%--Si no hay compras--%>
+                        <h5 class="text-muted">No tenés compras realizadas aún.</h5>
+                        <a href="../../Productos/Productos.aspx" class="btn btn-danger mt-3 px-4 rounded-pill">Ir al catálogo</a>
+                    </div>
+                </asp:Panel>
+
+                <div class="table-responsive">
+                    <asp:Repeater ID="repPedidos" runat="server">
+                        <HeaderTemplate>
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr class="text-secondary small text-uppercase">
+                                        <th scope="col" class="py-3 ps-3">Fecha</th>
+                                        <th scope="col" class="py-3">Nro. Pedido</th>
+                                        <th scope="col" class="py-3">Envío</th>
+                                        <th scope="col" class="py-3">Total</th>
+                                        <th scope="col" class="py-3 text-center">Estado</th>
+                                        <th scope="col" class="py-3 text-end pe-3">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                                    <tr>
+                                        <td class="ps-3 py-3 text-muted">
+                                            <%# Convert.ToDateTime(Eval("FechaPedido")).ToString("dd/MM/yyyy") %>
+                                        </td>
+                                        <td class="py-3 fw-bold text-dark">
+                                            #<%# Eval("IdPedido") %>
+                                        </td>
+                                        <td class="py-3 small text-muted">
+                                            <%# Eval("MetodoEnvio") %>
+                                        </td>
+                                        <td class="py-3 fw-bold text-success">
+                                            $<%# Eval("Total", "{0:N0}") %>
+                                        </td>
+                                        <td class="py-3 text-center">
+                                            <span class='badge rounded-pill px-3 py-2 fw-normal 
+                                                <%# Eval("Estado").ToString() == "Entregado" ? "bg-success" : "bg-warning text-dark" %>'>
+                                                <%# Eval("Estado") %>
+                                            </span>
+                                        </td>
+                                         <%--Ver Detalle--%>
+                                        <td class="text-end pe-3 py-3">
+                                            <a href="DetallePedidoCliente.aspx?id=<%# Eval("IdPedido") %>" 
+                                               class="btn btn-sm btn-outline-secondary border-0" title="Ver Detalle">
+                                                <i class="bi bi-eye fs-5"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                                </tbody>
+                            </table>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </asp:Content>
