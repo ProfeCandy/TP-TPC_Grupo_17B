@@ -71,7 +71,23 @@ namespace Frontend
             catch (Exception ex)
             {
                 panelError.Visible = true;
-                lblError.Text = $"Hubo un error al registrarse: {ex.Message}";
+                
+                string errorMessage = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    errorMessage += " " + ex.InnerException.Message;
+                }
+                
+                if (errorMessage.Contains("UNIQUE KEY constraint") && errorMessage.Contains("UQ_Usuario_Email") || 
+                    errorMessage.Contains("duplicate key") || 
+                    errorMessage.Contains("ya existe"))
+                {
+                    lblError.Text = "El correo electrónico ingresado ya está registrado. Por favor, utiliza otro correo o inicia sesión.";
+                }
+                else
+                {
+                    lblError.Text = $"Hubo un error al registrarse: {ex.Message}";
+                }
             }
         }
     }
