@@ -19,17 +19,7 @@ namespace Negocio
 
             if (productoSeleccionado == null) return "Error: el producto no existe.";
 
-<<<<<<< Updated upstream
             Carrito carrito = ObtenerCarrito(session);
-=======
-            Carrito carrito;
-
-            if (session["Carrito"] == null)
-                carrito = new Carrito();
-            else
-                carrito = (Carrito)session["Carrito"];
->>>>>>> Stashed changes
-
             CarritoItem item = carrito.Items.Find(x => x.Producto.IdProducto == idProducto);
 
             if (item != null)
@@ -93,7 +83,5 @@ namespace Negocio
             }
             return (Carrito)session["Carrito"];
         }
-=======
->>>>>>> Stashed changes
     }
 }
