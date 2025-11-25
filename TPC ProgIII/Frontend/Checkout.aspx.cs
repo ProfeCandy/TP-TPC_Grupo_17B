@@ -190,10 +190,17 @@ namespace Frontend
                     return;
                 }
             }
-            // Si es MercadoPago -> Hay que simular la redirección o ir a éxito
-            // Si es Transferencia -> Ir a pantalla de éxito directamente
 
-            // Response.Redirect("PedidoExitoso.aspx"); // (hay que crear esta página)
+            // Falta la logica para guardar en la BD (INSERT PEDIDO, DETALLES)
+
+            // Seria algo asi: PedidoNegocio negocio = new PedidoNegocio();
+            // negocio.Guardar(nuevoPedido); 
+
+            // Esto es temporal, solo simula el proceso de compra
+            Session["compraRealizada"] = Session["carrito"];
+            Session["carrito"] = null;
+
+            Response.Redirect("PedidoExitoso.aspx");
         }
     }
 }
