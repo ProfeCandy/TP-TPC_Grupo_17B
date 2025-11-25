@@ -87,17 +87,17 @@ namespace Frontend.Dashboard_client
                 else if (fileFotoPerfil.HasFile)
                 {
                     try
+                {
+                    string urlFoto = GuardarFotoPerfil(fileFotoPerfil, usuarioAEditar.IdUsuario);
+                    if (!string.IsNullOrEmpty(urlFoto))
                     {
-                        string urlFoto = GuardarFotoPerfil(fileFotoPerfil, usuarioAEditar.IdUsuario);
-                        if (!string.IsNullOrEmpty(urlFoto))
+                        if (!string.IsNullOrEmpty(usuarioAEditar.UrlFotoPerfil))
                         {
-                            if (!string.IsNullOrEmpty(usuarioAEditar.UrlFotoPerfil))
-                            {
-                                EliminarFotoAnterior(usuarioAEditar.UrlFotoPerfil);
-                            }
-                            usuarioAEditar.UrlFotoPerfil = urlFoto;
+                            EliminarFotoAnterior(usuarioAEditar.UrlFotoPerfil);
                         }
+                        usuarioAEditar.UrlFotoPerfil = urlFoto;
                     }
+                }
                     catch (Exception exFoto)
                     {
                         lblMensaje.Text = exFoto.Message;
@@ -108,7 +108,7 @@ namespace Frontend.Dashboard_client
                 }
 
                 negocio.Modificar(usuarioAEditar);
-                
+
                 Usuario usuarioActualizado = negocio.BuscarUsuarioPorId(usuarioAEditar.IdUsuario);
                 Session["usuario"] = usuarioActualizado;
 

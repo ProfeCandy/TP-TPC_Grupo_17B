@@ -34,6 +34,9 @@ namespace Frontend.Dashboard_client
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("~/Inicio.aspx", false);
         }
     }
 }

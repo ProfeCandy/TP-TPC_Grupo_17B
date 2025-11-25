@@ -104,4 +104,79 @@
         </div>
     </section>
 
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold text-uppercase mb-5">MARCAS PRINCIPALES</h2>
+            <div id="marcasCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row g-4 align-items-center justify-content-center">
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_chevrolet.jpg") %>' alt="Chevrolet" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_renault.jpg") %>' alt="Renault" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_kia.jpg") %>' alt="Kia" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_suzuki.jpg") %>' alt="Suzuki" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_mitsu.jpg") %>' alt="Mitsubishi" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_citroen.jpg") %>' alt="Citroën" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-4 align-items-center justify-content-center">
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_toyota.jpg") %>' alt="Toyota" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_ford.jpg") %>' alt="Ford" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_volks.jpg") %>' alt="Volkswagen" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_fiat.jpg") %>' alt="Fiat" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_peugeot.jpg") %>' alt="Peugeot" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_nissan.jpg") %>' alt="Nissan" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-4 align-items-center justify-content-center">
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_hyundai.jpg") %>' alt="Hyundai" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_jeep.jpg") %>' alt="Jeep" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_mbenz.jpg") %>' alt="Mercedes-Benz" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2 text-center">
+                                <img src='<%= ResolveUrl("~/assets/img/marcas/logo_chery.jpg") %>' alt="Chery" class="img-fluid" style="max-height: 80px; object-fit: contain; filter: grayscale(0%); opacity: 1;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-indicators position-relative mt-4 mb-0">
+                    <button type="button" data-bs-target="#marcasCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#marcasCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#marcasCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </asp:Content>

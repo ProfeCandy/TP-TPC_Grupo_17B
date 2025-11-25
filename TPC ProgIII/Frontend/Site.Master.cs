@@ -72,7 +72,7 @@ namespace TPC_ProgIII
         {
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("Inicio.aspx", false);
+            Response.Redirect("~/Inicio.aspx", false);
         }
         private void CargarMenuCategorias()
         {
