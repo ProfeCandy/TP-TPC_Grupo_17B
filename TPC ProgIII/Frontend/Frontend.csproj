@@ -101,6 +101,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Checkout.aspx" />
+    <Content Include="Dashboard_client\DetallePedidoCliente.aspx" />
     <Content Include="Nosotros\Contacto.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -226,6 +227,13 @@
     </Compile>
     <Compile Include="Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_client\DetallePedidoCliente.aspx.cs">
+      <DependentUpon>DetallePedidoCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard_client\DetallePedidoCliente.aspx.designer.cs">
+      <DependentUpon>DetallePedidoCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Nosotros\Contacto.aspx.cs">
       <DependentUpon>Contacto.aspx</DependentUpon>
