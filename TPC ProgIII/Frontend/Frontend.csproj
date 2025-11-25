@@ -133,7 +133,6 @@
     <Content Include="Noticias\FormularioNoticia.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="MiPerfil.aspx" />
     <Content Include="Noticias\Noticias.aspx" />
     <Content Include="Productos\Productos.aspx" />
     <Content Include="Nosotros\QuienesSomos.aspx" />
@@ -342,13 +341,6 @@
     </Compile>
     <Compile Include="Usuarios\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MiPerfil.aspx.cs">
-      <DependentUpon>MiPerfil.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MiPerfil.aspx.designer.cs">
-      <DependentUpon>MiPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Noticias\Noticias.aspx.cs">
       <DependentUpon>Noticias.aspx</DependentUpon>
