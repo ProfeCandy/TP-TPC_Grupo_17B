@@ -23,8 +23,7 @@
                             <div class="text-end">
                                 <asp:Label ID="lblEstado" runat="server" CssClass="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill"></asp:Label>
                             </div>
-                        </div>
-                        <%--Ver Detalle--%>
+                        </div>               
                         <h6 class="text-uppercase text-muted small fw-bold mb-3">Productos</h6>
                         <div class="list-group mb-4">
                             <asp:Repeater ID="repDetalles" runat="server">
