@@ -97,6 +97,8 @@
                 <div class="card shadow border-0 p-4">
                     <h3 class="fw-bold mb-4">Envianos un mensaje</h3>
 
+                    <asp:Label ID="lblMensaje" runat="server" CssClass="alert" Visible="false" style="display: block;"></asp:Label>
+
                     <div class="row g-3">
                         <!-- Nombre -->
                         <div class="col-12">

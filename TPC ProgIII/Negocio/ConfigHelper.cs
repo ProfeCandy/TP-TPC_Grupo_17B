@@ -1,18 +1,43 @@
 using System;
 using System.Configuration;
-using System.Web.Configuration;
 
 namespace Negocio
 {
     public static class ConfigHelper
     {
+        private static ConfiguracionNegocio configNegocio = new ConfiguracionNegocio();
+
         public static string ObtenerEmailContacto()
         {
+            try
+            {
+                string valor = configNegocio.ObtenerValor("EmailContacto");
+                if (!string.IsNullOrEmpty(valor))
+                {
+                    return valor;
+                }
+            }
+            catch
+            {
+            }
+            
             return ConfigurationManager.AppSettings["EmailContacto"] ?? "info@autoparts.com.ar";
         }
 
         public static string ObtenerEmailFrom()
         {
+            try
+            {
+                string valor = configNegocio.ObtenerValor("EmailFrom");
+                if (!string.IsNullOrEmpty(valor))
+                {
+                    return valor;
+                }
+            }
+            catch
+            {
+            }
+            
             return ConfigurationManager.AppSettings["EmailFrom"] ?? "noreply@tuempresa.com";
         }
 
@@ -20,10 +45,7 @@ namespace Negocio
         {
             try
             {
-                Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
-                config.AppSettings.Settings["EmailContacto"].Value = nuevoEmail;
-                config.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection("appSettings");
+                configNegocio.ActualizarValor("EmailContacto", nuevoEmail);
             }
             catch (Exception ex)
             {
@@ -35,10 +57,7 @@ namespace Negocio
         {
             try
             {
-                Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
-                config.AppSettings.Settings["EmailFrom"].Value = nuevoEmail;
-                config.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection("appSettings");
+                configNegocio.ActualizarValor("EmailFrom", nuevoEmail);
             }
             catch (Exception ex)
             {

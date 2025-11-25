@@ -7,7 +7,24 @@ namespace Negocio
 {
     public class EmailServicio
     {
-        private string EmailFrom => ConfigurationManager.AppSettings["EmailFrom"] ?? "noreply@tuempresa.com";
+        private string EmailFrom
+        {
+            get
+            {
+                try
+                {
+                    string valor = ConfigHelper.ObtenerEmailFrom();
+                    if (!string.IsNullOrEmpty(valor))
+                    {
+                        return valor;
+                    }
+                }
+                catch
+                {
+                }
+                return ConfigurationManager.AppSettings["EmailFrom"] ?? "noreply@tuempresa.com";
+            }
+        }
         private string EmailFromName => ConfigurationManager.AppSettings["EmailFromName"] ?? "AutoParts";
         private string SitioUrl => ConfigurationManager.AppSettings["SitioUrl"] ?? "https://localhost:44324";
         private bool ModoDesarrollo => ConfigurationManager.AppSettings["EmailModoDesarrollo"] == "true";
@@ -18,11 +35,12 @@ namespace Negocio
             {
                 if (ModoDesarrollo)
                 {
-                    // En desarrollo, solo loggear sin enviar
-                    System.Diagnostics.Debug.WriteLine($"=== EMAIL (NO ENVIADO) ===");
+                    System.Diagnostics.Debug.WriteLine($"=== EMAIL (MODO DESARROLLO - NO ENVIADO) ===");
+                    System.Diagnostics.Debug.WriteLine($"Desde: {EmailFrom}");
                     System.Diagnostics.Debug.WriteLine($"Para: {destinatario}");
                     System.Diagnostics.Debug.WriteLine($"Asunto: {asunto}");
                     System.Diagnostics.Debug.WriteLine($"Cuerpo: {cuerpo}");
+                    System.Diagnostics.Debug.WriteLine($"==========================================");
                     return true;
                 }
 
@@ -34,14 +52,15 @@ namespace Negocio
                 mensaje.IsBodyHtml = esHtml;
                 mensaje.BodyEncoding = Encoding.UTF8;
 
-                SmtpClient cliente = new SmtpClient(); // Lee configuración de Web.config automáticamente
+                SmtpClient cliente = new SmtpClient();
                 cliente.Send(mensaje);
                 return true;
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error al enviar email: " + ex.Message);
-                return false;
+                System.Diagnostics.Debug.WriteLine("Stack trace: " + ex.StackTrace);
+                throw new Exception("Error al enviar el correo: " + ex.Message, ex);
             }
         }
 

@@ -111,3 +111,18 @@ ALTER TABLE Pedido ADD CostoEnvio decimal(10,2) DEFAULT 0;
 ALTER TABLE Pedido ADD ProvinciaEnvio varchar(50) NULL;
 ALTER TABLE Pedido ADD CodigoPostal varchar(10) NULL;
 ```
+
+**TABLA PARA CONFIGURACIONES DEL SISTEMA**
+```sql
+CREATE TABLE Configuracion (
+    IdConfig INT IDENTITY(1,1) PRIMARY KEY,
+    Clave VARCHAR(100) NOT NULL UNIQUE,
+    Valor VARCHAR(500) NOT NULL,
+    Descripcion VARCHAR(200)
+);
+
+INSERT INTO Configuracion (Clave, Valor, Descripcion) VALUES
+('EmailContacto', 'info@autoparts.com.ar', 'Correo de contacto que se muestra en las páginas'),
+('EmailFrom', 'noreply@tuempresa.com', 'Correo desde donde se envían los emails automáticos');
+```
+
