@@ -15,6 +15,33 @@ namespace Frontend
     {
 
         /// <summary>
+        /// Control pnlNuevoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlNuevoUsuario;
+
+        /// <summary>
+        /// Control lblEmailNuevo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmailNuevo;
+
+        /// <summary>
+        /// Control lblPassNueva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPassNueva;
+
+        /// <summary>
         /// Control repDetalleCompra.
         /// </summary>
         /// <remarks>

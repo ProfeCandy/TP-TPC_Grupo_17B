@@ -33,6 +33,16 @@ namespace Frontend
                     Response.Redirect("~/Productos/Productos.aspx");
                 }
             }
+
+            if (Session["passTemporal"] != null && Session["usuario"] != null)
+            {
+                pnlNuevoUsuario.Visible = true;
+                Usuario user = (Usuario)Session["usuario"];
+                lblEmailNuevo.Text = user.Email;
+                lblPassNueva.Text = Session["passTemporal"].ToString();
+
+                Session["passTemporal"] = null;
+            }
         }
     }
 }

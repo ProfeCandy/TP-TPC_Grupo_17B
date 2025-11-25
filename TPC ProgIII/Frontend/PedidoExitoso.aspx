@@ -12,6 +12,20 @@
                     </div>
 
                     <h1 class="fw-bold text-dark mb-3">¡Gracias por tu compra!</h1>
+
+                    <%--Panel para nuevo usuario--%>
+                    <asp:Panel ID="pnlNuevoUsuario" runat="server" Visible="false" CssClass="alert alert-warning border-warning mb-4 text-start">
+                        <h5 class="alert-heading fw-bold"><i class="bi bi-person-plus-fill me-2"></i>¡Te creamos una cuenta!</h5>
+                        <p class="mb-2">Para que puedas seguir tu pedido, generamos una cuenta automáticamente con tus datos.</p>
+                        <hr>
+                        <p class="mb-0">
+                            Tu usuario: <strong><asp:Label ID="lblEmailNuevo" runat="server"></asp:Label></strong><br />
+                            Tu contraseña temporal: <strong><asp:Label ID="lblPassNueva" runat="server" CssClass="text-dark bg-warning px-2 rounded"></asp:Label></strong>
+                        </p>
+                        <div class="mt-2 small text-muted">
+                            (Podés cambiar esta contraseña en la sección "Mi Perfil")
+                        </div>
+                    </asp:Panel>
                     
                     <p class="lead text-muted mb-4">
                         Tu pedido ha sido procesado exitosamente.

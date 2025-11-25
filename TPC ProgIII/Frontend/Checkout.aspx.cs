@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -184,19 +185,82 @@ namespace Frontend
         {
             if (rdbTransferencia.Checked)
             {
-                // Si es transferencia, carga los datos del comprobante
                 if (string.IsNullOrEmpty(txtBancoOrigen.Text) || string.IsNullOrEmpty(txtNumeroComprobante.Text))
                 {
                     return;
                 }
             }
-            // Falta la logica para guardar en la BD (INSERT PEDIDO, DETALLES)
 
-            Dominio.Carrito carrito = (Dominio.Carrito)Session["carrito"];
-            Session["compraRealizada"] = carrito.Items;
-            Session["carrito"] = null;
+            try
+            {
+                Usuario usuarioActual = ObtenerOCrearUsuario();
 
-            Response.Redirect("PedidoExitoso.aspx");
+                //Falta el guardado del Pedido en BD
+
+                Dominio.Carrito carrito = (Dominio.Carrito)Session["carrito"];
+                Session["compraRealizada"] = carrito.Items;
+                Session["carrito"] = null;
+
+                Response.Redirect("PedidoExitoso.aspx", false);
+            }
+            catch (Exception)
+            {
+                Response.Redirect("Error.aspx");
+            }
+        }
+        private Usuario ObtenerOCrearUsuario()
+        {
+            // Si ya está logueado, devolvemos el de la sesión
+            if (Session["usuario"] != null)
+            {
+                return (Usuario)Session["usuario"];
+            }
+
+            // Si es invitado verificamos si existe en la BD
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            string emailIngresado = txtEmailCheckout.Text;
+
+            Usuario userExistente = usuarioNegocio.BuscarPorEmail(emailIngresado);
+
+            if (userExistente != null)
+            {
+                return userExistente;
+            }
+
+            // Si no existe,lo creamos
+            Usuario nuevo = new Usuario();
+            nuevo.Email = emailIngresado;
+            nuevo.Nombre = txtNombreFacturacion.Text;
+            nuevo.Apellido = txtApellidoFacturacion.Text;
+
+            // Le creamos una contra por el momento
+            string passwordTemporal = "Auto" + new Random().Next(1000, 9999).ToString();
+            nuevo.Clave = passwordTemporal;
+
+            nuevo.Rol = new Rol();
+            nuevo.Rol.IdRol = 2;
+            nuevo.Activo = true;
+
+            // Si selecciona Domicilio le guardamos la informacion en el perfil
+            if (rdbDomicilio.Checked)
+            {
+                nuevo.Direccion = txtCalle.Text + " " + txtAltura.Text;
+                nuevo.Localidad = txtLocalidad.Text + " (" + txtCP.Text + ")";
+            }
+            // En caso que sea sucursal le guardamos el default
+            else
+            {
+                nuevo.Direccion = "-";
+                nuevo.Localidad = "-";
+            }
+
+            usuarioNegocio.Agregar(nuevo);
+            usuarioNegocio.Loguear(nuevo);
+
+            Session.Add("usuario", nuevo);
+            Session["passTemporal"] = passwordTemporal;
+
+            return nuevo;
         }
     }
 }
