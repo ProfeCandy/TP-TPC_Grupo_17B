@@ -104,6 +104,130 @@
         </div>
     </section>
 
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold text-uppercase mb-5">Navegación Rápida</h2>
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="~/Productos/Productos.aspx" runat="server" class="text-decoration-none">
+                        <div class="card border-0 shadow-sm h-100 hover-shadow">
+                            <div class="card-body text-center p-4">
+                                <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="bi bi-box-seam text-danger fs-1"></i>
+                                </div>
+                                <h4 class="card-title fw-bold mb-3">Productos</h4>
+                                <p class="card-text text-muted mb-0">Explorá nuestro catálogo completo de autopartes y accesorios</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 text-center pb-4">
+                                <span class="text-danger fw-semibold">Ver catálogo <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="~/Noticias/Noticias.aspx" runat="server" class="text-decoration-none">
+                        <div class="card border-0 shadow-sm h-100 hover-shadow">
+                            <div class="card-body text-center p-4">
+                                <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="bi bi-newspaper text-danger fs-1"></i>
+                                </div>
+                                <h4 class="card-title fw-bold mb-3">Noticias</h4>
+                                <p class="card-text text-muted mb-0">Mantenete al día con las últimas novedades del sector automotriz</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 text-center pb-4">
+                                <span class="text-danger fw-semibold">Ver noticias <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="~/Nosotros/Sucursales.aspx" runat="server" class="text-decoration-none">
+                        <div class="card border-0 shadow-sm h-100 hover-shadow">
+                            <div class="card-body text-center p-4">
+                                <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="bi bi-geo-alt-fill text-danger fs-1"></i>
+                                </div>
+                                <h4 class="card-title fw-bold mb-3">Sucursales</h4>
+                                <p class="card-text text-muted mb-0">Encontrá la sucursal más cercana y visitanos</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 text-center pb-4">
+                                <span class="text-danger fw-semibold">Ver sucursales <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <a href="~/Nosotros/Contacto.aspx" runat="server" class="text-decoration-none">
+                        <div class="card border-0 shadow-sm h-100 hover-shadow">
+                            <div class="card-body text-center p-4">
+                                <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="bi bi-envelope-fill text-danger fs-1"></i>
+                                </div>
+                                <h4 class="card-title fw-bold mb-3">Contacto</h4>
+                                <p class="card-text text-muted mb-0">Escribinos y te responderemos a la brevedad</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 text-center pb-4">
+                                <span class="text-danger fw-semibold">Contactanos <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="fw-bold text-uppercase mb-4">¿Por qué elegirnos?</h2>
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="text-danger fs-4">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-semibold mb-2">Calidad Garantizada</h5>
+                            <p class="text-muted mb-0">Trabajamos con las mejores marcas del mercado para asegurar el mejor rendimiento de tu vehículo.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="text-danger fs-4">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-semibold mb-2">Atención Personalizada</h5>
+                            <p class="text-muted mb-0">Asesoramiento experto para talleres y particulares, adaptado a tus necesidades.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="text-danger fs-4">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-semibold mb-2">Múltiples Sucursales</h5>
+                            <p class="text-muted mb-0">Contamos con varias ubicaciones para brindarte la mejor atención cerca de tu zona.</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="~/Nosotros/QuienesSomos.aspx" runat="server" class="btn btn-danger px-4 rounded-pill">
+                            Conocé más sobre nosotros <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="bg-dark rounded p-4 text-white text-center">
+                        <i class="bi bi-truck fs-1 text-danger mb-3 d-block"></i>
+                        <h4 class="fw-bold mb-3">Envíos a Todo el País</h4>
+                        <p class="mb-4">Realizamos envíos a todas las provincias con los mejores tiempos de entrega y seguimiento en tiempo real.</p>
+                        <a href="~/Nosotros/Contacto.aspx" runat="server" class="btn btn-outline-light px-4 rounded-pill">
+                            Consultar envíos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center fw-bold text-uppercase mb-5">MARCAS PRINCIPALES</h2>
