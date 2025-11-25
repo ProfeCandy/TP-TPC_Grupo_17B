@@ -21,6 +21,7 @@ namespace TPC_ProgIII
             }
 
             ActualizarEstadoUsuario();
+            ActualizarContadorCarrito();
         }
         private void ActualizarEstadoUsuario()
         {
@@ -67,7 +68,6 @@ namespace TPC_ProgIII
             else
                 lblCantidadCarrito.Text = "0";
         }
-
         protected void btnSalir_Click(object sender, EventArgs e)
         {
             Session.Clear();
@@ -89,7 +89,6 @@ namespace TPC_ProgIII
 
             }
         }
-
         private void CargarRedesSociales()
         {
             try
@@ -113,6 +112,16 @@ namespace TPC_ProgIII
             {
             }
         }
-
+        public void ActualizarContadorCarrito()
+        {
+            if (Session["Carrito"] != null)
+            {
+                lblCantidadCarrito.Text = CarritoManager.ObtenerCantidadItems(Session).ToString();
+            }
+            else
+            {
+                lblCantidadCarrito.Text = "0";
+            }
+        }
     }
 }
