@@ -2,6 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">    
     <main class="my-4">
+        <%-- Panel de Mensajes --%>
+        <asp:Panel ID="panelMensajes" runat="server" Visible="false">
+            <div class="alert alert-danger">
+                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+            </div>
+        </asp:Panel>
         <div class="container">
             <asp:Panel ID="pnlCarritoConItems" runat="server">
                 <div class="row">

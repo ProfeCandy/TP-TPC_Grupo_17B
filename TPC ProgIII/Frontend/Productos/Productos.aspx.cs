@@ -82,7 +82,16 @@ namespace TPC_ProgIII
                 if (mensaje.Contains("Error"))
                     panelMensajes.CssClass = "alert alert-danger";
                 else
+                {
                     panelMensajes.CssClass = "alert alert-success";
+                    if (this.Master is SiteMaster master)
+                    {
+                        master.ActualizarContadorCarrito();
+                    }
+                }
+                    
+
+                            
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TPC_ProgIII;
 
 namespace Frontend.store
 {
@@ -64,7 +65,17 @@ namespace Frontend.store
                         break;
 
                     case "sumar":
-                        CarritoManager.Agregar(idProducto, 1, Session);
+                        string mensaje = CarritoManager.Agregar(idProducto, 1, Session);
+                        if (mensaje.Contains("Error"))
+                            panelMensajes.CssClass = "alert alert-danger";
+                        else
+                        {
+                            panelMensajes.CssClass = "alert alert-success";
+                            if (this.Master is SiteMaster master)
+                            {
+                                master.ActualizarContadorCarrito();
+                            }
+                        }
                         break;
 
                     case "restar":

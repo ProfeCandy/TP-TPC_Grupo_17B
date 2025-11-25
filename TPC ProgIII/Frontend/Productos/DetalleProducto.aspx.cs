@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TPC_ProgIII;
 
 namespace Frontend
 {
@@ -81,10 +82,16 @@ namespace Frontend
                 lblMensaje.Text = mensaje;
                 panelMensajes.Visible = true;
 
-                if (mensaje.Contains("Error"))
-                    panelMensajes.CssClass = "alert alert-danger";
-                else
-                    panelMensajes.CssClass = "alert alert-success";
+            if (mensaje.Contains("Error"))
+                panelMensajes.CssClass = "alert alert-danger";
+            else
+            {
+                panelMensajes.CssClass = "alert alert-success";
+                if (this.Master is SiteMaster master)
+                {
+                    master.ActualizarContadorCarrito();
+                }
+            }
         }
     } 
 }
