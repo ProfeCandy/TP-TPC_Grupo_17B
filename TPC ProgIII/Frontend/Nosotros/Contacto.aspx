@@ -67,7 +67,7 @@
                             <i class="bi bi-envelope me-2"></i>Envianos un correo electr&oacute;nico a:
                         </h6>
                         <p class="text-secondary mb-0">
-                            <a href="mailto:info@distryser.ar" class="text-decoration-none text-primary">info@distryser.ar</a>
+                            <a href='mailto:<%= Negocio.ConfigHelper.ObtenerEmailContacto() %>' class="text-decoration-none text-primary"><%= Negocio.ConfigHelper.ObtenerEmailContacto() %></a>
                         </p>
                     </div>
 

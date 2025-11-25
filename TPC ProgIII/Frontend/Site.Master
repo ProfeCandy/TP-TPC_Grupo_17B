@@ -174,7 +174,7 @@
                                 <i class="bi bi-envelope-open-fill text-danger fs-5"></i>
                                 <div>
                                     <strong class="d-block text-white">Email</strong>
-                                    info@autoparts.com.ar
+                                    <a href='mailto:<%= Negocio.ConfigHelper.ObtenerEmailContacto() %>' class="text-decoration-none text-secondary"><%= Negocio.ConfigHelper.ObtenerEmailContacto() %></a>
                                 </div>
                             </li>
                             <li class="d-flex gap-3">
