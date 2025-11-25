@@ -55,8 +55,8 @@
                     </div>
 
                     <div class="d-grid gap-2">
-                        <a href="Default.aspx" class="btn btn-danger btn-lg">Volver al Inicio</a>
-                        <a href="MiPerfil.aspx" class="btn btn-outline-secondary">Ver mis pedidos</a>
+                        <a href="Inicio.aspx" class="btn btn-danger btn-lg">Volver al Inicio</a>
+                        <a runat="server" href="~/Dashboard_client/HistorialPedidos.aspx" class="btn btn-outline-secondary">Ver mis pedidos</a>
                     </div>
 
                 </div>

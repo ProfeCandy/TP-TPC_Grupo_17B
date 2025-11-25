@@ -190,14 +190,10 @@ namespace Frontend
                     return;
                 }
             }
-
             // Falta la logica para guardar en la BD (INSERT PEDIDO, DETALLES)
 
-            // Seria algo asi: PedidoNegocio negocio = new PedidoNegocio();
-            // negocio.Guardar(nuevoPedido); 
-
-            // Esto es temporal, solo simula el proceso de compra
-            Session["compraRealizada"] = Session["carrito"];
+            Dominio.Carrito carrito = (Dominio.Carrito)Session["carrito"];
+            Session["compraRealizada"] = carrito.Items;
             Session["carrito"] = null;
 
             Response.Redirect("PedidoExitoso.aspx");
