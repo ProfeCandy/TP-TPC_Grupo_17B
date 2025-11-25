@@ -27,7 +27,6 @@ namespace Frontend
                 }
             }
         }
-
         private void CargarDetalleProducto(int id)
         {
             ProductoNegocio negocio = new ProductoNegocio();
@@ -68,11 +67,24 @@ namespace Frontend
                 MostrarError("Error grave al cargar los datos del producto. Contacte al administrador. Detalle: " + ex.Message);
             }
         }
-
         private void MostrarError(string mensaje)
         {
             panelMensajes.Visible = true;
-            lblMensajeError.Text = mensaje;
+            lblMensaje.Text = mensaje;
+        }
+        protected void btnAgregarCarrito_Click(object sender, EventArgs e)
+        {
+            int idProducto = Convert.ToInt32(Request.QueryString["id"]);
+                // AGREGA PRODUCTO - DEVUELVE MENSAJE
+                string mensaje = CarritoManager.Agregar(idProducto, 1, Session);
+
+                lblMensaje.Text = mensaje;
+                panelMensajes.Visible = true;
+
+                if (mensaje.Contains("Error"))
+                    panelMensajes.CssClass = "alert alert-danger";
+                else
+                    panelMensajes.CssClass = "alert alert-success";
         }
     } 
 }
