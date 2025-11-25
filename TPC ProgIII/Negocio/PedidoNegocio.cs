@@ -135,13 +135,13 @@ namespace Negocio
                         pedido.DireccionEnvio = (string)datos.Lector["DireccionEnvio"];
 
                     if (!(datos.Lector["LocalidadEnvio"] is DBNull))
-                        pedido.DireccionEnvio = (string)datos.Lector["LocalidadEnvio"];
+                        pedido.LocalidadEnvio = (string)datos.Lector["LocalidadEnvio"];
 
                     if (!(datos.Lector["ProvinciaEnvio"] is DBNull))
-                        pedido.DireccionEnvio = (string)datos.Lector["ProvinciaEnvio"];
+                        pedido.ProvinciaEnvio = (string)datos.Lector["ProvinciaEnvio"];
 
                     if (!(datos.Lector["CodigoPostal"] is DBNull))
-                        pedido.DireccionEnvio = (string)datos.Lector["CodigoPostal"];
+                        pedido.CodigoPostal = (string)datos.Lector["CodigoPostal"];
 
                 }
                 datos.cerrarConexion();
