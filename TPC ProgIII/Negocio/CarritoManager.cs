@@ -19,12 +19,7 @@ namespace Negocio
 
             if (productoSeleccionado == null) return "Error: el producto no existe.";
 
-            Carrito carrito;
-
-            if (session["Carrito"] == null)
-                carrito = new Carrito();
-            else
-                carrito = (Carrito)session["Carrito"];
+            Carrito carrito = ObtenerCarrito(session);
 
             CarritoItem item = carrito.Items.Find(x => x.Producto.IdProducto == idProducto);
 
@@ -36,6 +31,57 @@ namespace Negocio
             session["Carrito"] = carrito;
 
             return $"{productoSeleccionado.NombreProducto} agregado al carrito.";
+        }
+        public static void Eliminar(int idProducto, HttpSessionState session)
+        {
+            Carrito carrito = ObtenerCarrito(session);
+            CarritoItem item = carrito.Items.Find(x => x.Producto.IdProducto == idProducto);
+
+            if (item != null)
+            {
+                carrito.Items.Remove(item);
+                session["Carrito"] = carrito;
+            }
+        }
+        public static void Restar(int idProducto, HttpSessionState session)
+        {
+            Carrito carrito = ObtenerCarrito(session);
+            CarritoItem item = carrito.Items.Find(x => x.Producto.IdProducto == idProducto);
+
+            if (item != null)
+            {
+                if (item.Cantidad > 1)
+                {
+                    item.Cantidad--;
+                }
+                else
+                { 
+                    carrito.Items.Remove(item);
+                }
+                session["Carrito"] = carrito;
+            }
+        }
+        public static void Vaciar(HttpSessionState session)
+        {
+            session["Carrito"] = new Carrito();
+        }
+        public static int ObtenerCantidadItems(HttpSessionState session)
+        {
+            Carrito carrito = ObtenerCarrito(session);
+            int cantidad = 0;
+            foreach (var item in carrito.Items)
+            {
+                cantidad += item.Cantidad;
+            }
+            return cantidad;
+        }
+        public static Carrito ObtenerCarrito(HttpSessionState session)
+        {
+            if (session["Carrito"] == null)
+            {
+                session["Carrito"] = new Carrito();
+            }
+            return (Carrito)session["Carrito"];
         }
     }
 }

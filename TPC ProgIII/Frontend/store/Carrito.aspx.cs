@@ -14,40 +14,34 @@ namespace Frontend.store
         {
             if (!IsPostBack)
             {
-                //si cliente no tiene carrito, crea uno nuevo en session, ¡vacío!" --> evita NullReferenceException
-                if (Session["Carrito"] == null)
-                {
-                    Session["Carrito"] = new Dominio.Carrito();
-                }
                 CargarCarrito();
             }
         }
 
         private void CargarCarrito()
         {
-            // traer carrito de session
-            Dominio.Carrito carrito = (Dominio.Carrito)Session["Carrito"];
+            Dominio.Carrito carrito = CarritoManager.ObtenerCarrito(Session);
 
+            // Validamos si tiene items para mostrar u ocultar paneles
             if (carrito != null && carrito.Items.Count > 0)
             {
-                // mostrar solo carrito lleno --
                 pnlCarritoConItems.Visible = true;
                 pnlCarritoVacio.Visible = false;
 
-                // Listado DTO
+                // obtiene listado DTO 
                 CarritoNegocio negocio = new CarritoNegocio();
                 var listaDto = negocio.ObtenerListadoDTO(carrito);
 
                 repCarrito.DataSource = listaDto;
                 repCarrito.DataBind();
 
-                // total carrito
+                // Calcula Total (dinera)
                 decimal total = negocio.CalcularTotal(carrito);
-                int cantidadItems = carrito.Items.Sum(x => x.Cantidad);
+
+                // Cantidad de Items
+                int cantidadItems = CarritoManager.ObtenerCantidadItems(Session);
 
                 lblCantidadItems.Text = cantidadItems.ToString();
-
-                // formato moneda (N2 --> puntos de mil y 2 decimales)
                 lblTotalHeader.Text = total.ToString("N2");
                 lblSubTotal.Text = total.ToString("N2");
                 lblTotalGeneral.Text = total.ToString("N2");
@@ -61,35 +55,31 @@ namespace Frontend.store
 
         protected void RepeaterCarrito_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            // Logica: eliminar/sumar/restar
             try
             {
                 int idProducto = Convert.ToInt32(e.CommandArgument);
-                Dominio.Carrito carrito = (Dominio.Carrito)Session["Carrito"];
-                Dominio.CarritoItem item = carrito.Items.Find(x => x.Producto.IdProducto == idProducto);
 
-                if (item != null)
+                switch (e.CommandName)
                 {
-                    if (e.CommandName == "eliminar")
-                    {
-                        carrito.Items.Remove(item);
-                    }
-                    else if (e.CommandName == "sumar")
-                    {
-                        item.Cantidad++;
-                    }
-                    else if (e.CommandName == "restar")
-                    {
-                        if (item.Cantidad > 1) item.Cantidad--;
-                    }
+                    case "eliminar":
+                        CarritoManager.Eliminar(idProducto, Session);
+                        break;
 
-                    Session["Carrito"] = carrito;
-                    CargarCarrito();
+                    case "sumar":
+                        CarritoManager.Agregar(idProducto, 1, Session);
+                        break;
+
+                    case "restar":
+                        CarritoManager.Restar(idProducto, Session);
+                        break;
                 }
+
+                // Recargar la vista
+                CargarCarrito();
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session["Error"] = "Ocurrió un error al actualizar el carrito: " + ex.Message;
             }
         }
         protected void btnIniciarCompra_Click(object sender, EventArgs e)
