@@ -104,4 +104,10 @@ DROP TABLE Carrito;
 ALTER TABLE Usuario
 ADD UrlFotoPerfil NVARCHAR(500) NULL;
 ```
-
+**AGREGAR LA COLUMNA PARA PEDIDO**
+```sql
+ALTER TABLE Pedido ADD MetodoEnvio varchar(50) NULL; -- 'Domicilio' o 'Retiro'
+ALTER TABLE Pedido ADD CostoEnvio decimal(10,2) DEFAULT 0;
+ALTER TABLE Pedido ADD ProvinciaEnvio varchar(50) NULL;
+ALTER TABLE Pedido ADD CodigoPostal varchar(10) NULL;
+```
