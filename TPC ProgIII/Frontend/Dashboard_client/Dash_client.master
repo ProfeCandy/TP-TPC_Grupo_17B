@@ -7,7 +7,6 @@
             <div class="row">
                 
                 <div class="col-12 col-md-3">
-                    
                     <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-3">
                         <div class="d-flex p-3 align-items-center">
                             <span class="text-center">
@@ -25,7 +24,7 @@
                             </span>
                         </div>
                     </div>
-
+  
                     <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-3 mb-lg-0">
                         <ul id="dashboard" class="list-unstyled m-0"> <li class="fs-4 border-bottom py-4 ps-4 fw-bold">Mi cuenta</li>
                             

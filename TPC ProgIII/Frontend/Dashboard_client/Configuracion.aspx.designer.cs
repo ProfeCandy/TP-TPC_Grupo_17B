@@ -42,14 +42,6 @@ namespace Frontend.Dashboard_client
         protected global::System.Web.UI.WebControls.Button btnDesactivar;
 
         /// <summary>
-        /// Control Button1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        /// <summary>
         /// Control pnlGestionRoles.
         /// </summary>
         /// <remarks>
@@ -59,22 +51,13 @@ namespace Frontend.Dashboard_client
         protected global::System.Web.UI.WebControls.Panel pnlGestionRoles;
 
         /// <summary>
-        /// Control lblMensajeRoles.
+        /// Control lblMensajeEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensajeRoles;
-
-        /// <summary>
-        /// Control repUsuarios.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repUsuarios;
+        protected global::System.Web.UI.WebControls.Label lblMensajeEmail;
 
         /// <summary>
         /// Control txtEmailContacto.
@@ -104,12 +87,30 @@ namespace Frontend.Dashboard_client
         protected global::System.Web.UI.WebControls.Button btnGuardarEmails;
 
         /// <summary>
-        /// Control lblMensajeEmail.
+        /// Control lblMensajeRoles.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensajeEmail;
+        protected global::System.Web.UI.WebControls.Label lblMensajeRoles;
+
+        /// <summary>
+        /// Control repUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater repUsuarios;
+
+        /// <summary>
+        /// Control Button1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }
