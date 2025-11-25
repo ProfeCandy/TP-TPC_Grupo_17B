@@ -148,6 +148,12 @@
                                                 </div>
                                             </div>
                                         </div>
+                                <div class="d-grid mt-4">
+                                    <asp:Button ID="btnIniciarCompra" runat="server" 
+                                        Text="INICIAR COMPRA" 
+                                        CssClass="btn btn-danger btn-lg fw-bold py-3 text-uppercase" 
+                                        OnClick="btnIniciarCompra_Click" />
+                                </div>
                                     </div>
                                 </div>
 

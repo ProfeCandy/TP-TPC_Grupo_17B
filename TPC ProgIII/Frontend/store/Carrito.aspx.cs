@@ -92,6 +92,13 @@ namespace Frontend.store
                 throw ex;
             }
         }
+        protected void btnIniciarCompra_Click(object sender, EventArgs e)
+        {
+            if (Session["carrito"] != null && ((Dominio.Carrito)Session["carrito"]).Items.Count > 0)
+            {
+                Response.Redirect("~/Checkout.aspx");
+            }
+        }
 
     }
 }
