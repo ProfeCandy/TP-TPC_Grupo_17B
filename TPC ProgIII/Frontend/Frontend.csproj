@@ -127,6 +127,7 @@
     <Content Include="Debug.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Noticias\DetalleNoticia.aspx" />
+    <Content Include="PedidoExitoso.aspx" />
     <Content Include="Productos\DetalleProducto.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Noticias\FormularioNoticia.aspx" />
@@ -289,6 +290,13 @@
     </Compile>
     <Compile Include="Noticias\DetalleNoticia.aspx.designer.cs">
       <DependentUpon>DetalleNoticia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PedidoExitoso.aspx.cs">
+      <DependentUpon>PedidoExitoso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PedidoExitoso.aspx.designer.cs">
+      <DependentUpon>PedidoExitoso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos\DetalleProducto.aspx.cs">
       <DependentUpon>DetalleProducto.aspx</DependentUpon>
