@@ -19,16 +19,17 @@ namespace Frontend.Dashboard_client
                 if (!string.IsNullOrEmpty(user.UrlFotoPerfil))
                 {
                     imgFotoPerfilSidebar.ImageUrl = ResolveUrl(user.UrlFotoPerfil) + "?t=" + DateTime.Now.Ticks;
+                    imgFotoPerfilSidebar.Visible = true;
                 }
                 else
                 {
-                    imgFotoPerfilSidebar.ImageUrl = ResolveUrl("~/assets/images/icons/profile-icon.png");
+                    imgFotoPerfilSidebar.Visible = false;
                 }
             }
             else
             {
                 litUserName.Text = "Usuario";
-                imgFotoPerfilSidebar.ImageUrl = ResolveUrl("~/assets/images/icons/profile-icon.png");
+                imgFotoPerfilSidebar.Visible = false;
             }
         }
 

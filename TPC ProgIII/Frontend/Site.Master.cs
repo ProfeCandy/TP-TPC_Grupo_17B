@@ -33,10 +33,11 @@ namespace TPC_ProgIII
                 if (!string.IsNullOrEmpty(user.UrlFotoPerfil))
                 {
                     imgFotoPerfilNavbar.ImageUrl = ResolveUrl(user.UrlFotoPerfil) + "?t=" + DateTime.Now.Ticks;
+                    imgFotoPerfilNavbar.Visible = true;
                 }
                 else
                 {
-                    imgFotoPerfilNavbar.ImageUrl = ResolveUrl("~/assets/images/icons/profile-icon.png");
+                    imgFotoPerfilNavbar.Visible = false;
                 }
 
                 pnlLogueado.Visible = true; 
@@ -58,7 +59,7 @@ namespace TPC_ProgIII
             else
             {
                 lblUser.Text = "Cuenta";
-                imgFotoPerfilNavbar.ImageUrl = ResolveUrl("~/assets/images/icons/profile-icon.png");
+                imgFotoPerfilNavbar.Visible = false;
 
                 pnlLogueado.Visible = false;  
                 pnlNoLogueado.Visible = true; 
