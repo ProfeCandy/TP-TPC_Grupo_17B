@@ -31,7 +31,6 @@ namespace Negocio
 
             return $"{productoSeleccionado.NombreProducto} agregado al carrito.";
         }
-<<<<<<< Updated upstream
         public static void Eliminar(int idProducto, HttpSessionState session)
         {
             Carrito carrito = ObtenerCarrito(session);

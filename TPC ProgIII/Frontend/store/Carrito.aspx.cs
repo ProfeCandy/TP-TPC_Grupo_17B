@@ -17,7 +17,6 @@ namespace Frontend.store
                 CargarCarrito();
             }
         }
-
         private void CargarCarrito()
         {
             Dominio.Carrito carrito = CarritoManager.ObtenerCarrito(Session);
@@ -52,7 +51,6 @@ namespace Frontend.store
                 pnlCarritoVacio.Visible = true;
             }
         }
-
         protected void RepeaterCarrito_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             try
@@ -74,7 +72,6 @@ namespace Frontend.store
                         break;
                 }
 
-                // Recargar la vista
                 CargarCarrito();
             }
             catch (Exception ex)
@@ -89,6 +86,5 @@ namespace Frontend.store
                 Response.Redirect("~/Checkout.aspx");
             }
         }
-
     }
 }
