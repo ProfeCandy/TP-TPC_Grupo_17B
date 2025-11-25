@@ -23,7 +23,7 @@
                 <asp:Panel ID="panelMensajes" runat="server" Visible="false" CssClass="alert alert-danger d-flex align-items-center" role="alert">
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
                     <div>
-                        <asp:Label ID="lblMensajeError" runat="server" />
+                        <asp:Label ID="lblMensaje" runat="server" />
                     </div>
                 </asp:Panel>
             </div>
@@ -98,9 +98,14 @@
 
                         <hr class="my-4 opacity-25" />
 
-                        <!-- Botones de Acción -->
+                        <!-- BTN Agregar al carrito -->
                         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <asp:Button ID="btnAgregarCarrito" runat="server" Text="Agregar al Carrito" CssClass="btn btn-danger btn-lg px-5 rounded-pill" />
+                            <asp:Button 
+                                ID="btnAgregarCarrito" 
+                                runat="server"
+                                Text="Agregar al Carrito" 
+                                CssClass="btn btn-danger btn-lg px-5 rounded-pill" 
+                                OnClick="btnAgregarCarrito_Click"/>
                             <a href="Productos.aspx" class="btn btn-outline-dark btn-lg px-4 rounded-pill">Volver</a>
                         </div>
 

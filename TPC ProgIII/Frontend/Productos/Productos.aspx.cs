@@ -71,39 +71,18 @@ namespace TPC_ProgIII
         {
             if (e.CommandName == "Agregar")
             {
-                // ID del producto desde CommandArgument
-                string idString = e.CommandArgument.ToString();
-                int idProducto = int.Parse(idString);
+                int idProducto = Convert.ToInt32(e.CommandArgument);
 
-                // producto de BD
-                ProductoNegocio negocioProducto = new ProductoNegocio();
-                Producto productoSeleccionado = negocioProducto.ObtenerPorId(idProducto);
+                // AGREGA PRODUCTO - DEVUELVE MENSAJE
+                string mensaje = CarritoManager.Agregar(idProducto, 1, Session);
 
-                if (productoSeleccionado != null)
-                {
-                    // Obtener/Iniciar Carrito en Session
-                    Carrito carritoActual;
-                    if (Session["Carrito"] == null)
-                    {
-                        carritoActual = new Carrito();
-                    }
-                    else
-                    {
-                        carritoActual = (Carrito)Session["Carrito"];
-                    }
+                lblMensaje.Text = mensaje;
+                panelMensajes.Visible = true;
 
-                    // agregar item
-                    CarritoNegocio negocioCarrito = new CarritoNegocio();
-                    negocioCarrito.AgregarItem(carritoActual, productoSeleccionado, 1);
-
-                    // guardar en Sesión
-                    Session["Carrito"] = carritoActual;
-
-                    // msj exito
-                    lblMensaje.Text = "Producto agregado!";
-                    panelMensajes.Visible = true;
-                    panelMensajes.CssClass = "alert alert-success"; 
-                }
+                if (mensaje.Contains("Error"))
+                    panelMensajes.CssClass = "alert alert-danger";
+                else
+                    panelMensajes.CssClass = "alert alert-success";
             }
         }
     }
