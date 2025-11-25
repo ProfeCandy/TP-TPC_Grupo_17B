@@ -186,26 +186,61 @@ namespace Frontend
             if (rdbTransferencia.Checked)
             {
                 if (string.IsNullOrEmpty(txtBancoOrigen.Text) || string.IsNullOrEmpty(txtNumeroComprobante.Text))
-                {
                     return;
-                }
             }
 
             try
             {
-                Usuario usuarioActual = ObtenerOCrearUsuario();
-
-                //Falta el guardado del Pedido en BD
-
+                Usuario usuarioCompra = ObtenerOCrearUsuario();
                 Dominio.Carrito carrito = (Dominio.Carrito)Session["carrito"];
+
+                Pedido pedido = new Pedido();
+                pedido.Usuario = usuarioCompra;
+                pedido.FechaPedido = DateTime.Now;
+                pedido.Estado = "Pendiente";
+                pedido.Total = carrito.Items.Sum(i => i.Producto.Precio * i.Cantidad);
+
+                // Si es domicilio o retiro
+                if (rdbDomicilio.Checked)
+                {
+                    pedido.MetodoEnvio = "Domicilio";
+                    pedido.CostoEnvio = "0";
+                    pedido.DireccionEnvio = txtCalle.Text + " " + txtAltura.Text;
+                    pedido.LocalidadEnvio = txtLocalidad.Text;
+                    pedido.ProvinciaEnvio = txtProvincia.Text;
+                    pedido.CodigoPostal = txtCP.Text;
+                }
+                else
+                {
+                    pedido.MetodoEnvio = "Retiro";
+                    pedido.CostoEnvio = "0";
+                }
+
+                if (rdbMercadoPago.Checked) pedido.MetodoPago = "MercadoPago";
+                else pedido.MetodoPago = "Transferencia";
+
+                pedido.Detalles = new List<DetallePedido>();
+                foreach (var itemCarrito in carrito.Items)
+                {
+                    DetallePedido detalle = new DetallePedido();
+                    detalle.Producto = itemCarrito.Producto;
+                    detalle.Cantidad = itemCarrito.Cantidad;
+                    detalle.PrecioUnitario = itemCarrito.Producto.Precio;
+                    pedido.Detalles.Add(detalle);
+                }
+
+                PedidoNegocio pedidoNegocio = new PedidoNegocio();
+                pedidoNegocio.Guardar(pedido);
+
                 Session["compraRealizada"] = carrito.Items;
                 Session["carrito"] = null;
 
-                Response.Redirect("PedidoExitoso.aspx", false);
+                Response.Redirect("~/PedidoExitoso.aspx", false);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Response.Redirect("Error.aspx");
+                Session.Add("error", ex.ToString());
+                Response.Redirect("~/Error.aspx");
             }
         }
         private Usuario ObtenerOCrearUsuario()
