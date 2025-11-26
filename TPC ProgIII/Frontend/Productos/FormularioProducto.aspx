@@ -23,12 +23,12 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="txtNombre" class="form-label fw-semibold">Nombre del Producto</label>
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingresá el nombre del producto"></asp:TextBox>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingres&aacute; el nombre del producto"></asp:TextBox>
                         </div>
 
                         <div class="col-12">
-                            <label for="txtDescripcion" class="form-label fw-semibold">Descripción</label>
-                            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Descripción del producto"></asp:TextBox>
+                            <label for="txtDescripcion" class="form-label fw-semibold">Descripci&oacute;n</label>
+                            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Descripci&oacute;n del producto"></asp:TextBox>
                         </div>
 
                         <div class="col-md-6">
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="ddlCategoria" class="form-label fw-semibold">Categoría</label>
+                            <label for="ddlCategoria" class="form-label fw-semibold">Categor&iacute;a</label>
                             <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-select"></asp:DropDownList>
                         </div>
 
@@ -49,7 +49,7 @@
                         <div class="col-12">
                             <label for="fileImagen" class="form-label fw-semibold">Imagen del Producto</label>
                             <asp:FileUpload ID="fileImagen" runat="server" CssClass="form-control" accept="image/*" />
-                            <small class="text-muted">Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 2MB. Dimensiones máximas: 1920x1080px</small>
+                            <small class="text-muted">Formatos permitidos: JPG, PNG, GIF. Tama&ntilde;o m&aacute;ximo: 2MB. Dimensiones m&aacute;ximas: 1920x1080px</small>
                             
                             <asp:Panel ID="pnlImagenActual" runat="server" Visible="false" CssClass="mt-3">
                                 <label class="form-label fw-semibold">Imagen actual:</label>

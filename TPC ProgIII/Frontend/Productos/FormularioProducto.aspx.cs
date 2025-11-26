@@ -69,7 +69,7 @@ namespace TPC_ProgIII
             }
             catch (Exception ex)
             {
-                MostrarMensaje("Error al cargar categorías: " + ex.Message, true);
+                MostrarMensaje("Error al cargar categor&iacute;as: " + ex.Message, true);
             }
         }
 
@@ -84,7 +84,7 @@ namespace TPC_ProgIII
                 {
                     txtNombre.Text = producto.NombreProducto;
                     txtDescripcion.Text = producto.Descripcion;
-                    txtPrecio.Text = producto.Precio.ToString("F2");
+                    txtPrecio.Text = producto.Precio.ToString(System.Globalization.CultureInfo.InvariantCulture);
                     
                     if (producto.Marca != null)
                         ddlMarca.SelectedValue = producto.Marca.IdMarca.ToString();
@@ -112,19 +112,19 @@ namespace TPC_ProgIII
             {
                 if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtDescripcion.Text))
                 {
-                    MostrarMensaje("El nombre y la descripción son obligatorios.", true);
+                    MostrarMensaje("El nombre y la descripci&oacute;n son obligatorios.", true);
                     return;
                 }
 
                 if (ddlMarca.SelectedValue == "0" || ddlCategoria.SelectedValue == "0")
                 {
-                    MostrarMensaje("Debés seleccionar una marca y una categoría.", true);
+                    MostrarMensaje("Deb&eacute;s seleccionar una marca y una categor&iacute;a.", true);
                     return;
                 }
 
-                if (string.IsNullOrEmpty(txtPrecio.Text) || !decimal.TryParse(txtPrecio.Text, out decimal precio))
+                if (string.IsNullOrEmpty(txtPrecio.Text) || !decimal.TryParse(txtPrecio.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal precio))
                 {
-                    MostrarMensaje("Debés ingresar un precio válido.", true);
+                    MostrarMensaje("Deb&eacute;s ingresar un precio v&aacute;lido.", true);
                     return;
                 }
 
@@ -134,40 +134,68 @@ namespace TPC_ProgIII
                 producto.Precio = precio;
                 producto.Marca = new Marca { IdMarca = int.Parse(ddlMarca.SelectedValue) };
                 producto.Categoria = new Categoria { IdCategoria = int.Parse(ddlCategoria.SelectedValue) };
-                producto.Imagenes = new List<ProductoImagen>();
 
                 ProductoNegocio negocio = new ProductoNegocio();
 
                 if (!string.IsNullOrEmpty(Request.QueryString["id"]))
                 {
                     producto.IdProducto = int.Parse(Request.QueryString["id"]);
-                    negocio.Modificar(producto);
-                    MostrarMensaje("Producto actualizado correctamente.", false);
-
+                    
                     if (fileImagen.HasFile)
                     {
-                        AccesoDatos datosDel = new AccesoDatos();
-                        datosDel.setearConsulta("DELETE FROM Imagen WHERE IdProducto = @IdProducto");
-                        datosDel.setearParametro("@IdProducto", producto.IdProducto);
-                        datosDel.ejecutarAccion();
+                        string nombreArchivo = GuardarImagen(fileImagen, producto.IdProducto);
+                        if (!string.IsNullOrEmpty(nombreArchivo))
+                        {
+                            ProductoImagen nuevaImagen = new ProductoImagen();
+                            nuevaImagen.UrlImagen = nombreArchivo;
+                            producto.Imagenes = new List<ProductoImagen> { nuevaImagen };
+                        }
+                        else
+                        {
+                            Producto productoExistente = negocio.ObtenerPorId(producto.IdProducto);
+                            if (productoExistente != null && productoExistente.Imagenes != null && productoExistente.Imagenes.Count > 0)
+                            {
+                                producto.Imagenes = productoExistente.Imagenes;
+                            }
+                            else
+                            {
+                                producto.Imagenes = new List<ProductoImagen>();
+                            }
+                        }
                     }
+                    else
+                    {
+                        Producto productoExistente = negocio.ObtenerPorId(producto.IdProducto);
+                        if (productoExistente != null && productoExistente.Imagenes != null && productoExistente.Imagenes.Count > 0)
+                        {
+                            producto.Imagenes = productoExistente.Imagenes;
+                        }
+                        else
+                        {
+                            producto.Imagenes = new List<ProductoImagen>();
+                        }
+                    }
+
+                    negocio.Modificar(producto);
+                    MostrarMensaje("Producto actualizado correctamente.", false);
                 }
                 else
                 {
+                    producto.Imagenes = new List<ProductoImagen>();
                     producto.IdProducto = negocio.Agregar(producto);
                     MostrarMensaje("Producto creado correctamente.", false);
-                }
 
-                if (fileImagen.HasFile)
-                {
-                    string nombreArchivo = GuardarImagen(fileImagen, producto.IdProducto);
-                    if (!string.IsNullOrEmpty(nombreArchivo))
+                    if (fileImagen.HasFile)
                     {
-                        AccesoDatos datos = new AccesoDatos();
-                        datos.setearConsulta("INSERT INTO Imagen (IdProducto, UrlImagen) VALUES (@IdProducto, @UrlImagen)");
-                        datos.setearParametro("@IdProducto", producto.IdProducto);
-                        datos.setearParametro("@UrlImagen", nombreArchivo);
-                        datos.ejecutarAccion();
+                        string nombreArchivo = GuardarImagen(fileImagen, producto.IdProducto);
+                        if (!string.IsNullOrEmpty(nombreArchivo))
+                        {
+                            AccesoDatos datos = new AccesoDatos();
+                            datos.setearConsulta("INSERT INTO Imagen (IdProducto, UrlImagen) VALUES (@IdProducto, @UrlImagen)");
+                            datos.setearParametro("@IdProducto", producto.IdProducto);
+                            datos.setearParametro("@UrlImagen", nombreArchivo);
+                            datos.ejecutarAccion();
+                        }
                     }
                 }
 
@@ -188,13 +216,13 @@ namespace TPC_ProgIII
                 
                 if (!extensionesPermitidas.Contains(extension))
                 {
-                    MostrarMensaje("Formato de imagen no válido. Use JPG, PNG o GIF.", true);
+                    MostrarMensaje("Formato de imagen no v&aacute;lido. Use JPG, PNG o GIF.", true);
                     return null;
                 }
 
                 if (fileUpload.PostedFile.ContentLength > 2 * 1024 * 1024)
                 {
-                    MostrarMensaje("La imagen es demasiado grande. Máximo 2MB.", true);
+                    MostrarMensaje("La imagen es demasiado grande. M&aacute;ximo 2MB.", true);
                     return null;
                 }
 
@@ -210,7 +238,7 @@ namespace TPC_ProgIII
 
                         if (img.Width > anchoMaximo || img.Height > altoMaximo)
                         {
-                            MostrarMensaje($"Las dimensiones de la imagen son demasiado grandes. Máximo: {anchoMaximo}x{altoMaximo}px. Tu imagen: {img.Width}x{img.Height}px", true);
+                            MostrarMensaje($"Las dimensiones de la imagen son demasiado grandes. M&aacute;ximo: {anchoMaximo}x{altoMaximo}px. Tu imagen: {img.Width}x{img.Height}px", true);
                             return null;
                         }
                     }

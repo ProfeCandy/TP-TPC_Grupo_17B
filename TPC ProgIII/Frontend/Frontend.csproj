@@ -136,6 +136,7 @@
     <Content Include="Global.asax" />
     <Content Include="Noticias\Noticias.aspx" />
     <Content Include="Productos\Productos.aspx" />
+    <Content Include="Productos\FormularioProducto.aspx" />
     <Content Include="Nosotros\QuienesSomos.aspx" />
     <Content Include="Nosotros\Sucursales.aspx" />
     <Content Include="Nosotros\Proveedores.aspx" />
@@ -363,6 +364,13 @@
     </Compile>
     <Compile Include="Productos\Productos.aspx.designer.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\FormularioProducto.aspx.cs">
+      <DependentUpon>FormularioProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Productos\FormularioProducto.aspx.designer.cs">
+      <DependentUpon>FormularioProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Nosotros\QuienesSomos.aspx.cs">
       <DependentUpon>QuienesSomos.aspx</DependentUpon>

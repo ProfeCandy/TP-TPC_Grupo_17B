@@ -301,19 +301,21 @@ namespace Negocio
                 datos.setearParametro("@IdProducto", producto.IdProducto);
                 datos.ejecutarAccion();
 
-                // Actualizar imágenes
-                AccesoDatos datosImg = new AccesoDatos();
-                datosImg.setearConsulta("DELETE FROM Imagen WHERE IdProducto = @IdProducto");
-                datosImg.setearParametro("@IdProducto", producto.IdProducto);
-                datosImg.ejecutarAccion();
-
-                foreach (ProductoImagen img in producto.Imagenes)
+                if (producto.Imagenes != null && producto.Imagenes.Count > 0)
                 {
-                    AccesoDatos datosImgInsert = new AccesoDatos();
-                    datosImgInsert.setearConsulta("INSERT INTO Imagen (IdProducto, UrlImagen) VALUES (@IdProducto, @UrlImagen)");
-                    datosImgInsert.setearParametro("@IdProducto", producto.IdProducto);
-                    datosImgInsert.setearParametro("@UrlImagen", img.UrlImagen);
-                    datosImgInsert.ejecutarAccion();
+                    AccesoDatos datosImg = new AccesoDatos();
+                    datosImg.setearConsulta("DELETE FROM Imagen WHERE IdProducto = @IdProducto");
+                    datosImg.setearParametro("@IdProducto", producto.IdProducto);
+                    datosImg.ejecutarAccion();
+
+                    foreach (ProductoImagen img in producto.Imagenes)
+                    {
+                        AccesoDatos datosImgInsert = new AccesoDatos();
+                        datosImgInsert.setearConsulta("INSERT INTO Imagen (IdProducto, UrlImagen) VALUES (@IdProducto, @UrlImagen)");
+                        datosImgInsert.setearParametro("@IdProducto", producto.IdProducto);
+                        datosImgInsert.setearParametro("@UrlImagen", img.UrlImagen);
+                        datosImgInsert.ejecutarAccion();
+                    }
                 }
             }
             catch (Exception ex)
