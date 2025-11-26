@@ -74,7 +74,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public Usuario BuscarUsuarioPorId(int id)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -146,8 +145,7 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
-        }
-        
+        }        
         public int Agregar(Usuario nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -188,7 +186,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public void Modificar(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -230,7 +227,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         // Eliminación Física
         public void EliminarFisico(int id)
         {
@@ -250,7 +246,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         // Eliminación Lógica
         public void EliminarLogico(int id)
         {
@@ -270,7 +265,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         // Login
         public bool Loguear(Usuario usuario)
         {
@@ -322,7 +316,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         // Método para generar token de confirmación
         public void GenerarTokenConfirmacion(int idUsuario, string token)
         {
@@ -343,7 +336,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         // Método para confirmar email
         public void ConfirmarEmail(string token)
         {
@@ -363,7 +355,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         // Método para buscar usuario por email
         public Usuario BuscarPorEmail(string email)
         {
@@ -394,7 +385,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         // Método para generar token de recuperación
         public void GenerarTokenRecuperacion(string email, string token)
         {
@@ -417,7 +407,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         // Método para buscar usuario por token de recuperación (validando expiración)
         public Usuario BuscarPorTokenRecuperacion(string token)
         {
@@ -450,7 +439,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         // Método para actualizar contraseña y limpiar token
         public void ActualizarPassword(int idUsuario, string nuevaPassword)
         {

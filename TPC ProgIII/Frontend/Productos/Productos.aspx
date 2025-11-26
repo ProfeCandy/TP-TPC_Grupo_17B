@@ -27,10 +27,10 @@
                     <div class="col">
                         <div class="card h-100 shadow-sm border-0">
                             
-                            <img src='<%# Eval("ImagenPrincipal") != null ? Eval("ImagenPrincipal") : "https://dummyimage.com/450x300/dee2e6/6c757d.jpg" %>' 
-                                 class="card-img-top p-3" 
-                                 alt='<%# Eval("NombreProducto") %>' 
-                                 style="height: 250px; object-fit: contain;" />
+                            <img src='<%# Eval("ImagenPrincipal") != null ? ResolveUrl(Eval("ImagenPrincipal").ToString()) : "https://dummyimage.com/450x300/dee2e6/6c757d.jpg" %>' 
+                             class="card-img-top p-3" 
+                             alt='<%# Eval("NombreProducto") %>' 
+                             style="height: 250px; object-fit: contain;" />
                             
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title fw-bold"><%# Eval("NombreProducto") %></h5>

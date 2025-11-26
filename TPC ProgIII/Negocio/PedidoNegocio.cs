@@ -125,6 +125,7 @@ namespace Negocio
                     pedido.Estado = (string)datos.Lector["Estado"];
                     pedido.Total = (decimal)datos.Lector["Total"];
 
+                    // Validaciones de nulos (DBNull) por si faltan datos
                     if (!(datos.Lector["MetodoEnvio"] is DBNull))
                         pedido.MetodoEnvio = (string)datos.Lector["MetodoEnvio"];
 
@@ -142,39 +143,36 @@ namespace Negocio
 
                     if (!(datos.Lector["CodigoPostal"] is DBNull))
                         pedido.CodigoPostal = (string)datos.Lector["CodigoPostal"];
-
                 }
                 datos.cerrarConexion();
 
                 if (pedido != null)
                 {
                     pedido.Detalles = new List<DetallePedido>();
+                    AccesoDatos datosDetalles = new AccesoDatos();
 
-                    datos.setearConsulta(@"SELECT D.IdDetalle, D.IdProducto, D.Cantidad, D.PrecioUnitario,
-                                          P.NombreProducto, M.Descripcion as Marca
-                                   FROM DetallePedido D
-                                   INNER JOIN Producto P ON D.IdProducto = P.IdProducto
-                                   INNER JOIN Marcas M ON P.IdMarca = M.IdMarca
-                                   WHERE D.IdPedido = @IdPedido");
+                    // Solo traemos los IDs y datos del detalle
+                    datosDetalles.setearConsulta("SELECT IdDetalle, IdProducto, Cantidad, PrecioUnitario FROM DetallePedido WHERE IdPedido = @IdPedido");
+                    datosDetalles.setearParametro("@IdPedido", idPedido);
+                    datosDetalles.ejecutarLectura();
 
-                    datos.setearParametro("@IdPedido", idPedido);
-                    datos.ejecutarLectura();
+                    // Necesitamos el negocio de producto para buscar info extra
+                    ProductoNegocio prodNegocio = new ProductoNegocio();
 
-                    while (datos.Lector.Read())
+                    while (datosDetalles.Lector.Read())
                     {
                         DetallePedido detalle = new DetallePedido();
-                        detalle.IdDetalle = (int)datos.Lector["IdDetalle"];
+                        detalle.IdDetalle = (int)datosDetalles.Lector["IdDetalle"];
                         detalle.IdPedido = idPedido;
-                        detalle.Cantidad = (int)datos.Lector["Cantidad"];
-                        detalle.PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"];
-
-                        detalle.Producto = new Producto();
-                        detalle.Producto.IdProducto = (int)datos.Lector["IdProducto"];
-                        detalle.Producto.NombreProducto = (string)datos.Lector["NombreProducto"];
-                        detalle.Producto.Marca = new Marca { Descripcion = (string)datos.Lector["Marca"] };
+                        detalle.Cantidad = (int)datosDetalles.Lector["Cantidad"];
+                        detalle.PrecioUnitario = (decimal)datosDetalles.Lector["PrecioUnitario"];
+                        int idProducto = (int)datosDetalles.Lector["IdProducto"];
+                        detalle.Producto = prodNegocio.ObtenerPorId(idProducto);
 
                         pedido.Detalles.Add(detalle);
                     }
+
+                    datosDetalles.cerrarConexion();
                 }
 
                 return pedido;

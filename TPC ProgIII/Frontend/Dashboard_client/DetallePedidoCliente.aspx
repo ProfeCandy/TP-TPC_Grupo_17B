@@ -31,9 +31,11 @@
                                     <div class="list-group-item border-0 border-bottom py-3">
                                         <div class="row align-items-center">
                                             <div class="col-2 col-md-1">
-                                                <div class="bg-light rounded d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                                                    <i class="bi bi-box-seam text-secondary"></i>
-                                                </div>
+                                                <%# Eval("Producto.ImagenPrincipal") != null ? 
+                                                    "<img src='" + ResolveUrl(Eval("Producto.ImagenPrincipal").ToString()) + "' class='img-fluid rounded' style='width: 50px; height: 50px; object-fit: contain;' />" 
+                                                    : 
+                                                    "<div class='bg-light rounded d-flex align-items-center justify-content-center' style='width: 50px; height: 50px;'><i class='bi bi-box-seam text-secondary'></i></div>" 
+                                                %>
                                             </div>
                                             <div class="col-6 col-md-7">
                                                 <h6 class="mb-0"><%# Eval("Producto.NombreProducto") %></h6>
