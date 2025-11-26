@@ -120,9 +120,14 @@ CREATE TABLE Configuracion (
     Valor VARCHAR(500) NOT NULL,
     Descripcion VARCHAR(200)
 );
-
 INSERT INTO Configuracion (Clave, Valor, Descripcion) VALUES
 ('EmailContacto', 'info@autoparts.com.ar', 'Correo de contacto que se muestra en las páginas'),
 ('EmailFrom', 'noreply@tuempresa.com', 'Correo desde donde se envían los emails automáticos');
 ```
 
+**AGREGAR COLUMNAS PARA USUARIO**
+```sql
+ALTER TABLE Usuario ADD Altura varchar(10) NULL;
+ALTER TABLE Usuario ADD CodigoPostal varchar(10) NULL;
+ALTER TABLE Usuario ADD Provincia varchar(50) NULL;
+```
