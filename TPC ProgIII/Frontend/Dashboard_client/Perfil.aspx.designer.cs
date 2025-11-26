@@ -78,6 +78,33 @@ namespace Frontend.Dashboard_client
         protected global::System.Web.UI.WebControls.TextBox txtTelefono;
 
         /// <summary>
+        /// Control txtDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDireccion;
+
+        /// <summary>
+        /// Control txtAltura.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAltura;
+
+        /// <summary>
+        /// Control txtCP.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCP;
+
+        /// <summary>
         /// Control txtLocalidad.
         /// </summary>
         /// <remarks>
@@ -87,13 +114,13 @@ namespace Frontend.Dashboard_client
         protected global::System.Web.UI.WebControls.TextBox txtLocalidad;
 
         /// <summary>
-        /// Control txtDireccion.
+        /// Control txtProvincia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDireccion;
+        protected global::System.Web.UI.WebControls.TextBox txtProvincia;
 
         /// <summary>
         /// Control btnGuardar.

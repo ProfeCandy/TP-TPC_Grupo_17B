@@ -40,6 +40,9 @@ namespace Frontend.Dashboard_client
                 txtTelefono.Text = usuarioActual.Telefono;
                 txtDireccion.Text = usuarioActual.Direccion;
                 txtLocalidad.Text = usuarioActual.Localidad;
+                txtAltura.Text = usuarioActual.Altura;
+                txtCP.Text = usuarioActual.CodigoPostal;
+                txtProvincia.Text = usuarioActual.Provincia;
 
                 CargarFotoPerfil(usuarioActual);
             }
@@ -60,6 +63,9 @@ namespace Frontend.Dashboard_client
                 usuarioAEditar.Telefono = txtTelefono.Text;
                 usuarioAEditar.Direccion = txtDireccion.Text;
                 usuarioAEditar.Localidad = txtLocalidad.Text;
+                usuarioAEditar.Altura = txtAltura.Text;
+                usuarioAEditar.Provincia = txtProvincia.Text;
+                usuarioAEditar.CodigoPostal = txtCP.Text;
 
                 string imagenBase64 = hiddenImagenRecortada.Value;
                 if (!string.IsNullOrEmpty(imagenBase64) && imagenBase64.StartsWith("data:image"))
