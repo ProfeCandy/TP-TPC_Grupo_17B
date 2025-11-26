@@ -234,7 +234,32 @@ namespace Frontend
                 }
 
                 PedidoNegocio pedidoNegocio = new PedidoNegocio();
-                pedidoNegocio.Guardar(pedido);
+                int idPedidoGenerado = pedidoNegocio.Guardar(pedido);
+
+                // Enviar email de confirmación
+                try
+                {
+                    EmailServicio emailServicio = new EmailServicio();
+                    string direccionCompleta = rdbDomicilio.Checked 
+                        ? $"{txtCalle.Text} {txtAltura.Text}, {txtLocalidad.Text}, {txtProvincia.Text}" 
+                        : null;
+                    
+                    emailServicio.EnviarConfirmacionPedido(
+                        usuarioCompra.Email,
+                        $"{usuarioCompra.Nombre} {usuarioCompra.Apellido}",
+                        idPedidoGenerado,
+                        pedido.Total,
+                        pedido.MetodoPago,
+                        pedido.MetodoEnvio,
+                        direccionCompleta,
+                        pedido.Detalles
+                    );
+                }
+                catch (Exception exEmail)
+                {
+                    // No interrumpir el flujo si falla el email, solo loguear el error
+                    System.Diagnostics.Debug.WriteLine("Error al enviar email de confirmación: " + exEmail.Message);
+                }
 
                 Session["compraRealizada"] = carrito.Items;
                 Session["carrito"] = null;

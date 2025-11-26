@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class PedidoNegocio
     {
-        public void Guardar(Pedido pedido)
+        public int Guardar(Pedido pedido)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -53,6 +53,8 @@ namespace Negocio
 
                     datosDetalle.ejecutarAccion();
                 }
+
+                return idPedidoGenerado;
             }
             catch (Exception ex)
             {

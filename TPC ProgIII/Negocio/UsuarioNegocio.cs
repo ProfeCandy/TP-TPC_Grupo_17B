@@ -152,7 +152,7 @@ namespace Negocio
             try
             {
                 string consulta = @"
-                    INSERT INTO Usuario (Nombre, Apellido, Email, Clave, Telefono, Direccion, Localidad, IdRol) 
+                    INSERT INTO Usuario (Nombre, Apellido, Email, Clave, Telefono, Direccion, Altura, CodigoPostal, Provincia, Localidad, IdRol) 
                     VALUES (@Nombre, @Apellido, @Email, @Clave, @Telefono, @Direccion, @Altura, @CodigoPostal, @Provincia, @Localidad, @IdRol);
                     SELECT CAST(SCOPE_IDENTITY() as int);";
 
