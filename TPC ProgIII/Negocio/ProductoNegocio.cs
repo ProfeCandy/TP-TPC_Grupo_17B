@@ -61,7 +61,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public List<Producto> ListarPorCategoria(int idCategoria)
         {
             List<Producto> lista = new List<Producto>();
@@ -122,7 +121,64 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public List<Producto> Listar(string busqueda)
+        {
+            List<Producto> lista = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+            ImagenNegocio imgNegocio = new ImagenNegocio();
 
+            try
+            {
+                datos.setearConsulta(@"SELECT P.IdProducto, P.NombreProducto, P.Descripcion, 
+                                      M.IdMarca, M.Descripcion AS Marca, 
+                                      C.IdCategoria, C.Descripcion AS Categoria, 
+                                      P.Precio
+                               FROM Producto P, Marcas M, Categoria C 
+                               WHERE P.IdMarca = M.IdMarca 
+                               AND P.IdCategoria = C.IdCategoria
+                               AND (P.NombreProducto LIKE @busqueda OR M.Descripcion LIKE @busqueda)");
+
+                datos.setearParametro("@busqueda", "%" + busqueda + "%");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto prod = new Producto();
+                    prod.IdProducto = (int)datos.Lector["IdProducto"];
+                    prod.NombreProducto = (string)datos.Lector["NombreProducto"];
+                    prod.Descripcion = (string)datos.Lector["Descripcion"];
+                    prod.Precio = (decimal)datos.Lector["Precio"];
+
+                    prod.Marca = new Marca
+                    {
+                        IdMarca = (int)datos.Lector["IdMarca"],
+                        Descripcion = (string)datos.Lector["Marca"]
+                    };
+
+                    prod.Categoria = new Categoria
+                    {
+                        IdCategoria = (int)datos.Lector["IdCategoria"],
+                        Descripcion = (string)datos.Lector["Categoria"]
+                    };
+
+                    prod.Imagenes = imgNegocio.ListarPorProducto(prod.IdProducto);
+                    if (prod.Imagenes.Count > 0)
+                        prod.ImagenPrincipal = prod.Imagenes[0].UrlImagen;
+
+                    lista.Add(prod);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public Producto ObtenerPorId(int idProducto)
         {
             Producto prod = null;
@@ -182,7 +238,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public void Agregar(Producto nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -225,7 +280,6 @@ namespace Negocio
                 throw ex;
             }
         }
-
         public void Modificar(Producto producto)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -265,7 +319,6 @@ namespace Negocio
                 throw ex;
             }
         }
-
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();

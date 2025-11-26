@@ -88,15 +88,19 @@
                     <!-- Buscador y Acciones -->
                     <div class="d-flex align-items-center gap-3">
                         <!-- Buscador -->
-                        <div class="d-none d-lg-block">
+                        <asp:Panel runat="server" DefaultButton="btnBuscar" CssClass="d-none d-lg-block">
                             <div class="input-group input-group-sm">
-                                <input class="form-control bg-dark text-white border-secondary" type="search" placeholder="Buscar..." aria-label="Buscar" style="max-width: 150px;" />
-                                <button class="btn btn-danger" type="submit">
+                                <asp:TextBox ID="txtBusqueda" runat="server" 
+                                    CssClass="form-control bg-dark text-white border-secondary" 
+                                    placeholder="Buscar repuesto..." 
+                                    style="max-width: 200px;"></asp:TextBox>      
+                                <asp:LinkButton ID="btnBuscar" runat="server" 
+                                    CssClass="btn btn-danger" 
+                                    OnClick="btnBuscar_Click">
                                     <i class="bi bi-search"></i>
-                                </button>
+                                </asp:LinkButton>
                             </div>
-                        </div>
-
+                        </asp:Panel>
                         <!-- Separador vertical -->
                         <div class="vr text-secondary d-none d-lg-block"></div>
 

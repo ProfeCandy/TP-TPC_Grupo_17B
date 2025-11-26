@@ -16,6 +16,7 @@ namespace TPC_ProgIII
             {
                 // Capturamos el ID de la categoría desde la URL
                 string idCategoria = Request.QueryString["id"];
+                string busqueda = Request.QueryString["q"];
 
                 if (idCategoria != null)
                 {
@@ -23,23 +24,27 @@ namespace TPC_ProgIII
                     int idParsed;
                     if (int.TryParse(idCategoria, out idParsed))
                     {
-                        cargarProductos(idParsed);
+                        cargarProductos(idCategoria: idParsed);
                     }
                     else
                     {
                         // Si el ID no es número, cargamos todo
-                        cargarProductos(0);
+                        cargarProductos();
                     }
+                }
+                else if (busqueda != null)
+                {
+                    // Filtrar por Búsqueda
+                    cargarProductos(busqueda: busqueda);
                 }
                 else
                 {
                     // Si no hay ID, cargamos todo el catálogo
-                    cargarProductos(0);
+                    cargarProductos();
                 }
             }
         }
-
-        private void cargarProductos(int idCategoria)
+        private void cargarProductos(int idCategoria = 0, string busqueda = null)
         {
             ProductoNegocio negocio = new ProductoNegocio();
             try
@@ -49,9 +54,32 @@ namespace TPC_ProgIII
                     // Usamos ProductoNegocio
                     ListaProductos = negocio.ListarPorCategoria(idCategoria);
                 }
+                else if (!string.IsNullOrEmpty(busqueda))
+                {
+                    // Filtro por Búsqueda
+                    ListaProductos = negocio.Listar(busqueda);
+
+                    // Si termina en S , buscamos sin la S y viceversa
+                    string terminoBusqueda = busqueda;
+                    if (terminoBusqueda.EndsWith("s") && terminoBusqueda.Length > 3)
+                    {
+                        terminoBusqueda = terminoBusqueda.Substring(0, terminoBusqueda.Length - 1);
+                    }   
+                    if (ListaProductos.Count == 0 && busqueda.EndsWith("s"))
+                    {
+                        ListaProductos = negocio.Listar(busqueda.TrimEnd('s'));
+                    }
+
+                    if (ListaProductos.Count == 0)
+                    {
+                        lblMensaje.Text = "No se encontraron productos para: " + busqueda;
+                        panelMensajes.Visible = true;
+                        panelMensajes.CssClass = "alert alert-warning";
+                    }
+                }
                 else
                 {
-                    // Usamos el método listar
+                    // Sin filtros (Trae todo)
                     ListaProductos = negocio.Listar();
                 }
 
@@ -66,7 +94,6 @@ namespace TPC_ProgIII
                 lblMensaje.Text = "Hubo un problema al cargar los productos. Detalle técnico: " + ex.Message;
             }
         }
-
         protected void repProductos_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "Agregar")

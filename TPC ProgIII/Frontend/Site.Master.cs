@@ -124,5 +124,10 @@ namespace TPC_ProgIII
                 lblCantidadCarrito.Text = "0";
             }
         }
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string busqueda = txtBusqueda.Text;
+            Response.Redirect("~/Productos/Productos.aspx?q=" + busqueda);
+        }
     }
 }
