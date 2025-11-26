@@ -22,7 +22,7 @@
                 <h1 class="fw-bold mb-4">¡Somos una empresa líder en venta de autopartes!</h1>
                 
                 <p class="text-secondary lh-lg" style="text-align: justify;">
-                    Distryser nació en 1995 gracias a la oportunidad de emprender en Neuquén y fortalecer el crecimiento del rubro autopartista en la Patagonia. En nuestros inicios, fuimos una distribuidora de garaje atendida por dos personas, Diego el piloto y Luis su copiloto. Para 1998, nuestras energías nos llevaron a radicarnos en la calle Rio Negro 521, lugar que fue nuestra casa central hasta el 2008. Con la crisis del 2001 surgieron nuevos desafíos y tomamos la decisión de abrir nuestras puertas al público, para así llegar a más gente y ofrecer un servicio especializado al alcance de todos, así se sumó Soraya a la dirección de la contabilidad y administración y nuestro equipo comenzó a crecer. Hacia el 2003 abrimos nuestra sucursal en la ciudad vecina de Cipolletti y más colaboradores comenzaron a contagiarse de esta energía. Ya en 2008, mudamos nuestra casa central a Leguizamón 459 con más de 1000m2 de depósito, oficinas, salón comercial y área de despacho mayorista, en esta etapa crecimos mucho. Con los desafíos que trajo la pandemia, comenzamos a transitar el recambio generacional y se sumó Antonella a desarrollar espacios claves como redes sociales y sistema operativo. Nuestro equipo supera hoy en día las 20 personas y creemos que este es el camino. Proponernos desafíos, marcar una trayectoria y ser referentes regionales del rubro autopartista metalmecánico, es nuestra esencia, es eso que nos potencia y apasiona.
+                    AutoParts nació en 1995 gracias a la oportunidad de emprender en Neuquén y fortalecer el crecimiento del rubro autopartista en la Patagonia. En nuestros inicios, fuimos una distribuidora de garaje atendida por dos personas, Diego el piloto y Luis su copiloto. Para 1998, nuestras energías nos llevaron a radicarnos en la calle Rio Negro 521, lugar que fue nuestra casa central hasta el 2008. Con la crisis del 2001 surgieron nuevos desafíos y tomamos la decisión de abrir nuestras puertas al público, para así llegar a más gente y ofrecer un servicio especializado al alcance de todos, así se sumó Soraya a la dirección de la contabilidad y administración y nuestro equipo comenzó a crecer. Hacia el 2003 abrimos nuestra sucursal en la ciudad vecina de Cipolletti y más colaboradores comenzaron a contagiarse de esta energía. Ya en 2008, mudamos nuestra casa central a Leguizamón 459 con más de 1000m2 de depósito, oficinas, salón comercial y área de despacho mayorista, en esta etapa crecimos mucho. Con los desafíos que trajo la pandemia, comenzamos a transitar el recambio generacional y se sumó Antonella a desarrollar espacios claves como redes sociales y sistema operativo. Nuestro equipo supera hoy en día las 20 personas y creemos que este es el camino. Proponernos desafíos, marcar una trayectoria y ser referentes regionales del rubro autopartista metalmecánico, es nuestra esencia, es eso que nos potencia y apasiona.
                 </p>
             </div>
 
@@ -30,14 +30,28 @@
             <div class="col-lg-6">
                 <div class="d-flex flex-column gap-3">
                     <!-- Imagen 1: Logo -->
-                    <!-- Nota: Reemplazar src con la ruta real de la imagen si es diferente -->
-                    <img src="../assets/img/lg_distry/DISTRYSER_MARCA.png" class="img-fluid w-100 rounded" alt="Distryser Logo" onerror="this.onerror=null;this.src='https://placehold.co/600x200/FFC107/000?text=DISTRYSER+Logo';" />
-                    
+                    <div class="rounded overflow-hidden shadow-sm">
+                        <img src="../assets/img/Banner_AutoParts.JPG" 
+                             alt="AutoParts Logo" 
+                             class="w-100 d-block" 
+                             style="height: 200px; object-fit: cover; object-position: center;" />
+                    </div>                    
                     <!-- Imagen 2: Banner Suspensión -->
-                    <img src="../assets/img/banner_suspension.png" class="img-fluid w-100 rounded" alt="Calidad Confianza Durabilidad" onerror="this.onerror=null;this.src='https://placehold.co/600x200/FFC107/000?text=Somos+Calidad+Confianza+Durabilidad';" />
-                    
+                    <div class="rounded overflow-hidden shadow-sm">
+                        <img src="../assets/img/banner_suspension.png" 
+                             alt="Calidad Confianza Durabilidad" 
+                             class="w-100 d-block" 
+                             style="height: 200px; object-fit: cover; object-position: center;" 
+                             onerror="this.src='https://placehold.co/600x200/FFC107/000?text=Somos+Calidad+Confianza+Durabilidad';" />
+                    </div>                    
                     <!-- Imagen 3: Banner Contacto -->
-                    <img src="../assets/img/banner_contacto.png" class="img-fluid w-100 rounded" alt="Información de Contacto" onerror="this.onerror=null;this.src='https://placehold.co/600x200/1a1a1a/FFF?text=Informacion+de+Contacto';" />
+                    <div class="rounded overflow-hidden shadow-sm">
+                        <img src="../assets/img/banner_contacto.png" 
+                             alt="Información de Contacto" 
+                             class="w-100 d-block" 
+                             style="height: 200px; object-fit: cover; object-position: center;" 
+                             onerror="this.src='https://placehold.co/600x200/1a1a1a/FFF?text=Informacion+de+Contacto';" />
+                    </div>
                 </div>
             </div>
         </div>
