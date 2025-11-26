@@ -111,10 +111,14 @@ namespace Frontend
                 if (Session["usuario"] != null)
                 {
                     Usuario user = (Usuario)Session["usuario"];
+                    
                     if (string.IsNullOrEmpty(txtCalle.Text))
                     {
                         txtCalle.Text = user.Direccion;
+                        txtAltura.Text = user.Altura;
+                        txtCP.Text = user.CodigoPostal;
                         txtLocalidad.Text = user.Localidad;
+                        txtProvincia.Text = user.Provincia;
                     }
                 }
             //Retiro en sucursal
