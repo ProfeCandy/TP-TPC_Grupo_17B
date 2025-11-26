@@ -128,6 +128,16 @@ namespace TPC_ProgIII
                     return;
                 }
 
+                if (fileImagen.HasFile)
+                {
+                    string errorValidacion = ValidarImagen(fileImagen);
+                    if (!string.IsNullOrEmpty(errorValidacion))
+                    {
+                        MostrarMensaje(errorValidacion, true);
+                        return;
+                    }
+                }
+
                 Producto producto = new Producto();
                 producto.NombreProducto = txtNombre.Text;
                 producto.Descripcion = txtDescripcion.Text;
@@ -207,7 +217,7 @@ namespace TPC_ProgIII
             }
         }
 
-        private string GuardarImagen(FileUpload fileUpload, int idProducto)
+        private string ValidarImagen(FileUpload fileUpload)
         {
             try
             {
@@ -216,34 +226,31 @@ namespace TPC_ProgIII
                 
                 if (!extensionesPermitidas.Contains(extension))
                 {
-                    MostrarMensaje("Formato de imagen no v&aacute;lido. Use JPG, PNG o GIF.", true);
-                    return null;
+                    return "Formato de imagen no v&aacute;lido. Use JPG, PNG o GIF.";
                 }
 
                 if (fileUpload.PostedFile.ContentLength > 2 * 1024 * 1024)
                 {
-                    MostrarMensaje("La imagen es demasiado grande. M&aacute;ximo 2MB.", true);
-                    return null;
+                    return "La imagen es demasiado grande. M&aacute;ximo 2MB.";
                 }
 
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return "Error al validar la imagen: " + ex.Message;
+            }
+        }
+
+        private string GuardarImagen(FileUpload fileUpload, int idProducto)
+        {
+            try
+            {
                 byte[] imagenBytes = new byte[fileUpload.PostedFile.ContentLength];
+                fileUpload.PostedFile.InputStream.Position = 0;
                 fileUpload.PostedFile.InputStream.Read(imagenBytes, 0, imagenBytes.Length);
-                
-                using (MemoryStream ms = new MemoryStream(imagenBytes))
-                {
-                    using (System.Drawing.Image img = System.Drawing.Image.FromStream(ms))
-                    {
-                        int anchoMaximo = 1920;
-                        int altoMaximo = 1080;
 
-                        if (img.Width > anchoMaximo || img.Height > altoMaximo)
-                        {
-                            MostrarMensaje($"Las dimensiones de la imagen son demasiado grandes. M&aacute;ximo: {anchoMaximo}x{altoMaximo}px. Tu imagen: {img.Width}x{img.Height}px", true);
-                            return null;
-                        }
-                    }
-                }
-
+                string extension = Path.GetExtension(fileUpload.FileName).ToLower();
                 string carpetaImagenes = Server.MapPath("~/assets/img/productos/");
                 if (!Directory.Exists(carpetaImagenes))
                 {
