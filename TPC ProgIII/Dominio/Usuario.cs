@@ -15,6 +15,9 @@ namespace Dominio
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public string Localidad { get; set; }
+        public string Altura { get; set; }
+        public string CodigoPostal { get; set; }
+        public string Provincia { get; set; }
         public DateTime FechaRegistro { get; set; }
         public bool Activo { get; set; }
         public string Clave { get; set; }
