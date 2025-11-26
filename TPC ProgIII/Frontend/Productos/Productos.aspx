@@ -8,6 +8,11 @@
             <div class="col-12">
                 <h2 class="text-uppercase text-danger fw-bold">Catálogo de Productos</h2>
                 <p class="text-muted">Explorá nuestra variedad de repuestos y accesorios.</p>
+                <asp:Panel ID="pnlAdminActions" runat="server" Visible="false" CssClass="mt-3">
+                    <a href="FormularioProducto.aspx" class="btn btn-danger">
+                        <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Producto
+                    </a>
+                </asp:Panel>
             </div>
         </div>
 
@@ -51,12 +56,22 @@
                                         </a>
                                     </div>
 
-
                                     <asp:Button ID="btnAgregar" runat="server" 
                                         Text="Agregar al Carrito" 
                                         CssClass="btn btn-outline-danger w-100 mt-2" 
                                         CommandName="Agregar" 
                                         CommandArgument='<%# Eval("IdProducto") %>' />
+
+                                    <div class="mt-3 pt-3 border-top d-flex gap-2" runat="server" visible='<%# EsAdminOVendedor() %>'>
+                                        <a href="FormularioProducto.aspx?id=<%# Eval("IdProducto") %>" class="btn btn-warning btn-sm flex-grow-1">
+                                            <i class="bi bi-pencil-square me-1"></i> Editar
+                                        </a>
+                                        <asp:LinkButton ID="btnEliminar" runat="server" CssClass="btn btn-danger btn-sm flex-grow-1" 
+                                            CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnEliminar_Click"
+                                            OnClientClick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
+                                            <i class="bi bi-trash me-1"></i> Eliminar
+                                        </asp:LinkButton>
+                                    </div>
                                 </div>
                             </div>
                         </div>

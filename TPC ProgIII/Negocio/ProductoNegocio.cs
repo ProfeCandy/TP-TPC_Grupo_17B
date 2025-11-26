@@ -238,7 +238,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public void Agregar(Producto nuevo)
+        public int Agregar(Producto nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -258,7 +258,7 @@ namespace Negocio
 
                 int idProducto = 0;
                 if (datos.Lector.Read())
-                    idProducto = Convert.ToInt32(datos.Lector["IdProducto"]);
+                    idProducto = Convert.ToInt32(datos.Lector[0]);
 
                 datos.cerrarConexion();
 
@@ -274,6 +274,8 @@ namespace Negocio
                         datosImg.ejecutarAccion();
                     }
                 }
+
+                return idProducto;
             }
             catch (Exception ex)
             {

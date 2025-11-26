@@ -14,13 +14,13 @@ namespace TPC_ProgIII
         {
             if (!IsPostBack)
             {
-                // Capturamos el ID de la categoría desde la URL
+                pnlAdminActions.Visible = EsAdminOVendedor();
+                
                 string idCategoria = Request.QueryString["id"];
                 string busqueda = Request.QueryString["q"];
 
                 if (idCategoria != null)
                 {
-                    // Si hay ID, cargamos filtrado
                     int idParsed;
                     if (int.TryParse(idCategoria, out idParsed))
                     {
@@ -28,18 +28,15 @@ namespace TPC_ProgIII
                     }
                     else
                     {
-                        // Si el ID no es número, cargamos todo
                         cargarProductos();
                     }
                 }
                 else if (busqueda != null)
                 {
-                    // Filtrar por Búsqueda
                     cargarProductos(busqueda: busqueda);
                 }
                 else
                 {
-                    // Si no hay ID, cargamos todo el catálogo
                     cargarProductos();
                 }
             }
@@ -116,9 +113,40 @@ namespace TPC_ProgIII
                         master.ActualizarContadorCarrito();
                     }
                 }
-                    
+            }
+        }
 
-                            
+        public bool EsAdminOVendedor()
+        {
+            if (Session["usuario"] != null)
+            {
+                Usuario user = (Usuario)Session["usuario"];
+                if (user.Rol != null)
+                {
+                    string rol = user.Rol.NombreRol.ToLower();
+                    return rol == "administrador" || rol == "vendedor";
+                }
+            }
+            return false;
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            int idProducto = int.Parse(btn.CommandArgument);
+
+            try
+            {
+                ProductoNegocio negocio = new ProductoNegocio();
+                negocio.Eliminar(idProducto);
+                
+                Response.Redirect("Productos.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                panelMensajes.Visible = true;
+                lblMensaje.Text = "Error al eliminar el producto: " + ex.Message;
+                panelMensajes.CssClass = "alert alert-danger";
             }
         }
     }
