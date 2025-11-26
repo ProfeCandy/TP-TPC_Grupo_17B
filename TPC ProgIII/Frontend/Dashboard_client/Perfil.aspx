@@ -49,35 +49,51 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <%--Validacion Nombre--%>
                     <div class="col-12 col-md-6">
                         <label class="form-label small fw-bold">Nombre / Razón Social</label>
                         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ControlToValidate="txtNombre" runat="server" CssClass="text-danger small" ErrorMessage="Campo Obligatorio" Display="Dynamic" />
+                        <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtNombre" runat="server" CssClass="text-danger small" Display="Dynamic" />
+                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtNombre" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />                    
                     </div>
-
+                     <%--Validacion Apellido--%>
                     <div class="col-12 col-md-6">
                         <label class="form-label small fw-bold">Apellido</label>
                         <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                         <asp:RequiredFieldValidator ControlToValidate="txtApellido" runat="server" CssClass="text-danger small" ErrorMessage="Campo Obligatorio" Display="Dynamic" />
+                         <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtApellido" runat="server" CssClass="text-danger small" Display="Dynamic" />
+                         <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtApellido" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />                    
                     </div>
-
+                    <%--Validacion Mail--%>
                     <div class="col-12">
                         <label class="form-label small fw-bold">Correo electrónico</label>
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                        <asp:RequiredFieldValidator ControlToValidate="txtEmail" runat="server" CssClass="text-danger small" ErrorMessage="Email requerido" Display="Dynamic" />
+                        <asp:RequiredFieldValidator ErrorMessage="El email es requerido." ControlToValidate="txtEmail" runat="server" 
+                            CssClass="text-danger small" Display="Dynamic" />
+                        <asp:RegularExpressionValidator ErrorMessage="Formato de email inválido." ControlToValidate="txtEmail" runat="server" 
+                            ValidationExpression="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" CssClass="text-danger small" Display="Dynamic" />                    
                     </div>
-
+                    <%--Validacion Cel--%>
                     <div class="col-12 col-md-6">
                         <label class="form-label small fw-bold">Número de contacto</label>
                         <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RegularExpressionValidator ErrorMessage="Solo números" ControlToValidate="txtTelefono" runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />                  
                     </div>
-
+                    <%--Validacion Localidad--%>
                     <div class="col-12 col-md-6">
                         <label class="form-label small fw-bold">Localidad</label>
                         <asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control"></asp:TextBox>
+                        <%--<asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtLocalidad" runat="server" CssClass="text-danger small" Display="Dynamic" />--%>
+                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtLocalidad" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />                    
                     </div>
-
+                    <%--Validacion Direccion--%>
                     <div class="col-12">
                         <label class="form-label small fw-bold">Dirección</label>
                         <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                        <%--<asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtDireccion" runat="server" CssClass="text-danger small" Display="Dynamic" />--%>
+                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtDireccion" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />                    
                     </div>
 
                 </div>
