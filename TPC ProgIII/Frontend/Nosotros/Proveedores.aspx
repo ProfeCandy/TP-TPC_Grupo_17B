@@ -32,8 +32,8 @@
                     </p>
 
                     <div class="mt-4">
-                        <!-- Placeholder para el logo DISTRYSER -->
-                        <img src="../assets/img/lg_distry/DISTRYSER_MARCA.png" alt="Distryser Logo" class="img-fluid" style="max-width: 250px;" onerror="this.onerror=null;this.src='https://placehold.co/250x80/fff/000?text=DISTRYSER';" />
+                        <!-- Placeholder para el logo AutoParts -->
+                        <img src="../assets/img/AutoParts_Logo.JPG" alt="AutoParts Logo" class="img-fluid" style="max-width: 250px;" onerror="this.onerror=null;this.src='';" />
                     </div>
                 </div>
 
