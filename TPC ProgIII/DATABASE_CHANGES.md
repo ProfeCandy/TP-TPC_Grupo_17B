@@ -162,3 +162,23 @@ VALUES (13, '~/assets/img/Productos/Bujia_Iridium.jpg');
 INSERT INTO Imagen (IdProducto, UrlImagen) 
 VALUES (14, '~/assets/img/Productos/Correa_Distribucion_104Dientes.jpg');
 ```
+
+**MODIFICO LA RESTRICCION EN LA BBD PARA PODER ELIMINAR PRODUCTOS SIN NECESIDAD DE
+BORRAR OBLIGATORIAMENTE LA IMAGEN - LA IMAGEN QUEDARIA SIN REFERENCIA**
+```sql
+
+ALTER TABLE Imagen
+ALTER COLUMN IdProducto INT NULL;
+GO
+
+-- Eliminar la restricción FK existente
+ALTER TABLE Imagen
+DROP CONSTRAINT FK_Imagen_Producto;
+GO
+
+-- Crear la nueva restricción con ON DELETE SET NULL (las imágenes quedan pero sin referencia al producto)
+ALTER TABLE Imagen
+ADD CONSTRAINT FK_Imagen_Producto 
+FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto) ON DELETE SET NULL;
+GO
+```
