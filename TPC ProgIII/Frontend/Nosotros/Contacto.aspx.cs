@@ -56,7 +56,7 @@ namespace Frontend
                     return;
                 }
 
-                string emailContacto = ConfigHelper.ObtenerEmailContacto();
+                string emailDestinatario = ConfigHelper.ObtenerEmailFrom();
                 string nombre = Server.HtmlEncode(txtNombre.Text);
                 string email = Server.HtmlEncode(txtEmail.Text);
                 string telefono = string.IsNullOrWhiteSpace(txtTelefono.Text) ? "No proporcionado" : Server.HtmlEncode(txtTelefono.Text);
@@ -84,7 +84,7 @@ namespace Frontend
                 EmailServicio emailServicio = new EmailServicio();
                 bool modoDesarrollo = ConfigurationManager.AppSettings["EmailModoDesarrollo"] == "true";
                 
-                bool enviado = emailServicio.EnviarEmail(emailContacto, $"Contacto: {asunto}", cuerpoEmail);
+                bool enviado = emailServicio.EnviarEmail(emailDestinatario, $"Contacto: {asunto}", cuerpoEmail);
 
                 if (enviado)
                 {

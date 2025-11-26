@@ -1,7 +1,8 @@
 using System;
 using System.Configuration;
-using System.Net.Mail;
-using System.Text;
+using System.Threading.Tasks;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace Negocio
 {
@@ -28,6 +29,19 @@ namespace Negocio
         private string EmailFromName => ConfigurationManager.AppSettings["EmailFromName"] ?? "AutoParts";
         private string SitioUrl => ConfigurationManager.AppSettings["SitioUrl"] ?? "https://localhost:44324";
         private bool ModoDesarrollo => ConfigurationManager.AppSettings["EmailModoDesarrollo"] == "true";
+        
+        private string SendGridApiKey
+        {
+            get
+            {
+                string apiKey = ConfigurationManager.AppSettings["SendGridApiKey"];
+                if (string.IsNullOrEmpty(apiKey))
+                {
+                    throw new Exception("SendGridApiKey no está configurada en Web.config. Por favor, agrega la clave API de SendGrid.");
+                }
+                return apiKey;
+            }
+        }
 
         public bool EnviarEmail(string destinatario, string asunto, string cuerpo, bool esHtml = true)
         {
@@ -36,7 +50,7 @@ namespace Negocio
                 if (ModoDesarrollo)
                 {
                     System.Diagnostics.Debug.WriteLine($"=== EMAIL (MODO DESARROLLO - NO ENVIADO) ===");
-                    System.Diagnostics.Debug.WriteLine($"Desde: {EmailFrom}");
+                    System.Diagnostics.Debug.WriteLine($"Desde: {EmailFrom} ({EmailFromName})");
                     System.Diagnostics.Debug.WriteLine($"Para: {destinatario}");
                     System.Diagnostics.Debug.WriteLine($"Asunto: {asunto}");
                     System.Diagnostics.Debug.WriteLine($"Cuerpo: {cuerpo}");
@@ -44,23 +58,43 @@ namespace Negocio
                     return true;
                 }
 
-                MailMessage mensaje = new MailMessage();
-                mensaje.From = new MailAddress(EmailFrom, EmailFromName);
-                mensaje.To.Add(destinatario);
-                mensaje.Subject = asunto;
-                mensaje.Body = cuerpo;
-                mensaje.IsBodyHtml = esHtml;
-                mensaje.BodyEncoding = Encoding.UTF8;
 
-                SmtpClient cliente = new SmtpClient();
-                cliente.Send(mensaje);
-                return true;
+                return Task.Run(async () => await EnviarEmailAsync(destinatario, asunto, cuerpo, esHtml)).GetAwaiter().GetResult();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error al enviar email: " + ex.Message);
                 System.Diagnostics.Debug.WriteLine("Stack trace: " + ex.StackTrace);
                 throw new Exception("Error al enviar el correo: " + ex.Message, ex);
+            }
+        }
+
+        private async Task<bool> EnviarEmailAsync(string destinatario, string asunto, string cuerpo, bool esHtml)
+        {
+            try
+            {
+                var client = new SendGridClient(SendGridApiKey);
+                var from = new EmailAddress(EmailFrom, EmailFromName);
+                var to = new EmailAddress(destinatario);
+                var msg = MailHelper.CreateSingleEmail(from, to, asunto, esHtml ? null : cuerpo, esHtml ? cuerpo : null);
+                
+                var response = await client.SendEmailAsync(msg).ConfigureAwait(false);
+                
+                if (response.StatusCode == System.Net.HttpStatusCode.Accepted || 
+                    response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    return true;
+                }
+                else
+                {
+                    var responseBody = await response.Body.ReadAsStringAsync().ConfigureAwait(false);
+                    throw new Exception($"SendGrid retornó un código de estado inesperado: {response.StatusCode}. Respuesta: {responseBody}");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error al enviar email con SendGrid: " + ex.Message);
+                throw;
             }
         }
 
