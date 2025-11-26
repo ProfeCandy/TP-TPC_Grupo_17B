@@ -131,3 +131,34 @@ ALTER TABLE Usuario ADD Altura varchar(10) NULL;
 ALTER TABLE Usuario ADD CodigoPostal varchar(10) NULL;
 ALTER TABLE Usuario ADD Provincia varchar(50) NULL;
 ```
+**AGREGAR IMAGENES PARA PRODUCTOS**
+```sql
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (1, '~/assets/img/Productos/Pastilla_Freno_A1.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (2, '~/assets/img/Productos/Bujia_NGK_R567.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (3, '~/assets/img/Productos/Amortiguador_TRX_Delantero.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (4, '~/assets/img/Productos/Pastilla_Freno_Delantera.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (5, '~/assets/img/Productos/Disco_Freno_Ventilados_280.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (6, '~/assets/img/Productos/Amortiguador_Hidraulico_Delantero.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (7, '~/assets/img/Productos/Kit_Bieletas_Estabilizadoras.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (8, '~/assets/img/Productos/Extremo_Direccion_Derecho.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (9, '~/assets/img/Productos/Precap_Axial_CajaDireccional.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (10, '~/assets/img/Productos/Kit_Embrague_Completo.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (11, '~/assets/img/Productos/Junta_Homocinetica_LadoRueda.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (12, '~/assets/img/Productos/Filtro_AirePanel_AltoFlujo.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (13, '~/assets/img/Productos/Bujia_Iridium.jpg');
+INSERT INTO Imagen (IdProducto, UrlImagen) 
+VALUES (14, '~/assets/img/Productos/Correa_Distribucion_104Dientes.jpg');
+```
