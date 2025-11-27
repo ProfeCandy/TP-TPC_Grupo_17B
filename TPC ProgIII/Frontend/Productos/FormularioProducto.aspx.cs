@@ -122,15 +122,18 @@ namespace TPC_ProgIII
                     return;
                 }
 
-                string precioTexto = txtPrecio.Text.Replace(".", ",");
-                decimal precio = 0;
+                // 1. Normalizamos: Cambiamos coma por punto para estandarizar
+                string precioTexto = txtPrecio.Text.Replace(",", ".");
 
-                if (string.IsNullOrEmpty(precioTexto) || !decimal.TryParse(precioTexto, out precio))
+                // 2. Parseamos usando InvariantCulture (que siempre usa punto para decimales)
+                if (string.IsNullOrEmpty(precioTexto) ||
+                    !decimal.TryParse(precioTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal precio))
                 {
-                    MostrarMensaje("Debés ingresar un precio válido.", true);
+                    MostrarMensaje("Debés ingresar un precio válido (ej: 1200.50).", true);
                     return;
                 }
 
+                // 3. Validamos positivo
                 if (precio <= 0)
                 {
                     MostrarMensaje("El precio debe ser mayor a 0.", true);
