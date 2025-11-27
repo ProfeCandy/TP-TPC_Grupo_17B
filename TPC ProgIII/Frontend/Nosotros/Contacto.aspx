@@ -115,7 +115,7 @@
                             <label for="txtEmail" class="form-label fw-semibold">Tu email</label>
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="Ingres&aacute; tu correo electr&oacute;nico ac&aacute;"></asp:TextBox>
                         <!-- Validacion Email -->
-                            <asp:RequiredFieldValidator ControlToValidate="txtEmail" runat="server" CssClass="text-danger small" ErrorMessage="Email requerido" Display="Dynamic" />
+                            <asp:RequiredFieldValidator ControlToValidate="txtEmail" runat="server" CssClass="text-danger small" Display="Dynamic" />
                             <asp:RequiredFieldValidator ErrorMessage="El email es requerido." ControlToValidate="txtEmail" runat="server" 
                                 CssClass="text-danger small" Display="Dynamic" />
                             <asp:RegularExpressionValidator ErrorMessage="Formato de email invalido." ControlToValidate="txtEmail" runat="server" 

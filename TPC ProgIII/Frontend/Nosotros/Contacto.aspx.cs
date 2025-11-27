@@ -50,7 +50,7 @@ namespace Frontend
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtEmail.Text) || 
                     string.IsNullOrWhiteSpace(txtAsunto.Text) || string.IsNullOrWhiteSpace(txtMensaje.Text))
                 {
-                    lblMensaje.Text = "Por favor, completat todos los campos obligatorios.";
+                    lblMensaje.Text = "Por favor, completa todos los campos obligatorios.";
                     lblMensaje.CssClass = "alert alert-warning";
                     lblMensaje.Visible = true;
                     return;

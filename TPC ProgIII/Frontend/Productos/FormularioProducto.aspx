@@ -24,11 +24,15 @@
                         <div class="col-12">
                             <label for="txtNombre" class="form-label fw-semibold">Nombre del Producto</label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingres&aacute; el nombre del producto"></asp:TextBox>
+                        <%--Validacion Nombre--%>
+                            <asp:RequiredFieldValidator ErrorMessage="Campo Obligatorio" ControlToValidate="txtNombre" runat="server" CssClass="text-danger small" Display="Dynamic" />                 
                         </div>
 
                         <div class="col-12">
                             <label for="txtDescripcion" class="form-label fw-semibold">Descripci&oacute;n</label>
                             <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Descripci&oacute;n del producto"></asp:TextBox>
+                         <%--Validacion Descripcion--%>
+                            <asp:RequiredFieldValidator ErrorMessage="Campo Obligatorio" ControlToValidate="txtDescripcion" runat="server" CssClass="text-danger small" Display="Dynamic" />                        
                         </div>
 
                         <div class="col-md-6">
@@ -41,9 +45,13 @@
                             <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-select"></asp:DropDownList>
                         </div>
 
+                         <%--Validacion Precio--%>
                         <div class="col-12">
                             <label for="txtPrecio" class="form-label fw-semibold">Precio</label>
-                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00" TextMode="Number" step="0.01"></asp:TextBox>
+    
+                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00"></asp:TextBox>
+    
+                            <asp:RegularExpressionValidator ErrorMessage="Solo números" ControlToValidate="txtPrecio" runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />
                         </div>
 
                         <div class="col-12">

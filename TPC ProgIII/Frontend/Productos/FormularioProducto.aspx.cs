@@ -122,9 +122,18 @@ namespace TPC_ProgIII
                     return;
                 }
 
-                if (string.IsNullOrEmpty(txtPrecio.Text) || !decimal.TryParse(txtPrecio.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal precio))
+                string precioTexto = txtPrecio.Text.Replace(".", ",");
+                decimal precio = 0;
+
+                if (string.IsNullOrEmpty(precioTexto) || !decimal.TryParse(precioTexto, out precio))
                 {
-                    MostrarMensaje("Deb&eacute;s ingresar un precio v&aacute;lido.", true);
+                    MostrarMensaje("Debés ingresar un precio válido.", true);
+                    return;
+                }
+
+                if (precio <= 0)
+                {
+                    MostrarMensaje("El precio debe ser mayor a 0.", true);
                     return;
                 }
 
