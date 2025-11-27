@@ -31,7 +31,7 @@
                 <div class="d-flex flex-column gap-3">
                     <!-- Imagen 1: Logo -->
                     <div class="rounded overflow-hidden shadow-sm">
-                        <img src="../assets/img/Banner_AutoParts.JPG" 
+                        <img src="../assets/img/AutoParts_Logo.JPG" 
                              alt="AutoParts Logo" 
                              class="w-100 d-block" 
                              style="height: 200px; object-fit: cover; object-position: center;" />
