@@ -209,14 +209,14 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta(@"SELECT P.IdProducto, P.NombreProducto, P.Descripcion, 
-                                    M.IdMarca, M.Descripcion AS Marca, 
-                                    C.IdCategoria, C.Descripcion AS Categoria, 
-                                    P.Precio
-                               FROM Producto P, Marcas M, Categoria C 
-                               WHERE P.IdMarca = M.IdMarca 
-                               AND P.IdCategoria = C.IdCategoria
-                               AND P.IdProducto = @IdProducto");
+                datos.setearConsulta(@"SELECT P.IdProducto, P.NombreProducto, P.Descripcion, 
+                                    M.IdMarca, M.Descripcion AS Marca, 
+                                    C.IdCategoria, C.Descripcion AS Categoria, 
+                                    P.Precio, P.Stock
+                             FROM Producto P, Marcas M, Categoria C 
+                             WHERE P.IdMarca = M.IdMarca 
+                             AND P.IdCategoria = C.IdCategoria
+                             AND P.IdProducto = @IdProducto");
 
                 datos.setearParametro("@IdProducto", idProducto);
 
@@ -230,6 +230,7 @@ namespace Negocio
                     prod.NombreProducto = (string)datos.Lector["NombreProducto"];
                     prod.Descripcion = (string)datos.Lector["Descripcion"];
                     prod.Precio = (decimal)datos.Lector["Precio"];
+                    prod.Stock = (int)datos.Lector["Stock"];
 
                     prod.Marca = new Marca
                     {
@@ -266,8 +267,8 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta(@"INSERT INTO Producto (NombreProducto, Descripcion, IdMarca, IdCategoria, Precio)
-                                       VALUES (@NombreProducto, @Descripcion, @IdMarca, @IdCategoria, @Precio);
+                datos.setearConsulta(@"INSERT INTO Producto (NombreProducto, Descripcion, IdMarca, IdCategoria, Precio, Stock)
+                                       VALUES (@NombreProducto, @Descripcion, @IdMarca, @IdCategoria, @Precio, @Stock);
                                        SELECT SCOPE_IDENTITY() AS IdProducto");
 
                 datos.setearParametro("@NombreProducto", nuevo.NombreProducto);
@@ -275,6 +276,7 @@ namespace Negocio
                 datos.setearParametro("@IdMarca", nuevo.Marca.IdMarca);
                 datos.setearParametro("@IdCategoria", nuevo.Categoria.IdCategoria);
                 datos.setearParametro("@Precio", nuevo.Precio);
+                datos.setearParametro("@Stock", nuevo.Stock);
 
                 datos.ejecutarLectura();
 
@@ -312,7 +314,7 @@ namespace Negocio
             {
                 datos.setearConsulta(@"UPDATE Producto 
                                        SET NombreProducto = @NombreProducto, Descripcion = @Descripcion, 
-                                           IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @Precio 
+                                           IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @Precio, Stock = @Stock 
                                        WHERE IdProducto = @IdProducto");
 
                 datos.setearParametro("@NombreProducto", producto.NombreProducto);
@@ -320,6 +322,7 @@ namespace Negocio
                 datos.setearParametro("@IdMarca", producto.Marca.IdMarca);
                 datos.setearParametro("@IdCategoria", producto.Categoria.IdCategoria);
                 datos.setearParametro("@Precio", producto.Precio);
+                datos.setearParametro("@Stock", producto.Stock);
                 datos.setearParametro("@IdProducto", producto.IdProducto);
                 datos.ejecutarAccion();
 
@@ -372,6 +375,44 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+        public void RestarStock(int idProducto, int cantidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Producto SET Stock = Stock - @Cantidad WHERE IdProducto = @IdProducto");
+                datos.setearParametro("@IdProducto", idProducto);
+                datos.setearParametro("@Cantidad", cantidad);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void AgregarStock(int idProducto, int cantidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Producto SET Stock = Stock + @Cantidad WHERE IdProducto = @IdProducto");
+                datos.setearParametro("@IdProducto", idProducto);
+                datos.setearParametro("@Cantidad", cantidad);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

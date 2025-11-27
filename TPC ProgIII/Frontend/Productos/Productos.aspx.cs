@@ -101,7 +101,6 @@ namespace TPC_ProgIII
             {
                 int idProducto = Convert.ToInt32(e.CommandArgument);
 
-                // AGREGA PRODUCTO - DEVUELVE MENSAJE
                 string mensaje = CarritoManager.Agregar(idProducto, 1, Session);
 
                 lblMensaje.Text = mensaje;
@@ -117,6 +116,29 @@ namespace TPC_ProgIII
                         master.ActualizarContadorCarrito();
                     }
                 }
+            }
+            else if (e.CommandName == "AgregarStock")
+            {
+                if (!EsAdminOVendedor())
+                {
+                    return;
+                }
+
+                int idProducto = Convert.ToInt32(e.CommandArgument);
+                ViewState["IdProductoStock"] = idProducto;
+                
+                ProductoNegocio negocio = new ProductoNegocio();
+                Producto producto = negocio.ObtenerPorId(idProducto);
+                
+                if (producto != null)
+                {
+                    lblMensajeStock.Text = $"Producto: <strong>{producto.NombreProducto}</strong><br/>Stock actual: <strong>{producto.Stock}</strong>";
+                    pnlMensajeStock.Visible = true;
+                    pnlMensajeStock.CssClass = "alert alert-info mb-0";
+                }
+
+                ClientScript.RegisterStartupScript(this.GetType(), "abrirModalStock", 
+                    "var modal = new bootstrap.Modal(document.getElementById('modalAgregarStock')); modal.show();", true);
             }
         }
         public bool EsAdminOVendedor()
@@ -243,6 +265,46 @@ namespace TPC_ProgIII
 
             // Redirigimos para no tener el cartel de recarga feo
             Response.Redirect(url);
+        }
+        protected void btnGuardarStock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ViewState["IdProductoStock"] == null)
+                {
+                    pnlMensajeStock.Visible = true;
+                    pnlMensajeStock.CssClass = "alert alert-danger mb-0";
+                    lblMensajeStock.Text = "Error: No se pudo identificar el producto.";
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtCantidadStock.Text) || !int.TryParse(txtCantidadStock.Text, out int cantidad) || cantidad <= 0)
+                {
+                    pnlMensajeStock.Visible = true;
+                    pnlMensajeStock.CssClass = "alert alert-danger mb-0";
+                    lblMensajeStock.Text = "Debés ingresar una cantidad válida mayor a 0.";
+                    return;
+                }
+
+                int idProducto = (int)ViewState["IdProductoStock"];
+                ProductoNegocio negocio = new ProductoNegocio();
+                negocio.AgregarStock(idProducto, cantidad);
+
+                pnlMensajeStock.Visible = true;
+                pnlMensajeStock.CssClass = "alert alert-success mb-0";
+                lblMensajeStock.Text = $"Se agregaron {cantidad} unidades al stock correctamente.";
+
+                txtCantidadStock.Text = "";
+
+                ClientScript.RegisterStartupScript(this.GetType(), "cerrarModalStock", 
+                    "setTimeout(function() { var modal = bootstrap.Modal.getInstance(document.getElementById('modalAgregarStock')); if (modal) modal.hide(); window.location.reload(); }, 1500);", true);
+            }
+            catch (Exception ex)
+            {
+                pnlMensajeStock.Visible = true;
+                pnlMensajeStock.CssClass = "alert alert-danger mb-0";
+                lblMensajeStock.Text = "Error al agregar stock: " + ex.Message;
+            }
         }
     }
 }

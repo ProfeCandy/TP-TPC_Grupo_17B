@@ -97,15 +97,24 @@
                                         CommandName="Agregar" 
                                         CommandArgument='<%# Eval("IdProducto") %>' />
 
-                                    <div class="mt-3 pt-3 border-top d-flex gap-2" runat="server" visible='<%# EsAdminOVendedor() %>'>
-                                        <a href="FormularioProducto.aspx?id=<%# Eval("IdProducto") %>" class="btn btn-warning btn-sm flex-grow-1">
-                                            <i class="bi bi-pencil-square me-1"></i> Editar
-                                        </a>
-                                        <asp:LinkButton ID="btnEliminar" runat="server" CssClass="btn btn-danger btn-sm flex-grow-1" 
-                                            CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnEliminar_Click"
-                                            OnClientClick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
-                                            <i class="bi bi-trash me-1"></i> Eliminar
-                                        </asp:LinkButton>
+                                    <div class="mt-3 pt-3 border-top" runat="server" visible='<%# EsAdminOVendedor() %>'>
+                                        <div class="mb-2">
+                                            <small class="text-muted">Stock: <strong><%# Eval("Stock") %></strong></small>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <a href="FormularioProducto.aspx?id=<%# Eval("IdProducto") %>" class="btn btn-warning btn-sm flex-grow-1">
+                                                <i class="bi bi-pencil-square me-1"></i> Editar
+                                            </a>
+                                            <asp:LinkButton ID="btnAgregarStock" runat="server" CssClass="btn btn-info btn-sm flex-grow-1" 
+                                                CommandArgument='<%# Eval("IdProducto") %>' CommandName="AgregarStock">
+                                                <i class="bi bi-plus-circle me-1"></i> Stock
+                                            </asp:LinkButton>
+                                            <asp:LinkButton ID="btnEliminar" runat="server" CssClass="btn btn-danger btn-sm flex-grow-1" 
+                                                CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnEliminar_Click"
+                                                OnClientClick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
+                                                <i class="bi bi-trash me-1"></i> Eliminar
+                                            </asp:LinkButton>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -162,6 +171,31 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="btnGuardarCategoria" runat="server" Text="Guardar Categor&iacute;a" CssClass="btn btn-primary" OnClick="btnGuardarCategoria_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Agregar Stock -->
+    <div class="modal fade" id="modalAgregarStock" tabindex="-1" aria-labelledby="modalAgregarStockLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAgregarStockLabel">Agregar Stock</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="txtCantidadStock" class="form-label">Cantidad a agregar</label>
+                        <asp:TextBox ID="txtCantidadStock" runat="server" CssClass="form-control" TextMode="Number" min="1" placeholder="Ingresá la cantidad"></asp:TextBox>
+                    </div>
+                    <asp:Panel ID="pnlMensajeStock" runat="server" Visible="false" CssClass="alert mb-0">
+                        <asp:Label ID="lblMensajeStock" runat="server"></asp:Label>
+                    </asp:Panel>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnGuardarStock" runat="server" Text="Agregar Stock" CssClass="btn btn-primary" OnClick="btnGuardarStock_Click" />
                 </div>
             </div>
         </div>

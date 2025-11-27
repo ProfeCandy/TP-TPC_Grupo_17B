@@ -85,6 +85,7 @@ namespace TPC_ProgIII
                     txtNombre.Text = producto.NombreProducto;
                     txtDescripcion.Text = producto.Descripcion;
                     txtPrecio.Text = producto.Precio.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                    txtStock.Text = producto.Stock.ToString();
                     
                     if (producto.Marca != null)
                         ddlMarca.SelectedValue = producto.Marca.IdMarca.ToString();
@@ -150,10 +151,23 @@ namespace TPC_ProgIII
                     }
                 }
 
+                int stock = 0;
+                if (!string.IsNullOrEmpty(txtStock.Text) && !int.TryParse(txtStock.Text, out stock))
+                {
+                    MostrarMensaje("Debés ingresar un stock válido.", true);
+                    return;
+                }
+                if (stock < 0)
+                {
+                    MostrarMensaje("El stock no puede ser negativo.", true);
+                    return;
+                }
+
                 Producto producto = new Producto();
                 producto.NombreProducto = txtNombre.Text;
                 producto.Descripcion = txtDescripcion.Text;
                 producto.Precio = precio;
+                producto.Stock = stock;
                 producto.Marca = new Marca { IdMarca = int.Parse(ddlMarca.SelectedValue) };
                 producto.Categoria = new Categoria { IdCategoria = int.Parse(ddlCategoria.SelectedValue) };
 

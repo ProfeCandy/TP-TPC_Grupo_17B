@@ -46,12 +46,17 @@
                         </div>
 
                          <%--Validacion Precio--%>
-                        <div class="col-12">
+                        <div class="col-md-6">
                             <label for="txtPrecio" class="form-label fw-semibold">Precio</label>    
                             <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00"></asp:TextBox>    
-                            <%--<asp:RegularExpressionValidator ErrorMessage="Solo números válidos (ej: 1200.50)" ControlToValidate="txtPrecio" 
+                            <%--<asp:RegularExpressionValidator ErrorMessage="Solo nï¿½meros vï¿½lidos (ej: 1200.50)" ControlToValidate="txtPrecio" 
                             runat="server" ValidationExpression="^[0-9]+([.,][0-9]{1,2})?$" 
                             CssClass="text-danger small d-block" Display="Dynamic" />--%>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="txtStock" class="form-label fw-semibold">Stock</label>    
+                            <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" placeholder="0" TextMode="Number"></asp:TextBox>    
                         </div>
 
                         <div class="col-12">

@@ -41,6 +41,10 @@ namespace Negocio
                 }
                 datos.cerrarConexion();
 
+                ProductoNegocio productoNegocio = new ProductoNegocio();
+                ReservaStockNegocio reservaNegocio = new ReservaStockNegocio();
+                string sessionId = System.Web.HttpContext.Current?.Session?.SessionID ?? "";
+
                 foreach (var item in pedido.Detalles)
                 {
                     AccesoDatos datosDetalle = new AccesoDatos();
@@ -52,6 +56,10 @@ namespace Negocio
                     datosDetalle.setearParametro("@PrecioUnitario", item.PrecioUnitario);
 
                     datosDetalle.ejecutarAccion();
+                    datosDetalle.cerrarConexion();
+
+                    reservaNegocio.EliminarReserva(item.Producto.IdProducto, item.Cantidad, sessionId);
+                    productoNegocio.RestarStock(item.Producto.IdProducto, item.Cantidad);
                 }
 
                 return idPedidoGenerado;
@@ -134,7 +142,6 @@ namespace Negocio
                     if (!(datos.Lector["MetodoPago"] is DBNull))
                         pedido.MetodoPago = (string)datos.Lector["MetodoPago"];
 
-                    // Cargar información del usuario
                     pedido.Usuario = new Usuario();
                     pedido.Usuario.Email = (string)datos.Lector["Email"];
                     pedido.Usuario.Nombre = (string)datos.Lector["Nombre"];
@@ -185,7 +192,6 @@ namespace Negocio
                     if (!(datos.Lector["MetodoPago"] is DBNull))
                         pedido.MetodoPago = (string)datos.Lector["MetodoPago"];
 
-                    // Cargar información del usuario
                     pedido.Usuario = new Usuario();
                     pedido.Usuario.Email = (string)datos.Lector["Email"];
                     pedido.Usuario.Nombre = (string)datos.Lector["Nombre"];
@@ -227,7 +233,6 @@ namespace Negocio
                     pedido.Estado = (string)datos.Lector["Estado"];
                     pedido.Total = (decimal)datos.Lector["Total"];
 
-                    // Validaciones de nulos (DBNull) por si faltan datos
                     if (!(datos.Lector["MetodoEnvio"] is DBNull))
                         pedido.MetodoEnvio = (string)datos.Lector["MetodoEnvio"];
 
@@ -253,12 +258,10 @@ namespace Negocio
                     pedido.Detalles = new List<DetallePedido>();
                     AccesoDatos datosDetalles = new AccesoDatos();
 
-                    // Solo traemos los IDs y datos del detalle
                     datosDetalles.setearConsulta("SELECT IdDetalle, IdProducto, Cantidad, PrecioUnitario FROM DetallePedido WHERE IdPedido = @IdPedido");
                     datosDetalles.setearParametro("@IdPedido", idPedido);
                     datosDetalles.ejecutarLectura();
 
-                    // Necesitamos el negocio de producto para buscar info extra
                     ProductoNegocio prodNegocio = new ProductoNegocio();
 
                     while (datosDetalles.Lector.Read())

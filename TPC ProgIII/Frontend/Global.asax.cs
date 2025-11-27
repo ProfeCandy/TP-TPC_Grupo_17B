@@ -15,6 +15,31 @@ namespace Frontend
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            
+            try
+            {
+                Negocio.ReservaStockNegocio reservaNegocio = new Negocio.ReservaStockNegocio();
+                reservaNegocio.LiberarReservasExpiradas();
+            }
+            catch
+            {
+            }
+        }
+
+        void Session_End(object sender, EventArgs e)
+        {
+            try
+            {
+                string sessionId = Session.SessionID;
+                if (!string.IsNullOrEmpty(sessionId))
+                {
+                    Negocio.ReservaStockNegocio reservaNegocio = new Negocio.ReservaStockNegocio();
+                    reservaNegocio.LiberarReservasPorSesion(sessionId);
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }
