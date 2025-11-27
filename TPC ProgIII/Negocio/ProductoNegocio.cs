@@ -130,15 +130,13 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"SELECT P.IdProducto, P.NombreProducto, P.Descripcion, 
-                                      M.IdMarca, M.Descripcion AS Marca, 
-                                      C.IdCategoria, C.Descripcion AS Categoria, 
-                                      P.Precio
-                               FROM Producto P, Marcas M, Categoria C 
-                               WHERE P.IdMarca = M.IdMarca 
-                               AND P.IdCategoria = C.IdCategoria
-                               AND (P.NombreProducto LIKE @busqueda OR M.Descripcion LIKE @busqueda)");
+                              M.IdMarca, M.Descripcion AS Marca, 
+                              C.IdCategoria, C.Descripcion AS Categoria, 
+                              P.Precio
+                       FROM Producto P, Marcas M, Categoria C 
+                       WHERE P.IdMarca = M.IdMarca 
+                       AND P.IdCategoria = C.IdCategoria");
 
-                datos.setearParametro("@busqueda", "%" + busqueda + "%");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -161,11 +159,16 @@ namespace Negocio
                         Descripcion = (string)datos.Lector["Categoria"]
                     };
 
-                    prod.Imagenes = imgNegocio.ListarPorProducto(prod.IdProducto);
-                    if (prod.Imagenes.Count > 0)
-                        prod.ImagenPrincipal = prod.Imagenes[0].UrlImagen;
+                    if (Coincide(prod.NombreProducto, busqueda) ||
+                 Coincide(prod.Marca.Descripcion, busqueda) ||
+                 Coincide(prod.Categoria.Descripcion, busqueda))
+                    {
+                        prod.Imagenes = imgNegocio.ListarPorProducto(prod.IdProducto);
+                        if (prod.Imagenes.Count > 0)
+                            prod.ImagenPrincipal = prod.Imagenes[0].UrlImagen;
 
-                    lista.Add(prod);
+                        lista.Add(prod);
+                    }
                 }
 
                 return lista;
@@ -178,6 +181,27 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        //Todo esto porque SQL no tomo el cambio de tildes y acentos sino haria un LIKE directamente.
+        private bool Coincide(string valorDb, string busqueda)
+        {
+            if (string.IsNullOrEmpty(valorDb) || string.IsNullOrEmpty(busqueda))
+                return false;
+
+            string val = RemoverAcentos(valorDb.ToLower());
+            string bus = RemoverAcentos(busqueda.ToLower());
+
+            return val.Contains(bus);
+        }
+        private string RemoverAcentos(string texto)
+        {
+            string conAcentos = "áéíóúüÁÉÍÓÚÜ";
+            string sinAcentos = "aeiouuAEIOUU";
+            for (int i = 0; i < conAcentos.Length; i++)
+            {
+                texto = texto.Replace(conAcentos[i], sinAcentos[i]);
+            }
+            return texto;
         }
         public Producto ObtenerPorId(int idProducto)
         {

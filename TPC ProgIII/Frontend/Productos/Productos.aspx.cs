@@ -115,7 +115,6 @@ namespace TPC_ProgIII
                 }
             }
         }
-
         public bool EsAdminOVendedor()
         {
             if (Session["usuario"] != null)
@@ -129,7 +128,6 @@ namespace TPC_ProgIII
             }
             return false;
         }
-
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
@@ -149,7 +147,6 @@ namespace TPC_ProgIII
                 panelMensajes.CssClass = "alert alert-danger";
             }
         }
-
         protected void btnGuardarMarca_Click(object sender, EventArgs e)
         {
             try
@@ -185,7 +182,6 @@ namespace TPC_ProgIII
                 lblMensajeMarca.Text = "Error al crear la marca: " + ex.Message;
             }
         }
-
         protected void btnGuardarCategoria_Click(object sender, EventArgs e)
         {
             try

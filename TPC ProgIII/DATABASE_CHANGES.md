@@ -163,8 +163,7 @@ INSERT INTO Imagen (IdProducto, UrlImagen)
 VALUES (14, '~/assets/img/Productos/Correa_Distribucion_104Dientes.jpg');
 ```
 
-**MODIFICO LA RESTRICCION EN LA BBD PARA PODER ELIMINAR PRODUCTOS SIN NECESIDAD DE
-BORRAR OBLIGATORIAMENTE LA IMAGEN - LA IMAGEN QUEDARIA SIN REFERENCIA**
+**MODIFICO LA RESTRICCION EN LA BBD PARA PODER ELIMINAR PRODUCTOS SIN NECESIDAD DE BORRAR OBLIGATORIAMENTE LA IMAGEN - LA IMAGEN QUEDARIA SIN REFERENCIA**
 ```sql
 
 ALTER TABLE Imagen
@@ -180,5 +179,40 @@ GO
 ALTER TABLE Imagen
 ADD CONSTRAINT FK_Imagen_Producto 
 FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto) ON DELETE SET NULL;
+GO
+```
+**MODIFICO CATEGORIAS PARA QUE ESTE MEJOR DISTRIBUIDO**
+```sql
+UPDATE Categoria SET Descripcion = 'Filtros de aire, aceite, combustible' WHERE IdCategoria = 1;
+UPDATE Categoria SET Descripcion = 'Pastillas, discos y líquidos de freno' WHERE IdCategoria = 2;
+UPDATE Categoria SET Descripcion = 'Amortiguadores, resortes, bujes' WHERE IdCategoria = 3;
+UPDATE Categoria SET Descripcion = 'Bujías, cables, bobinas' WHERE IdCategoria = 4; -- Antes era 'Pastillas y discos' repetido o algo asi
+UPDATE Categoria SET Descripcion = 'Correas de distribución' WHERE IdCategoria = 5;   -- Antes 'Bujias y correas'
+UPDATE Categoria SET Descripcion = 'Embragues, homocinéticas, juntas' WHERE IdCategoria = 6; -- Antes 'Amortiguadores y muelles' repetido
+
+-- 2. Agregar las categorías nuevas que faltan
+INSERT INTO Categoria (Descripcion) VALUES 
+('Cajas, extremos, precaps'),
+('Componentes internos de motor'),
+('Accesorios');
+GO
+-- Esto era un error porque yo tenia id de categorias que habia borrado.  Si las tienen bien ignoren eso.
+DELETE FROM Categoria WHERE IdCategoria IN (12, 13, 14);
+GO
+
+-- 2. Activar modo manual
+SET IDENTITY_INSERT Categoria ON;
+GO
+
+-- 3. Insertar con los IDs correctos
+INSERT INTO Categoria (IdCategoria, Descripcion) VALUES 
+(7, 'Cajas, extremos, precaps'),
+(8, 'Componentes internos de motor'),
+(9, 'Accesorios');
+GO
+
+-- 4. Apagar modo manual y resetear contador (para que el próximo sea 10)
+SET IDENTITY_INSERT Categoria OFF;
+DBCC CHECKIDENT ('Categoria', RESEED, 9);
 GO
 ```
