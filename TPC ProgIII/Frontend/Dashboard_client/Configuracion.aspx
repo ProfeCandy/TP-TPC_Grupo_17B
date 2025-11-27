@@ -7,49 +7,6 @@
     </div>
 
     <div class="row">
-        
-        <div class="col-12 col-lg-7">
-            <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4 p-4">
-                <div class="border-bottom pb-3 mb-3">
-                    <h5 class="fw-bold noto-sans"><i class="bi bi-calculator me-2 text-primary"></i>Preferencias de Venta</h5>
-                    <small class="text-muted">Personaliza cómo ves los precios en el catálogo.</small>
-                </div>
-
-                <div class="mb-4">
-                    <label class="form-label fw-bold small">Margen de ganancia sugerido (%)</label>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text bg-light">%</span>
-                        <asp:TextBox ID="txtGanancia" runat="server" CssClass="form-control" TextMode="Number" placeholder="Ej: 30"></asp:TextBox>
-                    </div>
-                    <small class="text-muted font-extra-small">
-                        Calcularemos automáticamente el precio de venta sugerido sumando este porcentaje al costo.
-                    </small>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded">
-                    <div>
-                        <span class="fw-bold small d-block">Visualizar precios con IVA</span>
-                        <small class="text-muted font-extra-small">Incluir el 21% en los listados.</small>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input fs-4" type="checkbox" role="switch" id="chkIvaSwitch" runat="server" checked>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <%--<div class="col-12 col-lg-5">
-            <div class="d-flex flex-column theme-border-radius border border-danger bg-light mb-4 my-4 p-4">
-                <h6 class="fw-bold text-danger mb-3">Zona de peligro</h6>
-                <p class="font-extra-small text-muted mb-3">
-                    Si desactivas tu cuenta, no podrás realizar nuevos pedidos y perderás tu historial.
-                </p>
-                <button type="button" class="btn btn-outline-danger btn-sm fw-bold w-100" data-bs-toggle="modal" data-bs-target="#modalDesactivar">
-                    Desactivar cuenta
-                </button>
-            </div>
-        </div>--%>
-
         <asp:Panel ID="pnlGestionRoles" runat="server" Visible="false">
             <div class="col-12">
                 <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4 p-4">
