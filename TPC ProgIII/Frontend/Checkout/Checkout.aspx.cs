@@ -264,7 +264,7 @@ namespace Frontend
                 Session["compraRealizada"] = carrito.Items;
                 Session["carrito"] = null;
 
-                Response.Redirect("~/PedidoExitoso.aspx", false);
+                Response.Redirect("~/Checkout/PedidoExitoso.aspx", false);
             }
             catch (Exception ex)
             {

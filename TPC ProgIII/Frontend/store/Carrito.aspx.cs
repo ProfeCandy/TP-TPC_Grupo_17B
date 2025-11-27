@@ -94,7 +94,7 @@ namespace Frontend.store
         {
             if (Session["carrito"] != null && ((Dominio.Carrito)Session["carrito"]).Items.Count > 0)
             {
-                Response.Redirect("~/Checkout.aspx");
+                Response.Redirect("~/Checkout/Checkout.aspx");
             }
         }
     }
