@@ -47,10 +47,8 @@
 
                          <%--Validacion Precio--%>
                         <div class="col-12">
-                            <label for="txtPrecio" class="form-label fw-semibold">Precio</label>
-    
-                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00"></asp:TextBox>
-    
+                            <label for="txtPrecio" class="form-label fw-semibold">Precio</label>    
+                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" placeholder="0.00"></asp:TextBox>    
                             <asp:RegularExpressionValidator ErrorMessage="Solo números" ControlToValidate="txtPrecio" runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />
                         </div>
 

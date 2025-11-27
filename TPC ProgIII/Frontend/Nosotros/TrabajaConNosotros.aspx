@@ -32,24 +32,37 @@
                         <div class="col-12 mb-3">
                             <label for="txtNombre" class="form-label fw-semibold">Nombre completo:</label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingres&aacute; tu nombre"></asp:TextBox>
+                            <%--Validacion Nombre--%>
+                            <asp:RequiredFieldValidator ErrorMessage="Campo Obligatorio" ControlToValidate="txtNombre" runat="server" CssClass="text-danger small" Display="Dynamic" />
+                            <asp:RegularExpressionValidator ErrorMessage="Sin numeros" ControlToValidate="txtNombre" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
                         </div>
 
                         <!-- Correo electrónico -->
                         <div class="col-12 mb-3">
                             <label for="txtEmail" class="form-label fw-semibold">Correo electr&oacute;nico:</label>
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ingres&aacute; tu correo electr&oacute;nico" TextMode="Email"></asp:TextBox>
+                            <%--Validacion Email--%>
+                            <asp:RequiredFieldValidator ControlToValidate="txtEmail" runat="server" CssClass="text-danger small" ErrorMessage="Email requerido" Display="Dynamic" />
+                            <asp:RequiredFieldValidator ErrorMessage="El email es requerido." ControlToValidate="txtEmail" runat="server" 
+                                CssClass="text-danger small" Display="Dynamic" />
+                            <asp:RegularExpressionValidator ErrorMessage="Formato de email invalido." ControlToValidate="txtEmail" runat="server" 
+                                ValidationExpression="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" CssClass="text-danger small" Display="Dynamic" />
                         </div>
 
                         <!-- Dni -->
                         <div class="col-12 mb-3">
                             <label for="txtDni" class="form-label fw-semibold">Dni:</label>
                             <asp:TextBox ID="txtDni" runat="server" CssClass="form-control" placeholder="Ingres&aacute; tu dni"></asp:TextBox>
+                        <%--Validacion DNI--%>
+                            <asp:RegularExpressionValidator ErrorMessage="Solo numeros" ControlToValidate="txtDni" runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />
                         </div>
 
                         <!-- Número de contacto -->
                         <div class="col-12 mb-3">
                             <label for="txtTelefono" class="form-label fw-semibold">N&uacute;mero de contacto:</label>
                             <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Ingres&aacute; tu numero de contacto"></asp:TextBox>
+                        <%--Validacion Telefono--%>
+                            <asp:RegularExpressionValidator ErrorMessage="Solo numeros" ControlToValidate="txtTelefono" runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />
                         </div>
 
                         <!-- Puesto -->
