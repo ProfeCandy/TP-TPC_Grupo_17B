@@ -27,12 +27,16 @@
                         <div class="col-12">
                             <label for="txtTitulo" class="form-label fw-semibold">T&iacute;tulo</label>
                             <asp:TextBox ID="txtTitulo" runat="server" CssClass="form-control" placeholder="Ingres&aacute; el t&iacute;tulo de la noticia"></asp:TextBox>
+                        <%--Validacion Titulo--%>
+                            <asp:RequiredFieldValidator ErrorMessage="Campo Obligatorio" ControlToValidate="txtTitulo" runat="server" CssClass="text-danger small" Display="Dynamic" />
                         </div>
 
                         <!-- Categor&iacute;a -->
                         <div class="col-12">
                             <label for="txtCategoria" class="form-label fw-semibold">Categor&iacute;a</label>
                             <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control" placeholder="Ej: Tecnolog&iacute;a, Negocios"></asp:TextBox>
+                        <%--Validacion Categoria--%>
+                            <asp:RequiredFieldValidator ErrorMessage="Campo Obligatorio" ControlToValidate="txtCategoria" runat="server" CssClass="text-danger small" Display="Dynamic" />
                         </div>
 
                         <!-- Cuerpo de la Noticia -->
@@ -45,7 +49,7 @@
                         <div class="col-12">
                             <label for="fileImagen" class="form-label fw-semibold">Imagen de la Noticia</label>
                             <asp:FileUpload ID="fileImagen" runat="server" CssClass="form-control" accept="image/*" />
-                            <small class="text-muted">Formatos permitidos: JPG, PNG, GIF. Tama&ntilde;o m&aacute;ximo: 2MB. Dimensiones m&aacute;ximas: 1920x1080px</small>
+                            <small class="text-muted">Formatos permitidos: JPG, PNG, GIF. Tama&ntilde;o m&aacute;ximo: 2MB.</small>
                             
                             <!-- Vista previa de imagen actual -->
                             <asp:Panel ID="pnlImagenActual" runat="server" Visible="false" CssClass="mt-3">
