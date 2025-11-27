@@ -1,10 +1,10 @@
 //------------------------------------------------------------------------------
-// <generado automáticamente>
-//     Este código fue generado por una herramienta.
+// <generado automï¿½ticamente>
+//     Este cï¿½digo fue generado por una herramienta.
 //
-//     Los cambios en este archivo podrían causar un comportamiento incorrecto y se perderán si
-//     se vuelve a generar el código. 
-// </generado automáticamente>
+//     Los cambios en este archivo podrï¿½an causar un comportamiento incorrecto y se perderï¿½n si
+//     se vuelve a generar el cï¿½digo. 
+// </generado automï¿½ticamente>
 //------------------------------------------------------------------------------
 
 namespace TPC_ProgIII
@@ -18,8 +18,8 @@ namespace TPC_ProgIII
         /// Control lblTituloPagina.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTituloPagina;
 
@@ -27,8 +27,8 @@ namespace TPC_ProgIII
         /// Control panelMensaje.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelMensaje;
 
@@ -36,8 +36,8 @@ namespace TPC_ProgIII
         /// Control lblMensaje.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensaje;
 
@@ -45,8 +45,8 @@ namespace TPC_ProgIII
         /// Control txtNombre.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombre;
 
@@ -54,8 +54,8 @@ namespace TPC_ProgIII
         /// Control txtDescripcion.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
 
@@ -63,8 +63,8 @@ namespace TPC_ProgIII
         /// Control ddlMarca.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMarca;
 
@@ -72,8 +72,8 @@ namespace TPC_ProgIII
         /// Control ddlCategoria.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategoria;
 
@@ -81,17 +81,26 @@ namespace TPC_ProgIII
         /// Control txtPrecio.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPrecio;
+
+        /// <summary>
+        /// Control txtStock.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStock;
 
         /// <summary>
         /// Control fileImagen.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fileImagen;
 
@@ -99,8 +108,8 @@ namespace TPC_ProgIII
         /// Control pnlImagenActual.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlImagenActual;
 
@@ -108,8 +117,8 @@ namespace TPC_ProgIII
         /// Control imgActual.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgActual;
 
@@ -117,8 +126,8 @@ namespace TPC_ProgIII
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// Campo generado automï¿½ticamente.
+        /// Para modificarlo, mueva la declaraciï¿½n del campo del archivo del diseï¿½ador al archivo de cï¿½digo subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
     }

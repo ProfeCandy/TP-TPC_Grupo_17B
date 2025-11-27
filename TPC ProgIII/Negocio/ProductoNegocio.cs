@@ -17,7 +17,7 @@ namespace Negocio
                 datos.setearConsulta(@"SELECT P.IdProducto, P.NombreProducto, P.Descripcion, 
                                               M.IdMarca, M.Descripcion AS Marca, 
                                               C.IdCategoria, C.Descripcion AS Categoria, 
-                                              P.Precio
+                                              P.Precio, P.Stock
                                        FROM Producto P, Marcas M, Categoria C WHERE P.IdMarca = M.IdMarca AND P.IdCategoria = C.IdCategoria");
 
                 datos.ejecutarLectura();
@@ -29,6 +29,7 @@ namespace Negocio
                     prod.NombreProducto = (string)datos.Lector["NombreProducto"];
                     prod.Descripcion = (string)datos.Lector["Descripcion"];
                     prod.Precio = (decimal)datos.Lector["Precio"];
+                    prod.Stock = (int)datos.Lector["Stock"];
 
                     prod.Marca = new Marca
                     {
@@ -72,7 +73,7 @@ namespace Negocio
                 datos.setearConsulta(@"SELECT P.IdProducto, P.NombreProducto, P.Descripcion, 
                                       M.IdMarca, M.Descripcion AS Marca, 
                                       C.IdCategoria, C.Descripcion AS Categoria, 
-                                      P.Precio
+                                      P.Precio, P.Stock
                                FROM Producto P, Marcas M, Categoria C 
                                WHERE P.IdMarca = M.IdMarca 
                                AND P.IdCategoria = C.IdCategoria 
@@ -89,6 +90,7 @@ namespace Negocio
                     prod.NombreProducto = (string)datos.Lector["NombreProducto"];
                     prod.Descripcion = (string)datos.Lector["Descripcion"];
                     prod.Precio = (decimal)datos.Lector["Precio"];
+                    prod.Stock = (int)datos.Lector["Stock"];
 
                     prod.Marca = new Marca
                     {
@@ -132,7 +134,7 @@ namespace Negocio
                 datos.setearConsulta(@"SELECT P.IdProducto, P.NombreProducto, P.Descripcion, 
                               M.IdMarca, M.Descripcion AS Marca, 
                               C.IdCategoria, C.Descripcion AS Categoria, 
-                              P.Precio
+                              P.Precio, P.Stock
                        FROM Producto P, Marcas M, Categoria C 
                        WHERE P.IdMarca = M.IdMarca 
                        AND P.IdCategoria = C.IdCategoria");
@@ -146,6 +148,7 @@ namespace Negocio
                     prod.NombreProducto = (string)datos.Lector["NombreProducto"];
                     prod.Descripcion = (string)datos.Lector["Descripcion"];
                     prod.Precio = (decimal)datos.Lector["Precio"];
+                    prod.Stock = (int)datos.Lector["Stock"];
 
                     prod.Marca = new Marca
                     {

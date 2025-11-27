@@ -3,6 +3,7 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace TPC_ProgIII
@@ -137,8 +138,24 @@ namespace TPC_ProgIII
                     pnlMensajeStock.CssClass = "alert alert-info mb-0";
                 }
 
-                ClientScript.RegisterStartupScript(this.GetType(), "abrirModalStock", 
-                    "var modal = new bootstrap.Modal(document.getElementById('modalAgregarStock')); modal.show();", true);
+                txtCantidadStock.Text = "";
+                
+                string script = @"setTimeout(function() { 
+                    var modalElement = document.getElementById('modalAgregarStock'); 
+                    if (modalElement) { 
+                        var modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+                        modal.show(); 
+                    } 
+                }, 200);";
+                
+                if (ScriptManager.GetCurrent(this.Page) != null)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "abrirModalStock", script, true);
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "abrirModalStock", script, true);
+                }
             }
         }
         public bool EsAdminOVendedor()
@@ -290,14 +307,7 @@ namespace TPC_ProgIII
                 ProductoNegocio negocio = new ProductoNegocio();
                 negocio.AgregarStock(idProducto, cantidad);
 
-                pnlMensajeStock.Visible = true;
-                pnlMensajeStock.CssClass = "alert alert-success mb-0";
-                lblMensajeStock.Text = $"Se agregaron {cantidad} unidades al stock correctamente.";
-
-                txtCantidadStock.Text = "";
-
-                ClientScript.RegisterStartupScript(this.GetType(), "cerrarModalStock", 
-                    "setTimeout(function() { var modal = bootstrap.Modal.getInstance(document.getElementById('modalAgregarStock')); if (modal) modal.hide(); window.location.reload(); }, 1500);", true);
+                Response.Redirect("Productos.aspx", false);
             }
             catch (Exception ex)
             {
