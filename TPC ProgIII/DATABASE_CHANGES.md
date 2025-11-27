@@ -216,3 +216,43 @@ SET IDENTITY_INSERT Categoria OFF;
 DBCC CHECKIDENT ('Categoria', RESEED, 9);
 GO
 ```
+
+-- Insert de noticias
+INSERT INTO Noticias (Titulo, Cuerpo, FechaPublicacion, Categoria, ImagenUrl, Activa)
+VALUES
+('Actualización de seguridad 2024', 'Se implementaron nuevas medidas de seguridad para proteger los datos de los usuarios.', '2024-01-10 00:00:00.000', 'Tecnología', NULL, 1),
+
+('Nuevo acuerdo comercial', 'Se cerró un acuerdo estratégico con importantes distribuidores nacionales.', '2024-01-15 00:00:00.000', 'Novedades', NULL, 1),
+
+('Promoción verano 2024', 'Obtené descuentos exclusivos durante todo el mes de febrero.', '2024-02-01 00:00:00.000', 'Promociones', NULL, 1),
+
+('Mantenimiento programado', 'El sistema estará en mantenimiento el día 20 de febrero.', '2024-02-18 00:00:00.000', 'Novedades', NULL, 0),
+
+('Consejos para ahorrar combustible', 'Tips prácticos para mejorar el rendimiento del motor.', '2024-03-01 00:00:00.000', 'Tecnología', NULL, 1),
+
+('Nueva línea de productos', 'Presentamos una nueva categoría de accesorios y repuestos.', '2024-03-10 00:00:00.000', 'Novedades', NULL, 1),
+
+('Promoción especial de servicio', 'Durante marzo podés acceder a un 15% de descuento en servicios seleccionados.', '2024-03-15 00:00:00.000', 'Promociones', NULL, 1),
+
+('Capacitación para clientes', 'Lanzamos cursos gratuitos sobre mantenimiento básico del vehículo.', '2024-04-01 00:00:00.000', 'Novedades', NULL, 1),
+
+('Actualización de catálogo', 'Se incorporaron más de 50 nuevos productos al catálogo digital.', '2024-04-05 00:00:00.000', 'Tecnología', NULL, 1),
+
+('Nueva funcionalidad en la app', 'Ya podés recibir notificaciones personalizadas desde nuestra aplicación móvil.', '2024-04-12 00:00:00.000', 'Tecnología', NULL, 1);
+
+
+-- Creacion de tabla de reserva de stock
+CREATE INDEX IX_ReservaStock_FechaExpiracion ON ReservaStock(FechaExpiracion);
+CREATE INDEX IX_ReservaStock_SessionId ON ReservaStock(SessionId);
+CREATE INDEX IX_ReservaStock_IdProducto ON ReservaStock(IdProducto);
+
+
+CREATE TABLE ReservaStock (
+    IdReserva INT IDENTITY(1,1) PRIMARY KEY,
+    IdProducto INT NOT NULL,
+    Cantidad INT NOT NULL,
+    SessionId VARCHAR(100) NOT NULL,
+    FechaReserva DATETIME DEFAULT GETDATE(),
+    FechaExpiracion DATETIME NOT NULL,
+    FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto) ON DELETE CASCADE
+);

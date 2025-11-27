@@ -23,20 +23,36 @@ namespace Frontend
         {
             try
             {
-                string facebookUrl = ConfigurationManager.AppSettings["FacebookUrl"] ?? "#";
-                string instagramUrl = ConfigurationManager.AppSettings["InstagramUrl"] ?? "#";
-                string whatsAppUrl = ConfigurationManager.AppSettings["WhatsAppUrl"] ?? "#";
-                string linkedInUrl = ConfigurationManager.AppSettings["LinkedInUrl"] ?? "#";
+                string facebookUrl = ConfigurationManager.AppSettings["FacebookUrl"];
+                string instagramUrl = ConfigurationManager.AppSettings["InstagramUrl"];
+                string whatsAppUrl = ConfigurationManager.AppSettings["WhatsAppUrl"];
+                string linkedInUrl = ConfigurationManager.AppSettings["LinkedInUrl"];
 
-                System.Web.UI.HtmlControls.HtmlAnchor lnkFacebookContacto = FindControl("lnkFacebookContacto") as System.Web.UI.HtmlControls.HtmlAnchor;
-                System.Web.UI.HtmlControls.HtmlAnchor lnkInstagramContacto = FindControl("lnkInstagramContacto") as System.Web.UI.HtmlControls.HtmlAnchor;
-                System.Web.UI.HtmlControls.HtmlAnchor lnkWhatsAppContacto = FindControl("lnkWhatsAppContacto") as System.Web.UI.HtmlControls.HtmlAnchor;
-                System.Web.UI.HtmlControls.HtmlAnchor lnkLinkedInContacto = FindControl("lnkLinkedInContacto") as System.Web.UI.HtmlControls.HtmlAnchor;
+                if (string.IsNullOrEmpty(facebookUrl)) facebookUrl = "https://www.facebook.com";
+                if (string.IsNullOrEmpty(instagramUrl)) instagramUrl = "https://www.instagram.com";
+                if (string.IsNullOrEmpty(whatsAppUrl)) whatsAppUrl = "https://wa.me/5492991234567";
+                if (string.IsNullOrEmpty(linkedInUrl)) linkedInUrl = "https://www.linkedin.com";
 
-                if (lnkFacebookContacto != null) lnkFacebookContacto.HRef = facebookUrl;
-                if (lnkInstagramContacto != null) lnkInstagramContacto.HRef = instagramUrl;
-                if (lnkWhatsAppContacto != null) lnkWhatsAppContacto.HRef = whatsAppUrl;
-                if (lnkLinkedInContacto != null) lnkLinkedInContacto.HRef = linkedInUrl;
+                if (lnkFacebookContacto != null) 
+                {
+                    lnkFacebookContacto.HRef = facebookUrl;
+                    lnkFacebookContacto.Attributes["href"] = facebookUrl;
+                }
+                if (lnkInstagramContacto != null) 
+                {
+                    lnkInstagramContacto.HRef = instagramUrl;
+                    lnkInstagramContacto.Attributes["href"] = instagramUrl;
+                }
+                if (lnkWhatsAppContacto != null) 
+                {
+                    lnkWhatsAppContacto.HRef = whatsAppUrl;
+                    lnkWhatsAppContacto.Attributes["href"] = whatsAppUrl;
+                }
+                if (lnkLinkedInContacto != null) 
+                {
+                    lnkLinkedInContacto.HRef = linkedInUrl;
+                    lnkLinkedInContacto.Attributes["href"] = linkedInUrl;
+                }
             }
             catch (Exception)
             {
