@@ -309,7 +309,6 @@ namespace Frontend.Dashboard_client
                 pnlUltimoPedido.Visible = false;
             }
         }
-
         protected void btnConfirmarDesactivacion_Click(object sender, EventArgs e)
         {
             // Valida campos vacíos
@@ -354,7 +353,6 @@ namespace Frontend.Dashboard_client
                 MostrarErrorModal("Error al procesar la solicitud: " + ex.Message);
             }
         }
-
         private void MostrarErrorModal(string mensaje)
         {
             lblErrorDesactivar.Text = mensaje;
