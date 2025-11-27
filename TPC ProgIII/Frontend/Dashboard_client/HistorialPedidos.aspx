@@ -5,8 +5,15 @@
     <div class="col-12 col-md-9">
         <div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4">
             
-            <div class="d-flex justify-content-between p-4 border-bottom">
-                <span class="noto-sans fs-4 fw-bold text-danger">Mis Compras</span>
+            <div class="d-flex justify-content-between align-items-center p-4 border-bottom">
+                <span class="noto-sans fs-4 fw-bold text-danger">
+                    <asp:Label ID="lblTitulo" runat="server" Text="Mis Compras"></asp:Label>
+                </span>
+                <asp:Panel ID="pnlFiltroAdmin" runat="server" Visible="false" CssClass="d-flex gap-2 align-items-center">
+                    <asp:TextBox ID="txtFiltroEmail" runat="server" CssClass="form-control form-control-sm" placeholder="Filtrar por email..." style="width: 250px;"></asp:TextBox>
+                    <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-danger btn-sm" OnClick="btnFiltrar_Click" />
+                    <asp:Button ID="btnLimpiarFiltro" runat="server" Text="Limpiar" CssClass="btn btn-outline-secondary btn-sm" OnClick="btnLimpiarFiltro_Click" />
+                </asp:Panel>
             </div>
 
             <div class="p-4">
@@ -15,11 +22,16 @@
                     <div class="text-center py-5">
                         <i class="bi bi-bag-x fs-1 text-muted mb-3 d-block"></i>
                         <%--Si no hay compras--%>
-                        <h5 class="text-muted">No tenés compras realizadas aún.</h5>
-                        <a href="../../Productos/Productos.aspx" class="btn btn-danger mt-3 px-4 rounded-pill">Ir al catálogo</a>
+                        <h5 class="text-muted">
+                            <asp:Label ID="lblMensajeSinPedidos" runat="server" Text="No tenés compras realizadas aún."></asp:Label>
+                        </h5>
+                        <asp:Panel ID="pnlBotonCatalogo" runat="server">
+                            <a href="../../Productos/Productos.aspx" class="btn btn-danger mt-3 px-4 rounded-pill">Ir al catálogo</a>
+                        </asp:Panel>
                     </div>
                 </asp:Panel>
 
+                <asp:Panel ID="pnlTablaPedidos" runat="server">
                 <div class="table-responsive">
                     <asp:Repeater ID="repPedidos" runat="server">
                         <HeaderTemplate>
@@ -28,6 +40,9 @@
                                     <tr class="text-secondary small text-uppercase">
                                         <th scope="col" class="py-3 ps-3">Fecha</th>
                                         <th scope="col" class="py-3">Nro. Pedido</th>
+                                        <asp:PlaceHolder ID="phColumnaCliente" runat="server" Visible="false">
+                                            <th scope="col" class="py-3">Cliente</th>
+                                        </asp:PlaceHolder>
                                         <th scope="col" class="py-3">Envío</th>
                                         <th scope="col" class="py-3">Total</th>
                                         <th scope="col" class="py-3 text-center">Estado</th>
@@ -43,6 +58,14 @@
                                         </td>
                                         <td class="py-3 fw-bold text-dark">
                                             #<%# Eval("IdPedido") %>
+                                        </td>
+                                        <td runat="server" id="tdCliente" class="py-3 small text-muted" visible="false">
+                                            <%# Eval("Usuario.Email") != null ? Eval("Usuario.Email") : "" %>
+                                            <br />
+                                            <small class="text-muted">
+                                                <%# Eval("Usuario.Nombre") != null && Eval("Usuario.Apellido") != null ? 
+                                                    Eval("Usuario.Nombre") + " " + Eval("Usuario.Apellido") : "" %>
+                                            </small>
                                         </td>
                                         <td class="py-3 small text-muted">
                                             <%# Eval("MetodoEnvio") %>
@@ -71,6 +94,7 @@
                         </FooterTemplate>
                     </asp:Repeater>
                 </div>
+                </asp:Panel>
 
             </div>
         </div>

@@ -105,6 +105,108 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<Pedido> ListarTodos()
+        {
+            List<Pedido> lista = new List<Pedido>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"SELECT p.IdPedido, p.FechaPedido, p.Estado, p.Total, p.MetodoEnvio, p.MetodoPago, 
+                                             u.Email, u.Nombre, u.Apellido
+                                      FROM Pedido p
+                                      INNER JOIN Usuario u ON p.IdUsuario = u.IdUsuario
+                                      ORDER BY p.FechaPedido DESC");
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Pedido pedido = new Pedido();
+                    pedido.IdPedido = (int)datos.Lector["IdPedido"];
+                    pedido.FechaPedido = (DateTime)datos.Lector["FechaPedido"];
+                    pedido.Estado = (string)datos.Lector["Estado"];
+                    pedido.Total = (decimal)datos.Lector["Total"];
+
+                    if (!(datos.Lector["MetodoEnvio"] is DBNull))
+                        pedido.MetodoEnvio = (string)datos.Lector["MetodoEnvio"];
+
+                    if (!(datos.Lector["MetodoPago"] is DBNull))
+                        pedido.MetodoPago = (string)datos.Lector["MetodoPago"];
+
+                    // Cargar información del usuario
+                    pedido.Usuario = new Usuario();
+                    pedido.Usuario.Email = (string)datos.Lector["Email"];
+                    pedido.Usuario.Nombre = (string)datos.Lector["Nombre"];
+                    pedido.Usuario.Apellido = (string)datos.Lector["Apellido"];
+
+                    lista.Add(pedido);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<Pedido> ListarPorEmail(string email)
+        {
+            List<Pedido> lista = new List<Pedido>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"SELECT p.IdPedido, p.FechaPedido, p.Estado, p.Total, p.MetodoEnvio, p.MetodoPago, 
+                                             u.Email, u.Nombre, u.Apellido
+                                      FROM Pedido p
+                                      INNER JOIN Usuario u ON p.IdUsuario = u.IdUsuario
+                                      WHERE u.Email LIKE @Email
+                                      ORDER BY p.FechaPedido DESC");
+                datos.setearParametro("@Email", "%" + email + "%");
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Pedido pedido = new Pedido();
+                    pedido.IdPedido = (int)datos.Lector["IdPedido"];
+                    pedido.FechaPedido = (DateTime)datos.Lector["FechaPedido"];
+                    pedido.Estado = (string)datos.Lector["Estado"];
+                    pedido.Total = (decimal)datos.Lector["Total"];
+
+                    if (!(datos.Lector["MetodoEnvio"] is DBNull))
+                        pedido.MetodoEnvio = (string)datos.Lector["MetodoEnvio"];
+
+                    if (!(datos.Lector["MetodoPago"] is DBNull))
+                        pedido.MetodoPago = (string)datos.Lector["MetodoPago"];
+
+                    // Cargar información del usuario
+                    pedido.Usuario = new Usuario();
+                    pedido.Usuario.Email = (string)datos.Lector["Email"];
+                    pedido.Usuario.Nombre = (string)datos.Lector["Nombre"];
+                    pedido.Usuario.Apellido = (string)datos.Lector["Apellido"];
+
+                    lista.Add(pedido);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public Pedido ObtenerPedidoConDetalles(int idPedido)
         {
             AccesoDatos datos = new AccesoDatos();
