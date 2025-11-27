@@ -21,10 +21,11 @@
                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" Placeholder="Nueva Contraseña" TextMode="Password"></asp:TextBox>
                                 <label>Nueva Contraseña</label>
                             </div>
+                            <%--Validacion Pass--%>
                             <asp:RequiredFieldValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="La contraseña es obligatoria." />
-                            <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="Mínimo 6 caracteres." ValidationExpression="^.{6,}$" />
-                            <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="Falta una mayúscula." ValidationExpression="^.*[A-Z].*$" />
-                            <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="Falta un número." ValidationExpression="^.*[0-9].*$" />
+                            <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="La contraseña nueva debe tener al menos 6 caracteres." ValidationExpression="^.{6,}$" />
+                            <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="La contraseña nueva debe tener al menos una mayúscula." ValidationExpression="^.*[A-Z].*$" />
+                            <asp:RegularExpressionValidator ControlToValidate="txtPassword" runat="server" Display="None" ErrorMessage="La contraseña nueva debe tener al menos un número." ValidationExpression="^.*[0-9].*$" />
                         </div>
 
                         <div class="mb-4">
@@ -32,6 +33,7 @@
                                 <asp:TextBox ID="txtConfirmar" runat="server" CssClass="form-control" Placeholder="Repetir Contraseña" TextMode="Password"></asp:TextBox>
                                 <label>Repetir Contraseña</label>
                             </div>
+                             <%--Validacion Repetir Pass--%>
                             <asp:RequiredFieldValidator ControlToValidate="txtConfirmar" runat="server" Display="None" ErrorMessage="Repetir contraseña es obligatorio." />
                             <asp:CompareValidator ControlToValidate="txtConfirmar" ControlToCompare="txtPassword" runat="server" 
                                 Display="None" ErrorMessage="Las contraseñas no coinciden." Operator="Equal" />

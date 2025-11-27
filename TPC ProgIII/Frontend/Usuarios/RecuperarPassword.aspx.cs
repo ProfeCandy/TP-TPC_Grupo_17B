@@ -67,6 +67,7 @@ namespace Frontend
                 lblMensaje.Visible = true;
                 lblMensaje.Text = "Ocurrió un error. Por favor, intentá nuevamente más tarde.";
                 lblMensaje.CssClass = "alert alert-danger text-center mb-4 d-block";
+                throw ex;
             }
         }
     }
