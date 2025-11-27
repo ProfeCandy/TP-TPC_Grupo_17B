@@ -38,55 +38,62 @@
                             <table class="table table-hover align-middle">
                                 <thead class="table-light">
                                     <tr class="text-secondary small text-uppercase">
-                                        <th scope="col" class="py-3 ps-3">Fecha</th>
-                                        <th scope="col" class="py-3">Nro. Pedido</th>
-                                        <asp:PlaceHolder ID="phColumnaCliente" runat="server" Visible="false">
-                                            <th scope="col" class="py-3">Cliente</th>
-                                        </asp:PlaceHolder>
-                                        <th scope="col" class="py-3">Envío</th>
-                                        <th scope="col" class="py-3">Total</th>
-                                        <th scope="col" class="py-3 text-center">Estado</th>
-                                        <th scope="col" class="py-3 text-end pe-3">Acciones</th>
+                                        <th class="ps-3">Fecha</th>
+                                        <th>Pedido #</th>
+                                        <th runat="server" id="thCliente" visible="false">Cliente</th> 
+                                        <th>Total</th>
+                                        <th class="text-center">Estado</th> <th class="text-end pe-3">Ver</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                         </HeaderTemplate>
                         <ItemTemplate>
-                                    <tr>
-                                        <td class="ps-3 py-3 text-muted">
-                                            <%# Convert.ToDateTime(Eval("FechaPedido")).ToString("dd/MM/yyyy") %>
-                                        </td>
-                                        <td class="py-3 fw-bold text-dark">
-                                            #<%# Eval("IdPedido") %>
-                                        </td>
-                                        <td runat="server" id="tdCliente" class="py-3 small text-muted" visible="false">
-                                            <%# Eval("Usuario.Email") != null ? Eval("Usuario.Email") : "" %>
-                                            <br />
-                                            <small class="text-muted">
-                                                <%# Eval("Usuario.Nombre") != null && Eval("Usuario.Apellido") != null ? 
-                                                    Eval("Usuario.Nombre") + " " + Eval("Usuario.Apellido") : "" %>
-                                            </small>
-                                        </td>
-                                        <td class="py-3 small text-muted">
-                                            <%# Eval("MetodoEnvio") %>
-                                        </td>
-                                        <td class="py-3 fw-bold text-success">
-                                            $<%# Eval("Total", "{0:N0}") %>
-                                        </td>
-                                        <td class="py-3 text-center">
-                                            <span class='badge rounded-pill px-3 py-2 fw-normal 
-                                                <%# Eval("Estado").ToString() == "Entregado" ? "bg-success" : "bg-warning text-dark" %>'>
-                                                <%# Eval("Estado") %>
-                                            </span>
-                                        </td>
-                                         <%--Ver Detalle--%>
-                                        <td class="text-end pe-3 py-3">
-                                            <a href="DetallePedidoCliente.aspx?id=<%# Eval("IdPedido") %>" 
-                                               class="btn btn-sm btn-outline-secondary border-0" title="Ver Detalle">
-                                                <i class="bi bi-eye fs-5"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                            <tr>
+                                <td class="ps-3 text-muted"><%# Convert.ToDateTime(Eval("FechaPedido")).ToString("dd/MM/yyyy") %></td>
+                                <td class="fw-bold">#<%# Eval("IdPedido") %></td>
+            
+                                <td runat="server" id="tdCliente" visible="false" class="small text-muted">
+                                    <%# Eval("Usuario.Email") %>
+                                </td>
+
+                                <td class="fw-bold text-success">$<%# Eval("Total", "{0:N0}") %></td>
+
+                                <td class="text-center">
+                
+                                    <asp:PlaceHolder ID="phEstadoUsuario" runat="server">
+                                        <span class='badge rounded-pill px-3 py-2 fw-normal <%# Eval("Estado").ToString() == "Entregado" ? "bg-success" : "bg-warning text-dark" %>'>
+                                            <%# Eval("Estado") %>
+                                        </span>
+                                    </asp:PlaceHolder>
+
+                                    <asp:PlaceHolder ID="phEstadoAdmin" runat="server" Visible="false">
+                                        <div class="d-flex justify-content-center align-items-center gap-2">
+                                            <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-select form-select-sm" style="width:auto;">
+                                                <asp:ListItem Text="Pendiente" Value="Pendiente"></asp:ListItem>
+                                                <asp:ListItem Text="Pagado" Value="Pagado"></asp:ListItem>
+                                                <asp:ListItem Text="En Preparación" Value="En Preparacion"></asp:ListItem>
+                                                <asp:ListItem Text="Enviado" Value="Enviado"></asp:ListItem>
+                                                <asp:ListItem Text="Entregado" Value="Entregado"></asp:ListItem>
+                                            </asp:DropDownList>
+
+                                            <asp:LinkButton ID="btnGuardar" runat="server" 
+                                                CommandName="guardarCambioEstado" 
+                                                CommandArgument='<%# Eval("IdPedido") %>' 
+                                                CssClass="btn btn-sm btn-success" 
+                                                ToolTip="Guardar Cambio">
+                                                <i class="bi bi-check-lg"></i>
+                                            </asp:LinkButton>
+                        
+                                            <asp:HiddenField ID="hfEstadoActual" runat="server" Value='<%# Eval("Estado") %>' />
+                                        </div>
+                                    </asp:PlaceHolder>
+
+                                </td>
+
+                                <td class="text-end pe-3">
+                                    <a href="DetallePedidoCliente.aspx?id=<%# Eval("IdPedido") %>" class="btn btn-sm btn-outline-secondary border-0"><i class="bi bi-eye fs-5"></i></a>
+                                </td>
+                            </tr>
                         </ItemTemplate>
                         <FooterTemplate>
                                 </tbody>

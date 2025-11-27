@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Frontend.Dashboard_client
@@ -32,9 +33,11 @@ namespace Frontend.Dashboard_client
                 pnlFiltroAdmin.Visible = false;
             }
 
+            repPedidos.ItemDataBound += repPedidos_ItemDataBound;
+            repPedidos.ItemCommand += repPedidos_ItemCommand;
+
             if (!IsPostBack)
             {
-                repPedidos.ItemCreated += repPedidos_ItemCreated;
                 CargarPedidos();
             }
         }
@@ -110,25 +113,86 @@ namespace Frontend.Dashboard_client
             txtFiltroEmail.Text = "";
             CargarPedidos();
         }
-        protected void repPedidos_ItemCreated(object sender, RepeaterItemEventArgs e)
+        protected void repPedidos_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            // es admin?
             Usuario user = (Usuario)Session["usuario"];
             bool esAdmin = user != null && user.Rol != null && user.Rol.NombreRol.ToLower() == "administrador";
 
+            // configura th
             if (e.Item.ItemType == ListItemType.Header)
             {
-                PlaceHolder phColumnaCliente = (PlaceHolder)e.Item.FindControl("phColumnaCliente");
-                if (phColumnaCliente != null)
-                {
-                    phColumnaCliente.Visible = esAdmin;
-                }
+                // muestra columna "Cliente" solo a admins
+                HtmlTableCell thCliente = (HtmlTableCell)e.Item.FindControl("thCliente");
+                if (thCliente != null) thCliente.Visible = esAdmin;
             }
+
+            // Configura td
             else if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                System.Web.UI.HtmlControls.HtmlTableCell tdCliente = (System.Web.UI.HtmlControls.HtmlTableCell)e.Item.FindControl("tdCliente");
-                if (tdCliente != null)
+                //Columna Cliente (solo para admin)
+                HtmlTableCell tdCliente = (HtmlTableCell)e.Item.FindControl("tdCliente");
+                if (tdCliente != null) tdCliente.Visible = esAdmin;
+
+                // ESTADO (Dropdown vs Badge)
+                PlaceHolder phUser = (PlaceHolder)e.Item.FindControl("phEstadoUsuario");
+                PlaceHolder phAdmin = (PlaceHolder)e.Item.FindControl("phEstadoAdmin");
+
+                if (esAdmin)
                 {
-                    tdCliente.Visible = esAdmin;
+                    // admin: ve DropDown y botón Guardar
+                    if (phUser != null) phUser.Visible = false;
+                    if (phAdmin != null) phAdmin.Visible = true;
+
+                    // muestra valor actual en el DropDown
+                    DropDownList ddl = (DropDownList)e.Item.FindControl("ddlEstado");
+                    HiddenField hf = (HiddenField)e.Item.FindControl("hfEstadoActual");
+
+                    if (ddl != null && hf != null && !string.IsNullOrEmpty(hf.Value))
+                    {
+                        ListItem item = ddl.Items.FindByValue(hf.Value);
+                        if (item != null)
+                        {
+                            item.Selected = true;
+                        }
+                    }
+                }
+                else
+                {
+                    // user: ve solo badge de color
+                    if (phUser != null) phUser.Visible = true;
+                    if (phAdmin != null) phAdmin.Visible = false;
+                }
+            }
+        }
+        protected void repPedidos_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "guardarCambioEstado")
+            {
+                try
+                {
+                    // id del Pedido
+                    int idPedido = Convert.ToInt32(e.CommandArgument);
+
+                    // Buscar DropDownList donde se hizo click
+                    DropDownList ddl = (DropDownList)e.Item.FindControl("ddlEstado");
+
+                    if (ddl != null)
+                    {
+                        string nuevoEstado = ddl.SelectedValue;
+
+                        // actualizar bd
+                        PedidoNegocio negocio = new PedidoNegocio();
+                        negocio.ActualizarEstadoPedido(idPedido, nuevoEstado);
+
+                        // recargar tabla
+                        CargarPedidos();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex.ToString());
+                    Response.Redirect("../Error.aspx");
                 }
             }
         }

@@ -15,24 +15,6 @@ namespace Frontend.Dashboard_client
     {
 
         /// <summary>
-        /// Control pnlSinPedidos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSinPedidos;
-
-        /// <summary>
-        /// Control repPedidos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repPedidos;
-
-        /// <summary>
         /// Control lblTitulo.
         /// </summary>
         /// <remarks>
@@ -78,13 +60,13 @@ namespace Frontend.Dashboard_client
         protected global::System.Web.UI.WebControls.Button btnLimpiarFiltro;
 
         /// <summary>
-        /// Control phColumnaCliente.
+        /// Control pnlSinPedidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phColumnaCliente;
+        protected global::System.Web.UI.WebControls.Panel pnlSinPedidos;
 
         /// <summary>
         /// Control lblMensajeSinPedidos.
@@ -112,5 +94,14 @@ namespace Frontend.Dashboard_client
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlTablaPedidos;
+
+        /// <summary>
+        /// Control repPedidos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater repPedidos;
     }
 }
