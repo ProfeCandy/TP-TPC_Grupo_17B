@@ -159,9 +159,7 @@ namespace Negocio
                         Descripcion = (string)datos.Lector["Categoria"]
                     };
 
-                    if (Coincide(prod.NombreProducto, busqueda) ||
-                 Coincide(prod.Marca.Descripcion, busqueda) ||
-                 Coincide(prod.Categoria.Descripcion, busqueda))
+                    if (Coincide(prod.NombreProducto, busqueda) || Coincide(prod.Marca.Descripcion, busqueda))
                     {
                         prod.Imagenes = imgNegocio.ListarPorProducto(prod.IdProducto);
                         if (prod.Imagenes.Count > 0)
