@@ -140,7 +140,7 @@ namespace TPC_ProgIII
             try
             {
                 ProductoNegocio negocio = new ProductoNegocio();
-                negocio.Eliminar(idProducto);
+                negocio.EliminarLogico(idProducto);
                 
                 Response.Redirect("Productos.aspx", false);
             }
@@ -244,6 +244,5 @@ namespace TPC_ProgIII
             // Redirigimos para no tener el cartel de recarga feo
             Response.Redirect(url);
         }
-
     }
 }

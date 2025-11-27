@@ -360,5 +360,19 @@ namespace Negocio
                 throw ex;
             }
         }
+        public void EliminarLogico(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE FROM Producto SET Activo = 0 WHERE IdProducto = @IdProducto");
+                datos.setearParametro("@IdProducto", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
