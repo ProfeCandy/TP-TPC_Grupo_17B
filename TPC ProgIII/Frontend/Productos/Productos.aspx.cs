@@ -149,5 +149,77 @@ namespace TPC_ProgIII
                 panelMensajes.CssClass = "alert alert-danger";
             }
         }
+
+        protected void btnGuardarMarca_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtNuevaMarca.Text))
+                {
+                    pnlMensajeMarca.Visible = true;
+                    pnlMensajeMarca.CssClass = "alert alert-danger mb-0";
+                    lblMensajeMarca.Text = "El nombre de la marca es obligatorio.";
+                    return;
+                }
+
+                Marca nuevaMarca = new Marca();
+                nuevaMarca.Descripcion = txtNuevaMarca.Text.Trim();
+
+                MarcaNegocio negocio = new MarcaNegocio();
+                negocio.Agregar(nuevaMarca);
+
+                // Limpiar campo y mostrar mensaje de éxito
+                txtNuevaMarca.Text = "";
+                pnlMensajeMarca.Visible = true;
+                pnlMensajeMarca.CssClass = "alert alert-success mb-0";
+                lblMensajeMarca.Text = "Marca creada correctamente.";
+
+                // Cerrar modal después de un breve delay
+                ClientScript.RegisterStartupScript(this.GetType(), "cerrarModalMarca", 
+                    "setTimeout(function() { var modal = bootstrap.Modal.getInstance(document.getElementById('modalNuevaMarca')); if (modal) modal.hide(); }, 1500);", true);
+            }
+            catch (Exception ex)
+            {
+                pnlMensajeMarca.Visible = true;
+                pnlMensajeMarca.CssClass = "alert alert-danger mb-0";
+                lblMensajeMarca.Text = "Error al crear la marca: " + ex.Message;
+            }
+        }
+
+        protected void btnGuardarCategoria_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtNuevaCategoria.Text))
+                {
+                    pnlMensajeCategoria.Visible = true;
+                    pnlMensajeCategoria.CssClass = "alert alert-danger mb-0";
+                    lblMensajeCategoria.Text = "El nombre de la categor&iacute;a es obligatorio.";
+                    return;
+                }
+
+                Categoria nuevaCategoria = new Categoria();
+                nuevaCategoria.Descripcion = txtNuevaCategoria.Text.Trim();
+
+                CategoriaNegocio negocio = new CategoriaNegocio();
+                negocio.Agregar(nuevaCategoria);
+
+                // Limpiar campo y mostrar mensaje de éxito
+                txtNuevaCategoria.Text = "";
+                pnlMensajeCategoria.Visible = true;
+                pnlMensajeCategoria.CssClass = "alert alert-success mb-0";
+                lblMensajeCategoria.Text = "Categor&iacute;a creada correctamente.";
+
+                // Cerrar modal después de un breve delay
+                ClientScript.RegisterStartupScript(this.GetType(), "cerrarModalCategoria", 
+                    "setTimeout(function() { var modal = bootstrap.Modal.getInstance(document.getElementById('modalNuevaCategoria')); if (modal) modal.hide(); }, 1500);", true);
+            }
+            catch (Exception ex)
+            {
+                pnlMensajeCategoria.Visible = true;
+                pnlMensajeCategoria.CssClass = "alert alert-danger mb-0";
+                lblMensajeCategoria.Text = "Error al crear la categor&iacute;a: " + ex.Message;
+            }
+        }
     }
 }

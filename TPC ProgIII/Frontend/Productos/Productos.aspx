@@ -8,10 +8,16 @@
             <div class="col-12">
                 <h2 class="text-uppercase text-danger fw-bold">Catálogo de Productos</h2>
                 <p class="text-muted">Explorá nuestra variedad de repuestos y accesorios.</p>
-                <asp:Panel ID="pnlAdminActions" runat="server" Visible="false" CssClass="mt-3">
+                <asp:Panel ID="pnlAdminActions" runat="server" Visible="false" CssClass="mt-3 d-flex gap-2 flex-wrap">
                     <a href="FormularioProducto.aspx" class="btn btn-danger">
                         <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Producto
                     </a>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalNuevaMarca">
+                        <i class="bi bi-plus-circle me-2"></i>Nueva Marca
+                    </button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalNuevaCategoria">
+                        <i class="bi bi-plus-circle me-2"></i>Nueva Categor&iacute;a
+                    </button>
                 </asp:Panel>
             </div>
         </div>
@@ -79,6 +85,56 @@
                 </ItemTemplate>
             </asp:Repeater>
 
+        </div>
+    </div>
+
+    <!-- Modal Nueva Marca -->
+    <div class="modal fade" id="modalNuevaMarca" tabindex="-1" aria-labelledby="modalNuevaMarcaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNuevaMarcaLabel">Crear Nueva Marca</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="txtNuevaMarca" class="form-label">Nombre de la Marca</label>
+                        <asp:TextBox ID="txtNuevaMarca" runat="server" CssClass="form-control" placeholder="Ej: Brembo, NGK, etc."></asp:TextBox>
+                    </div>
+                    <asp:Panel ID="pnlMensajeMarca" runat="server" Visible="false" CssClass="alert mb-0">
+                        <asp:Label ID="lblMensajeMarca" runat="server"></asp:Label>
+                    </asp:Panel>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnGuardarMarca" runat="server" Text="Guardar Marca" CssClass="btn btn-primary" OnClick="btnGuardarMarca_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nueva Categoría -->
+    <div class="modal fade" id="modalNuevaCategoria" tabindex="-1" aria-labelledby="modalNuevaCategoriaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNuevaCategoriaLabel">Crear Nueva Categor&iacute;a</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="txtNuevaCategoria" class="form-label">Nombre de la Categor&iacute;a</label>
+                        <asp:TextBox ID="txtNuevaCategoria" runat="server" CssClass="form-control" placeholder="Ej: Frenos, Motor, etc."></asp:TextBox>
+                    </div>
+                    <asp:Panel ID="pnlMensajeCategoria" runat="server" Visible="false" CssClass="alert mb-0">
+                        <asp:Label ID="lblMensajeCategoria" runat="server"></asp:Label>
+                    </asp:Panel>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnGuardarCategoria" runat="server" Text="Guardar Categor&iacute;a" CssClass="btn btn-primary" OnClick="btnGuardarCategoria_Click" />
+                </div>
+            </div>
         </div>
     </div>
 </asp:Content>

@@ -122,6 +122,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Dashboard_client\Configuracion.aspx" />
+    <Content Include="Dashboard_client\ConfiguracionProductos.aspx" />
     <Content Include="Dashboard_client\HistorialPedidos.aspx" />
     <Content Include="Dashboard_client\Perfil.aspx" />
     <Content Include="Dashboard_client\RestaurarPassword.aspx" />
@@ -249,6 +250,13 @@
     </Compile>
     <Compile Include="Dashboard_client\Configuracion.aspx.designer.cs">
       <DependentUpon>Configuracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard_client\ConfiguracionProductos.aspx.cs">
+      <DependentUpon>ConfiguracionProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard_client\ConfiguracionProductos.aspx.designer.cs">
+      <DependentUpon>ConfiguracionProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboard_client\Dash_client.master.cs">
       <DependentUpon>Dash_client.master</DependentUpon>
