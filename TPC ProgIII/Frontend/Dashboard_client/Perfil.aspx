@@ -6,12 +6,10 @@
         
         <div class="d-flex justify-content-between p-3 border-bottom">
             <span class="fs-4 noto-sans fw-bold">Editar Información Personal</span>
-        </div>
-        
-        <div class="row p-3">
-            <div class="col-12 col-lg-8">
-                <div class="row g-3">
-                    
+        </div>        
+        <div class="row p-3">            
+            <div class="col-12 col-lg-8">                
+                <div class="row g-3">                    
                     <div class="col-12 text-center mb-3">
                         <div class="mb-3">
                             <asp:Image ID="imgFotoPerfil" runat="server" 
@@ -20,98 +18,65 @@
                                 style="object-fit: cover;" 
                                 ImageUrl="~/assets/images/icons/profile-icon.png" />
                         </div>
-                        <asp:FileUpload ID="fileFotoPerfil" runat="server" 
-                            CssClass="d-none" 
-                            accept="image/jpeg,image/jpg,image/png,image/gif" />
+                        <asp:FileUpload ID="fileFotoPerfil" runat="server" CssClass="d-none" accept="image/jpeg,image/jpg,image/png,image/gif" />
                         <button type="button" id="btnSeleccionarFoto" class="btn btn-outline-primary mb-2">
                             <i class="bi bi-camera"></i> Seleccionar Foto
                         </button>
                         <asp:HiddenField ID="hiddenImagenRecortada" runat="server" />
                         <small class="text-muted d-block mt-2">
-                            Formatos permitidos: JPG, PNG, GIF. Tama&ntilde;o m&aacute;ximo: 2MB. Dimensiones recomendadas: 300x300px
+                            Formatos: JPG, PNG, GIF. Máx: 2MB.
                         </small>
                     </div>
 
-                    <div class="modal fade" id="modalRecortar" tabindex="-1">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Recortar Foto de Perfil</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body text-center">
-                                    <img id="imagenRecortar" style="max-width: 100%; max-height: 500px;">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary" id="btnAplicarRecorte">Aplicar Recorte</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <%--Validacion Nombre--%>
-                    <div class="col-12 col-md-6">
-                        <label class="form-label small fw-bold">Nombre / Razón Social</label>
+                    <div class="col-12 col-md-6">                       
+                        <label class="form-label small fw-bold">Nombre</label>
+                         <%--Validaciones Nombre--%>
                         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator ControlToValidate="txtNombre" runat="server" CssClass="text-danger small" ErrorMessage="Campo Obligatorio" Display="Dynamic" />
-                        <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtNombre" runat="server" CssClass="text-danger small" Display="Dynamic" />
-                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtNombre" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />                    
+                        <asp:RequiredFieldValidator ControlToValidate="txtNombre" runat="server" CssClass="text-danger small" ErrorMessage="Requerido" Display="Dynamic" />
+                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtNombre" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
                     </div>
-                     <%--Validacion Apellido--%>
                     <div class="col-12 col-md-6">
                         <label class="form-label small fw-bold">Apellido</label>
+                         <%--Validaciones Apellido--%>
                         <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
-                         <asp:RequiredFieldValidator ControlToValidate="txtApellido" runat="server" CssClass="text-danger small" ErrorMessage="Campo Obligatorio" Display="Dynamic" />
-                         <asp:RequiredFieldValidator ErrorMessage="Requerido" ControlToValidate="txtApellido" runat="server" CssClass="text-danger small" Display="Dynamic" />
-                         <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtApellido" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />                    
+                         <asp:RequiredFieldValidator ControlToValidate="txtApellido" runat="server" CssClass="text-danger small" ErrorMessage="Requerido" Display="Dynamic" />
+                         <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtApellido" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
                     </div>
-                    <%--Validacion Mail--%>
                     <div class="col-12">
-                        <label class="form-label small fw-bold">Correo electrónico</label>
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
-                        <asp:RequiredFieldValidator ControlToValidate="txtEmail" runat="server" CssClass="text-danger small" ErrorMessage="Email requerido" Display="Dynamic" />
-                        <asp:RequiredFieldValidator ErrorMessage="El email es requerido." ControlToValidate="txtEmail" runat="server" 
-                            CssClass="text-danger small" Display="Dynamic" />
-                        <asp:RegularExpressionValidator ErrorMessage="Formato de email inválido." ControlToValidate="txtEmail" runat="server" 
-                            ValidationExpression="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" CssClass="text-danger small" Display="Dynamic" />                    
+                        <label class="form-label small fw-bold">Email</label>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" ReadOnly="true"></asp:TextBox>
                     </div>
-                    <%--Validacion Cel--%>
                     <div class="col-12 col-md-6">
-                        <label class="form-label small fw-bold">Número de contacto</label>
+                        <label class="form-label small fw-bold">Teléfono</label>
                         <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:RegularExpressionValidator ErrorMessage="Solo números" ControlToValidate="txtTelefono" runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />                  
+                         <%--Validaciones Telefono--%>
+                        <asp:RegularExpressionValidator ErrorMessage="Solo números" ControlToValidate="txtTelefono" runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />
                     </div>
-                    <%--Validacion Direccion--%>
+
                     <div class="col-md-6">
                         <label class="form-label small fw-bold">Dirección (Calle)</label>
                         <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtDireccion" 
-                            runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />                    
+                    <%--Validaciones Direccion--%>
+                        <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtDireccion" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
                     </div>
-                    <%--Validacion Altura--%>
                     <div class="col-md-3">
                         <label class="form-label small fw-bold">Altura</label>
                         <asp:TextBox ID="txtAltura" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:RegularExpressionValidator ErrorMessage="Solo números" ControlToValidate="txtAltura" 
-                            runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />                    
+                         <%--Validaciones Altura--%>
+                        <asp:RegularExpressionValidator ErrorMessage="Solo números" ControlToValidate="txtAltura" runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />
                     </div>
-                    <%--Validacion CP--%>
                     <div class="col-md-3">
                         <label class="form-label small fw-bold">C.P.</label>
                         <asp:TextBox ID="txtCP" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:RegularExpressionValidator ErrorMessage="Solo números" ControlToValidate="txtCP" 
-                            runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />                    
+                         <%--Validaciones CP--%>
+                        <asp:RegularExpressionValidator ErrorMessage="Solo números" ControlToValidate="txtCP" runat="server" ValidationExpression="^[0-9]+$" CssClass="text-danger small" Display="Dynamic" />
                     </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Localidad</label>
+                        <asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control"></asp:TextBox>
+                         <%--Validaciones Localidad--%>
+                         <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtLocalidad" runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />
                     </div>
-                    <%--Validacion Localidad--%>
-                    <div class="row g-3 mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label small fw-bold">Localidad</label>
-                            <asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control"></asp:TextBox>
-                            <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtLocalidad" 
-                                runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />                    
-                    </div>
-                    <%--Validacion Provincia--%>
                     <div class="col-md-6">
                         <label class="form-label small fw-bold">Provincia</label>
                         <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control"></asp:TextBox>
@@ -120,7 +85,7 @@
                     </div>
                 </div>        
                 <div class="mt-4 text-start">
-                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" CssClass="btn btn-primary theme-btn-primary" />
+                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" CssClass="btn btn-primary theme-btn-primary px-4" />
                     <br />
                     <asp:Label ID="lblMensaje" runat="server" CssClass="small fw-bold mt-2 d-block" Visible="false"></asp:Label>
                 </div>
@@ -228,70 +193,64 @@
         let cropper;
         let cropperModal;
 
-        document.getElementById('btnSeleccionarFoto').addEventListener('click', function() {
+        document.getElementById('btnSeleccionarFoto').addEventListener('click', function () {
             document.getElementById('<%= fileFotoPerfil.ClientID %>').click();
         });
 
-        document.getElementById('<%= fileFotoPerfil.ClientID %>').addEventListener('change', function(e) {
+        document.getElementById('<%= fileFotoPerfil.ClientID %>').addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     const img = document.getElementById('imagenRecortar');
                     img.src = e.target.result;
-                    
-                    cropperModal = new bootstrap.Modal(document.getElementById('modalRecortar'));
-                    cropperModal.show();
-                    
-                    document.getElementById('modalRecortar').addEventListener('shown.bs.modal', function() {
-                        if (cropper) {
-                            cropper.destroy();
-                        }
-                        cropper = new Cropper(img, {
-                            aspectRatio: 1,
-                            viewMode: 1,
-                            autoCropArea: 0.8,
-                            responsive: true,
-                            guides: true,
-                            center: true,
-                            highlight: false,
-                            cropBoxMovable: true,
-                            cropBoxResizable: true,
-                            toggleDragModeOnDblclick: false,
-                        });
-                    }, { once: true });
+
+                    const modalEl = document.getElementById('modalRecortar');
+                    if (modalEl) {
+                        cropperModal = new bootstrap.Modal(modalEl);
+                        cropperModal.show();
+
+                        modalEl.addEventListener('shown.bs.modal', function () {
+                            if (cropper) { cropper.destroy(); }
+                            cropper = new Cropper(img, {
+                                aspectRatio: 1,
+                                viewMode: 1,
+                                autoCropArea: 0.8,
+                                responsive: true,
+                                guides: true,
+                                center: true,
+                                highlight: false,
+                                cropBoxMovable: true,
+                                cropBoxResizable: true,
+                                toggleDragModeOnDblclick: false,
+                            });
+                        }, { once: true });
+                    }
                 };
                 reader.readAsDataURL(file);
             }
         });
 
-        document.getElementById('btnAplicarRecorte').addEventListener('click', function() {
-            if (cropper) {
-                const canvas = cropper.getCroppedCanvas({
-                    width: 300,
-                    height: 300,
-                    imageSmoothingEnabled: true,
-                    imageSmoothingQuality: 'high'
-                });
-                
-                canvas.toBlob(function(blob) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        document.getElementById('<%= hiddenImagenRecortada.ClientID %>').value = e.target.result;
-                        
-                        const preview = document.getElementById('<%= imgFotoPerfil.ClientID %>');
-                        preview.src = e.target.result;
-                        
-                        cropperModal.hide();
-                        if (cropper) {
-                            cropper.destroy();
-                            cropper = null;
-                        }
-                    };
-                    reader.readAsDataURL(blob);
-                }, 'image/jpeg', 0.9);
-            }
-        });
+        const btnAplicar = document.getElementById('btnAplicarRecorte');
+        if (btnAplicar) {
+            btnAplicar.addEventListener('click', function () {
+                if (cropper) {
+                    const canvas = cropper.getCroppedCanvas({
+                        width: 300, height: 300, imageSmoothingEnabled: true, imageSmoothingQuality: 'high'
+                    });
+                    canvas.toBlob(function (blob) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            document.getElementById('<%= hiddenImagenRecortada.ClientID %>').value = e.target.result;
+                            document.getElementById('<%= imgFotoPerfil.ClientID %>').src = e.target.result;
+                            if (cropperModal) cropperModal.hide();
+                            if (cropper) { cropper.destroy(); cropper = null; }
+                        };
+                        reader.readAsDataURL(blob);
+                    }, 'image/jpeg', 0.9);
+                }
+            });
+        }
     </script>
 
     <!-- Script para mantener el modal abierto si hay error -->
@@ -303,5 +262,23 @@
             };
         </script>
     <% } %>
+
+    <div class="modal fade" id="modalRecortar" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recortar Foto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="imagenRecortar" style="max-width: 100%; max-height: 500px;">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnAplicarRecorte">Aplicar Recorte</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </asp:Content>

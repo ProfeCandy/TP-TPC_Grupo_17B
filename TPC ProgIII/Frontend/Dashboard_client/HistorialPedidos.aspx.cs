@@ -38,7 +38,6 @@ namespace Frontend.Dashboard_client
                 CargarPedidos();
             }
         }
-
         private void CargarPedidos()
         {
             try
@@ -51,7 +50,7 @@ namespace Frontend.Dashboard_client
 
                 if (esAdmin)
                 {
-                    // Si hay filtro por email, usar ese método
+                    // Filtro por email
                     if (!string.IsNullOrWhiteSpace(txtFiltroEmail.Text))
                     {
                         lista = negocio.ListarPorEmail(txtFiltroEmail.Text.Trim());
@@ -102,18 +101,15 @@ namespace Frontend.Dashboard_client
                 Response.Redirect("../Error.aspx");
             }
         }
-
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
             CargarPedidos();
         }
-
         protected void btnLimpiarFiltro_Click(object sender, EventArgs e)
         {
             txtFiltroEmail.Text = "";
             CargarPedidos();
         }
-
         protected void repPedidos_ItemCreated(object sender, RepeaterItemEventArgs e)
         {
             Usuario user = (Usuario)Session["usuario"];

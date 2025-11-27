@@ -22,9 +22,9 @@ namespace Frontend.Dashboard_client
             if (!IsPostBack)
             {
                 CargarDatosEnPantalla();
+                CargarUltimoPedido();
             }
         }
-
         private void CargarDatosEnPantalla()
         {
             Usuario usuarioSesion = (Usuario)Session["usuario"];
@@ -47,7 +47,6 @@ namespace Frontend.Dashboard_client
                 CargarFotoPerfil(usuarioActual);
             }
         }
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -133,7 +132,6 @@ namespace Frontend.Dashboard_client
                 lblMensaje.Visible = true;
             }
         }
-
         private void CargarFotoPerfil(Usuario user)
         {
             if (!string.IsNullOrEmpty(user.UrlFotoPerfil))
@@ -146,7 +144,6 @@ namespace Frontend.Dashboard_client
                 imgFotoPerfil.ImageUrl = ResolveUrl("~/assets/images/icons/profile-icon.png");
             }
         }
-
         private string GuardarFotoPerfil(System.Web.UI.WebControls.FileUpload fileUpload, int idUsuario)
         {
             try
@@ -204,7 +201,6 @@ namespace Frontend.Dashboard_client
                 throw new Exception("Error al guardar la foto de perfil: " + ex.Message);
             }
         }
-
         private string GuardarFotoPerfilDesdeBase64(string base64String, int idUsuario)
         {
             try
@@ -242,7 +238,6 @@ namespace Frontend.Dashboard_client
                 throw new Exception("Error al guardar la foto de perfil: " + ex.Message);
             }
         }
-
         private void EliminarFotoAnterior(string urlFoto)
         {
             try
@@ -258,6 +253,60 @@ namespace Frontend.Dashboard_client
             }
             catch (Exception)
             {
+            }
+        }
+        private void CargarUltimoPedido()
+        {
+            Usuario usuarioSesion = (Usuario)Session["usuario"];
+            PedidoNegocio negocio = new PedidoNegocio();
+
+            try
+            {
+                Pedido ultimo = negocio.ObtenerUltimoPedido(usuarioSesion.IdUsuario);
+
+                if (ultimo != null)
+                {
+                    pnlUltimoPedido.Visible = true;
+                    pnlSinPedidos.Visible = false;
+
+                    lblNroPedido.Text = ultimo.IdPedido.ToString();
+                    lblFecha.Text = ultimo.FechaPedido.ToString("dd/MM/yyyy");
+                    lblTotal.Text = "$ " + ultimo.Total.ToString("N0");
+
+                    if (ultimo.MetodoEnvio == "Domicilio")
+                    {
+                        lblEnvio.Text = "Domicilio";
+                    }
+                    else if (ultimo.MetodoEnvio == "Retiro")
+                    {
+                        lblEnvio.Text = "Retiro";
+                    }
+                    else
+                    {
+                        lblEnvio.Text = string.IsNullOrEmpty(ultimo.MetodoEnvio) ? "-" : ultimo.MetodoEnvio;
+                    }
+
+                    lblEstado.Text = ultimo.Estado;
+                    if (ultimo.Estado == "Entregado" || ultimo.Estado == "Aprobado")
+                    {
+                        lblEstado.CssClass = "badge bg-success-subtle text-success border border-success rounded-pill px-3 py-1";
+                    }
+                    else
+                    {
+                        lblEstado.CssClass = "badge bg-warning-subtle text-warning-emphasis border border-warning rounded-pill px-3 py-1";
+                    }
+
+                    lnkVerDetalle.HRef = "DetallePedidoCliente.aspx?id=" + ultimo.IdPedido;
+                }
+                else
+                {
+                    pnlUltimoPedido.Visible = false;
+                    pnlSinPedidos.Visible = true;
+                }
+            }
+            catch (Exception)
+            {
+                pnlUltimoPedido.Visible = false;
             }
         }
 

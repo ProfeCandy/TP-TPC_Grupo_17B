@@ -105,7 +105,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public List<Pedido> ListarTodos()
         {
             List<Pedido> lista = new List<Pedido>();
@@ -155,7 +154,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public List<Pedido> ListarPorEmail(string email)
         {
             List<Pedido> lista = new List<Pedido>();
@@ -279,6 +277,72 @@ namespace Negocio
                     datosDetalles.cerrarConexion();
                 }
 
+                return pedido;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public Pedido ObtenerUltimoPedido(int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta(@"SELECT TOP 1 IdPedido, FechaPedido, Estado, Total, MetodoEnvio
+                               FROM Pedido 
+                               WHERE IdUsuario = @IdUsuario 
+                               ORDER BY FechaPedido DESC");
+
+                datos.setearParametro("@IdUsuario", idUsuario);
+                datos.ejecutarLectura();
+
+                Pedido pedido = null;
+
+                if (datos.Lector.Read())
+                {
+                    pedido = new Pedido();
+                    pedido.IdPedido = (int)datos.Lector["IdPedido"];
+                    pedido.FechaPedido = (DateTime)datos.Lector["FechaPedido"];
+                    pedido.Estado = (string)datos.Lector["Estado"];
+                    pedido.Total = (decimal)datos.Lector["Total"];
+
+                    if (!(datos.Lector["MetodoEnvio"] is DBNull))
+                        pedido.MetodoEnvio = (string)datos.Lector["MetodoEnvio"];
+                }
+
+                datos.cerrarConexion();
+
+                if (pedido != null)
+                {
+                    AccesoDatos datosDetalle = new AccesoDatos();
+                    datosDetalle.setearConsulta("SELECT TOP 1 IdProducto FROM DetallePedido WHERE IdPedido = @IdPedido");
+                    datosDetalle.setearParametro("@IdPedido", pedido.IdPedido);
+                    datosDetalle.ejecutarLectura();
+
+                    int idProducto = 0;
+                    if (datosDetalle.Lector.Read())
+                    {
+                        idProducto = (int)datosDetalle.Lector["IdProducto"];
+                    }
+                    datosDetalle.cerrarConexion();
+
+                    if (idProducto > 0)
+                    {
+                        ProductoNegocio prodNegocio = new ProductoNegocio();
+                        Producto producto = prodNegocio.ObtenerPorId(idProducto);
+
+                        pedido.Detalles = new List<DetallePedido>();
+                        DetallePedido detalle = new DetallePedido();
+                        detalle.Producto = producto;
+
+                        pedido.Detalles.Add(detalle);
+                    }
+                }
                 return pedido;
             }
             catch (Exception ex)
