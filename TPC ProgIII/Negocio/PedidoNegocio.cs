@@ -354,5 +354,26 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void ActualizarEstadoPedido(int idPedido, string nuevoEstado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Pedido SET Estado = @Estado WHERE IdPedido = @IdPedido");
+                datos.setearParametro("@Estado", nuevoEstado);
+                datos.setearParametro("@IdPedido", idPedido);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
