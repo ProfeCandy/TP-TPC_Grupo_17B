@@ -20,7 +20,7 @@ namespace Frontend.Dashboard_client
             }
 
             Usuario user = (Usuario)Session["usuario"];
-            bool esAdmin = user.Rol != null && user.Rol.NombreRol.ToLower() == "administrador";
+            bool esAdmin = user.Rol != null && (user.Rol.NombreRol.ToLower() == "administrador" || user.Rol.NombreRol.ToLower() == "vendedor");
 
             if (esAdmin)
             {
@@ -46,7 +46,7 @@ namespace Frontend.Dashboard_client
             try
             {
                 Usuario user = (Usuario)Session["usuario"];
-                bool esAdmin = user.Rol != null && user.Rol.NombreRol.ToLower() == "administrador";
+                bool esAdmin = user.Rol != null && (user.Rol.NombreRol.ToLower() == "administrador" || user.Rol.NombreRol.ToLower() == "vendedor");
 
                 PedidoNegocio negocio = new PedidoNegocio();
                 List<Pedido> lista;
@@ -117,7 +117,7 @@ namespace Frontend.Dashboard_client
         {
             // es admin?
             Usuario user = (Usuario)Session["usuario"];
-            bool esAdmin = user != null && user.Rol != null && user.Rol.NombreRol.ToLower() == "administrador";
+            bool esAdmin = user != null && user.Rol != null && (user.Rol.NombreRol.ToLower() == "administrador" || user.Rol.NombreRol.ToLower() == "vendedor");
 
             // configura th
             if (e.Item.ItemType == ListItemType.Header)
@@ -192,7 +192,7 @@ namespace Frontend.Dashboard_client
                 catch (Exception ex)
                 {
                     Session.Add("error", ex.ToString());
-                    Response.Redirect("../Error.aspx");
+                    Response.Redirect("../Error.aspx", false);
                 }
             }
         }
