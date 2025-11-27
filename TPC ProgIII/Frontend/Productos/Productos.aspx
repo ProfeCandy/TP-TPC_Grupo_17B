@@ -8,6 +8,34 @@
             <div class="col-12">
                 <h2 class="text-uppercase text-danger fw-bold">Catálogo de Productos</h2>
                 <p class="text-muted">Explorá nuestra variedad de repuestos y accesorios.</p>
+                <%--Botones de Ordenamiento--%>
+                <div class="col-md-5">
+                    <div class="d-flex justify-content-md-end align-items-center gap-2">
+                        <span class="fw-bold small text-muted">Ordenar:</span>
+        
+                        <div class="btn-group" role="group">
+                            <asp:LinkButton ID="btnOrdenAZ" runat="server" CssClass="btn btn-outline-secondary btn-sm" 
+                                OnClick="btnOrden_Click" CommandArgument="3" ToolTip="Nombre A-Z">
+                                <i class="bi bi-sort-alpha-down"></i>
+                            </asp:LinkButton>
+            
+                            <asp:LinkButton ID="btnOrdenZA" runat="server" CssClass="btn btn-outline-secondary btn-sm" 
+                                OnClick="btnOrden_Click" CommandArgument="4" ToolTip="Nombre Z-A">
+                                <i class="bi bi-sort-alpha-down-alt"></i>
+                            </asp:LinkButton>
+
+                            <asp:LinkButton ID="btnOrdenPrecioMenor" runat="server" CssClass="btn btn-outline-secondary btn-sm" 
+                                OnClick="btnOrden_Click" CommandArgument="1" ToolTip="Menor Precio">
+                                <i class="bi bi-sort-numeric-down"></i> $
+                            </asp:LinkButton>
+
+                            <asp:LinkButton ID="btnOrdenPrecioMayor" runat="server" CssClass="btn btn-outline-secondary btn-sm" 
+                                OnClick="btnOrden_Click" CommandArgument="2" ToolTip="Mayor Precio">
+                                <i class="bi bi-sort-numeric-up-alt"></i> $
+                            </asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
                 <asp:Panel ID="pnlAdminActions" runat="server" Visible="false" CssClass="mt-3 d-flex gap-2 flex-wrap">
                     <a href="FormularioProducto.aspx" class="btn btn-danger">
                         <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Producto
@@ -18,6 +46,7 @@
                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalNuevaCategoria">
                         <i class="bi bi-plus-circle me-2"></i>Nueva Categor&iacute;a
                     </button>
+
                 </asp:Panel>
             </div>
         </div>

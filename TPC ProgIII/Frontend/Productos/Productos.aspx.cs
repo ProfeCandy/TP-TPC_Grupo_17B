@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace TPC_ProgIII
@@ -9,7 +10,6 @@ namespace TPC_ProgIII
     public partial class Productos : System.Web.UI.Page
     {
         public List<Producto> ListaProductos { get; set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -18,37 +18,22 @@ namespace TPC_ProgIII
                 
                 string idCategoria = Request.QueryString["id"];
                 string busqueda = Request.QueryString["q"];
+                string orden = Request.QueryString["sort"];
 
-                if (idCategoria != null)
-                {
-                    int idParsed;
-                    if (int.TryParse(idCategoria, out idParsed))
-                    {
-                        cargarProductos(idCategoria: idParsed);
-                    }
-                    else
-                    {
-                        cargarProductos();
-                    }
-                }
-                else if (busqueda != null)
-                {
-                    cargarProductos(busqueda: busqueda);
-                }
-                else
-                {
-                    cargarProductos();
-                }
+                int idParsed = 0;
+                if (idCategoria != null) int.TryParse(idCategoria, out idParsed);
+
+                // Llama a cargar con todos los datos
+                cargarProductos(idParsed, busqueda, orden);
             }
         }
-        private void cargarProductos(int idCategoria = 0, string busqueda = null)
+        private void cargarProductos(int idCategoria = 0, string busqueda = null, string orden = "0")
         {
             ProductoNegocio negocio = new ProductoNegocio();
             try
             {
                 if (idCategoria != 0)
                 {
-                    // Usamos ProductoNegocio
                     ListaProductos = negocio.ListarPorCategoria(idCategoria);
                 }
                 else if (!string.IsNullOrEmpty(busqueda))
@@ -78,6 +63,25 @@ namespace TPC_ProgIII
                 {
                     // Sin filtros (Trae todo)
                     ListaProductos = negocio.Listar();
+                }
+
+                // Ordenamiento
+                switch (orden)
+                {
+                    case "1": // Menor
+                        ListaProductos = ListaProductos.OrderBy(x => x.Precio).ToList();
+                        break;
+                    case "2": // Mayor
+                        ListaProductos = ListaProductos.OrderByDescending(x => x.Precio).ToList();
+                        break;
+                    case "3": // A-Z
+                        ListaProductos = ListaProductos.OrderBy(x => x.NombreProducto).ToList();
+                        break;
+                    case "4": // Z-A
+                        ListaProductos = ListaProductos.OrderByDescending(x => x.NombreProducto).ToList();
+                        break;
+                    default:
+                        break;
                 }
 
                 // Enlazamos la lista al Repeater
@@ -217,5 +221,29 @@ namespace TPC_ProgIII
                 lblMensajeCategoria.Text = "Error al crear la categor&iacute;a: " + ex.Message;
             }
         }
+        // Manejo de botones de ordenamiento
+        protected void btnOrden_Click(object sender, EventArgs e)
+        {
+            // Agarramos el criterio nuevo
+            LinkButton btn = (LinkButton)sender;
+            string nuevoOrden = btn.CommandArgument;
+
+            // Recuperamos los filtros actuales
+            string idCategoria = Request.QueryString["id"];
+            string busqueda = Request.QueryString["q"];
+
+            string url = "Productos.aspx?";
+
+            // Agregamos los parámetros que ya estaban
+            if (idCategoria != null) url += "id=" + idCategoria + "&";
+            if (busqueda != null) url += "q=" + busqueda + "&";
+
+            // Agregamos el orden nuevo
+            url += "sort=" + nuevoOrden;
+
+            // Redirigimos para no tener el cartel de recarga feo
+            Response.Redirect(url);
+        }
+
     }
 }
