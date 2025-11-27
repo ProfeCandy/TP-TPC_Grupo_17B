@@ -260,5 +260,59 @@ namespace Frontend.Dashboard_client
             {
             }
         }
+
+        protected void btnConfirmarDesactivacion_Click(object sender, EventArgs e)
+        {
+            // Valida campos vacíos
+            if (string.IsNullOrEmpty(txtConfirmEmail.Text) || string.IsNullOrEmpty(txtConfirmPassword.Text))
+            {
+                MostrarErrorModal("Debe ingresar su email y contraseña para confirmar.");
+                return;
+            }
+
+            // Recupera usuario de sesión
+            Usuario usuarioLogueado = (Usuario)Session["usuario"];
+
+            // Valida email
+            if (!usuarioLogueado.Email.Equals(txtConfirmEmail.Text, StringComparison.OrdinalIgnoreCase))
+            {
+                MostrarErrorModal("El email ingresado no coincide con su cuenta actual.");
+                return;
+            }
+
+            // Valida contraseña --> Revisar si llegamos a hashear la pass en el future
+            if (usuarioLogueado.Clave != txtConfirmPassword.Text)
+            {
+                MostrarErrorModal("La contraseña ingresada es incorrecta.");
+                return;
+            }
+
+            try
+            {
+                // Baja Lógica
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                negocio.EliminarLogico(usuarioLogueado.IdUsuario);
+
+                // Cierra sesión y kick
+                Session.Clear();
+                Session.Abandon();
+
+                // Redirige al inicio
+                Response.Redirect("~/Inicio.aspx?msg=cuenta_baja", false);
+            }
+            catch (Exception ex)
+            {
+                MostrarErrorModal("Error al procesar la solicitud: " + ex.Message);
+            }
+        }
+
+        private void MostrarErrorModal(string mensaje)
+        {
+            lblErrorDesactivar.Text = mensaje;
+            pnlErrorDesactivar.Visible = true;
+
+           
+            txtConfirmPassword.Text = string.Empty;
+        }
     }
 }

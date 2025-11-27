@@ -118,20 +118,32 @@
                         <asp:RegularExpressionValidator ErrorMessage="Sin números" ControlToValidate="txtProvincia" 
                             runat="server" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" CssClass="text-danger small" Display="Dynamic" />                    
                     </div>
-                </div>              
-                <div class="mt-4 text-end">
+                </div>        
+                <div class="mt-4 text-start">
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" CssClass="btn btn-primary theme-btn-primary" />
                     <br />
                     <asp:Label ID="lblMensaje" runat="server" CssClass="small fw-bold mt-2 d-block" Visible="false"></asp:Label>
                 </div>
-
             </div>
             
-            <div class="col-12 col-lg-4 d-none d-lg-block bg-light theme-border-radius ms-auto">
-                </div>
+            <div class="col-12 col-lg-4 d-none d-lg-block bg-light theme-border-radius ms-auto"></div>
         </div>
     </div>
 
+    <div class="col-12 col-lg-5">
+        <div class="d-flex flex-column theme-border-radius border border-danger bg-light mb-4 my-4 p-4">
+            <h6 class="fw-bold text-danger mb-3">Zona de peligro</h6>
+            <p class="font-extra-small text-muted mb-3">
+                Si desactivas tu cuenta, no podrás realizar nuevos pedidos y perderás el accedo a tu cuenta.
+            </p>
+            <p class="font-extra-small text-muted mb-3 font-small">
+                Si deseas reactivar tu cuenta en el futuro deberás comunicarte con un administrador.
+            </p>
+            <button type="button" class="btn btn-outline-danger btn-sm fw-bold w-100" data-bs-toggle="modal" data-bs-target="#modalDesactivar">
+                Desactivar cuenta
+            </button>
+        </div>
+    </div>
     <div class="d-flex justify-content-between p-3 mt-5">
         <span class="noto-sans fw-bold">Últimos pedidos</span>
     </div>
@@ -166,6 +178,45 @@
                         </div>
 
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN -->
+    <div class="modal fade" id="modalDesactivar" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title fw-bold" id="modalLabel"><i class="bi bi-exclamation-triangle-fill me-2"></i>Atención</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="fw-bold text-danger">¿Está seguro que desea desactivar su cuenta?</p>
+                    <p class="small text-muted">Este proceso bloqueará su acceso al sistema. Para confirmar, por favor ingrese sus credenciales.</p>
+                
+                    <div class="mb-3">
+                        <label for="txtConfirmEmail" class="form-label small fw-bold">Correo Electrónico</label>
+                        <asp:TextBox ID="txtConfirmEmail" runat="server" CssClass="form-control" placeholder="tucorreo@ejemplo.com"></asp:TextBox>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtConfirmPassword" class="form-label small fw-bold">Contraseña Actual</label>
+                        <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="********"></asp:TextBox>
+                    </div>
+                
+                    <!-- Panel para mostrar errores de validación dentro del modal -->
+                    <asp:Panel ID="pnlErrorDesactivar" runat="server" Visible="false" CssClass="alert alert-danger p-2 small">
+                        <asp:Label ID="lblErrorDesactivar" runat="server"></asp:Label>
+                    </asp:Panel>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                
+                    <!-- BOTÓN 2: El que ejecuta la lógica real -->
+                    <asp:Button ID="btnConfirmarDesactivacion" runat="server" 
+                        Text="Confirmar desactivación de cuenta" 
+                        CssClass="btn btn-danger fw-bold" 
+                        OnClick="btnConfirmarDesactivacion_Click" />
                 </div>
             </div>
         </div>
@@ -242,5 +293,15 @@
             }
         });
     </script>
+
+    <!-- Script para mantener el modal abierto si hay error -->
+    <% if (pnlErrorDesactivar.Visible) { %>
+        <script>
+            window.onload = function () {
+                var myModal = new bootstrap.Modal(document.getElementById('modalDesactivar'));
+                myModal.show();
+            };
+        </script>
+    <% } %>
 
 </asp:Content>

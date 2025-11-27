@@ -147,10 +147,5 @@ namespace Frontend.Dashboard_client
                 lblMensajeEmail.Visible = true;
             }
         }
-
-        protected void btnDesactivar_Click(object sender, EventArgs e)
-        {
-           
-        }
     }
 }

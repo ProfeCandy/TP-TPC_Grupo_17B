@@ -36,67 +36,18 @@
                     </div>
                 </div>
             </div>
-
-             <%--<div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4 p-4">
-                <div class="border-bottom pb-3 mb-3">
-                    <h5 class="fw-bold noto-sans"><i class="bi bi-download me-2 text-success"></i>Centro de Descargas</h5>
-                    <small class="text-muted">Descarga listas actualizadas para tu negocio.</small>
-                </div>
-                
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-file-earmark-excel fs-3 text-success me-3"></i>
-                        <div class="d-flex flex-column">
-                            <span class="fw-bold small">Lista de Precios Completa</span>
-                            <span class="font-extra-small text-muted">Formato .XLSX - Actualizado hoy</span>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-secondary btn-sm"><i class="bi bi-download"></i> Descargar</button>
-                </div>
-                 
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-file-earmark-pdf fs-3 text-danger me-3"></i>
-                        <div class="d-flex flex-column">
-                            <span class="fw-bold small">Catálogo Ilustrado</span>
-                            <span class="font-extra-small text-muted">Formato .PDF - 15MB</span>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-secondary btn-sm"><i class="bi bi-download"></i> Descargar</button>
-                </div>
-            </div>--%>
         </div>
 
         <div class="col-12 col-lg-5">
-            
-            <%--<div class="d-flex flex-column theme-border-radius theme-bg-white theme-box-shadow mb-4 p-4">
-                <div class="border-bottom pb-3 mb-3">
-                    <h5 class="fw-bold noto-sans"><i class="bi bi-bell me-2 text-warning"></i>Notificaciones</h5>
-                    <small class="text-muted">Elige qué correos quieres recibir.</small>
-                </div>
-
-                <div class="form-check mb-2">
-                    <asp:CheckBox ID="chkNotifPedidos" runat="server" CssClass="form-check-input" Checked="true" />
-                    <label class="form-check-label small ms-2" for="<%= chkNotifPedidos.ClientID %>">Cambios de estado en mis pedidos</label>
-                </div>
-                <div class="form-check mb-2">
-                    <asp:CheckBox ID="chkNotifOfertas" runat="server" CssClass="form-check-input" />
-                    <label class="form-check-label small ms-2" for="<%= chkNotifOfertas.ClientID %>">Ofertas y promociones semanales</label>
-                </div>
-                 <div class="form-check">
-                    <asp:CheckBox ID="chkNotifStock" runat="server" CssClass="form-check-input" />
-                    <label class="form-check-label small ms-2" for="<%= chkNotifStock.ClientID %>">Avisos de reposición de stock</label>
-                </div>
-            </div>--%>
-
             <div class="d-flex flex-column theme-border-radius border border-danger bg-light mb-4 my-4 p-4">
                 <h6 class="fw-bold text-danger mb-3">Zona de peligro</h6>
                 <p class="font-extra-small text-muted mb-3">
                     Si desactivas tu cuenta, no podrás realizar nuevos pedidos y perderás tu historial.
                 </p>
-                <asp:Button ID="btnDesactivar" runat="server" Text="Desactivar cuenta" CssClass="btn btn-outline-danger btn-sm fw-bold w-100" OnClick="btnDesactivar_Click" OnClientClick="return confirm('¿Estás seguro de que deseas desactivar tu cuenta?');" />
+                <button type="button" class="btn btn-outline-danger btn-sm fw-bold w-100" data-bs-toggle="modal" data-bs-target="#modalDesactivar">
+                    Desactivar cuenta
+                </button>
             </div>
-
         </div>
 
         <asp:Panel ID="pnlGestionRoles" runat="server" Visible="false">
