@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="col-12 col-lg-5">
+        <%--<div class="col-12 col-lg-5">
             <div class="d-flex flex-column theme-border-radius border border-danger bg-light mb-4 my-4 p-4">
                 <h6 class="fw-bold text-danger mb-3">Zona de peligro</h6>
                 <p class="font-extra-small text-muted mb-3">
@@ -48,7 +48,7 @@
                     Desactivar cuenta
                 </button>
             </div>
-        </div>
+        </div>--%>
 
         <asp:Panel ID="pnlGestionRoles" runat="server" Visible="false">
             <div class="col-12">
