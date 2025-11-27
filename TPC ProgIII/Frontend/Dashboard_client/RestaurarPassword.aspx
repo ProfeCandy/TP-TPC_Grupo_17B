@@ -24,12 +24,19 @@
 
                     <div class="mb-3">
                         <label for="txtPassNueva" class="form-label fw-bold small">Nueva contraseña</label>
-                        <asp:TextBox ID="txtPassNueva" runat="server" CssClass="form-control" TextMode="Password" placeholder="Mínimo 8 caracteres"></asp:TextBox>
+                        <asp:TextBox ID="txtPassNueva" runat="server" CssClass="form-control" TextMode="Password" placeholder="Mínimo 6 caracteres"></asp:TextBox>
+                    <%--Validacion Pass Nueva--%>
+                    <asp:RequiredFieldValidator ControlToValidate="txtPassNueva" runat="server" Display="None" ErrorMessage="La contraseña es obligatoria." />    
+                    <asp:RegularExpressionValidator ControlToValidate="txtPassNueva" runat="server" Display="None" ErrorMessage="La contraseña nueva debe tener al menos 6 caracteres." ValidationExpression="^.{6,}$" />    
+                    <asp:RegularExpressionValidator ControlToValidate="txtPassNueva" runat="server" Display="None" ErrorMessage="La contraseña nueva debe tener al menos una mayúscula." ValidationExpression="^.*[A-Z].*$" />    
+                    <asp:RegularExpressionValidator ControlToValidate="txtPassNueva" runat="server" Display="None" ErrorMessage="La contraseña nueva debe tener al menos un número." ValidationExpression="^.*[0-9].*$" />
                     </div>
 
                     <div class="mb-4">
                         <label for="txtPassConfirmar" class="form-label fw-bold small">Confirmar nueva contraseña</label>
                         <asp:TextBox ID="txtPassConfirmar" runat="server" CssClass="form-control" TextMode="Password" placeholder="Repite la nueva contraseña"></asp:TextBox>
+                    <%--Validacion Confirmar Pass Nueva--%>
+                        <asp:RequiredFieldValidator ControlToValidate="txtPassConfirmar" runat="server" Display="None" ErrorMessage="La contraseña nueva es obligatoria." />
                     </div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
@@ -42,7 +49,7 @@
                     <div class="bg-light p-3 rounded border">
                         <h6 class="fw-bold noto-sans mb-3 text-primary">Requisitos de seguridad</h6>
                         <ul class="small text-muted ps-3 mb-0">
-                            <li class="mb-1">Mínimo 8 caracteres.</li>
+                            <li class="mb-1">Mínimo 6 caracteres.</li>
                             <li class="mb-1">Al menos una letra mayúscula.</li>
                             <li class="mb-1">Al menos un número.</li>
                             <li>No puede ser igual a la anterior.</li>

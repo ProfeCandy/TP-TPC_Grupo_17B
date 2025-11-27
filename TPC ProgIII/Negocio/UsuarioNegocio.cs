@@ -459,5 +459,53 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        // Método para verificar si la contraseña actual es correcta
+        public bool VerificarContrasenaActual(int idUsuario, string passActual)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM Usuario WHERE IdUsuario = @Id AND Clave = @Clave");
+                datos.setearParametro("@Id", idUsuario);
+                datos.setearParametro("@Clave", passActual);
+
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector[0];
+                    return cantidad > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        // Método para modificar la contraseña
+        public void ModificarClave(int idUsuario, string nuevaClave)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Usuario SET Clave = @Clave WHERE IdUsuario = @IdUsuario");
+                datos.setearParametro("@Clave", nuevaClave);
+                datos.setearParametro("@IdUsuario", idUsuario);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
