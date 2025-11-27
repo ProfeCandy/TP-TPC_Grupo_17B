@@ -111,7 +111,7 @@ namespace TPC_ProgIII
         /// Campo generado autom�ticamente.
         /// Para modificarlo, mueva la declaraci�n del campo del archivo del dise�ador al archivo de c�digo subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlImagenActual;
+        protected global::System.Web.UI.WebControls.Panel pnlImagenesActuales;
 
         /// <summary>
         /// Control imgActual.
@@ -120,7 +120,7 @@ namespace TPC_ProgIII
         /// Campo generado autom�ticamente.
         /// Para modificarlo, mueva la declaraci�n del campo del archivo del dise�ador al archivo de c�digo subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgActual;
+        protected global::System.Web.UI.WebControls.Repeater repImagenesActuales;
 
         /// <summary>
         /// Control btnGuardar.

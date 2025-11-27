@@ -27,6 +27,8 @@
                         <p class="text-muted">Nosotros te contactaremos a la brevedad.</p>
                     </div>
 
+                    <asp:Label ID="lblMensaje" runat="server" Visible="false" CssClass="alert mb-4" style="display: block;"></asp:Label>
+
                     <div class="row g-3">
                         <!-- Nombre completo -->
                         <div class="col-12 mb-3">

@@ -95,9 +95,9 @@ namespace TPC_ProgIII
 
                     if (producto.Imagenes != null && producto.Imagenes.Count > 0)
                     {
-                        string imagenUrl = producto.Imagenes[0].UrlImagen;
-                        imgActual.ImageUrl = imagenUrl;
-                        pnlImagenActual.Visible = true;
+                        repImagenesActuales.DataSource = producto.Imagenes;
+                        repImagenesActuales.DataBind();
+                        pnlImagenesActuales.Visible = true;
                     }
                 }
             }
@@ -143,11 +143,21 @@ namespace TPC_ProgIII
 
                 if (fileImagen.HasFile)
                 {
-                    string errorValidacion = ValidarImagen(fileImagen);
-                    if (!string.IsNullOrEmpty(errorValidacion))
+                    HttpFileCollection archivos = Request.Files;
+                    int archivosValidos = 0;
+                    for (int i = 0; i < archivos.Count; i++)
                     {
-                        MostrarMensaje(errorValidacion, true);
-                        return;
+                        HttpPostedFile archivo = archivos[i];
+                        if (archivo != null && archivo.ContentLength > 0 && !string.IsNullOrEmpty(archivo.FileName))
+                        {
+                            archivosValidos++;
+                            string errorValidacion = ValidarImagenArchivo(archivo);
+                            if (!string.IsNullOrEmpty(errorValidacion))
+                            {
+                                MostrarMensaje($"Error en archivo {archivosValidos}: {errorValidacion}", true);
+                                return;
+                            }
+                        }
                     }
                 }
 
@@ -177,42 +187,37 @@ namespace TPC_ProgIII
                 {
                     producto.IdProducto = int.Parse(Request.QueryString["id"]);
                     
-                    if (fileImagen.HasFile)
+                    Producto productoExistente = negocio.ObtenerPorId(producto.IdProducto);
+                    if (productoExistente != null && productoExistente.Imagenes != null && productoExistente.Imagenes.Count > 0)
                     {
-                        string nombreArchivo = GuardarImagen(fileImagen, producto.IdProducto);
-                        if (!string.IsNullOrEmpty(nombreArchivo))
-                        {
-                            ProductoImagen nuevaImagen = new ProductoImagen();
-                            nuevaImagen.UrlImagen = nombreArchivo;
-                            producto.Imagenes = new List<ProductoImagen> { nuevaImagen };
-                        }
-                        else
-                        {
-                            Producto productoExistente = negocio.ObtenerPorId(producto.IdProducto);
-                            if (productoExistente != null && productoExistente.Imagenes != null && productoExistente.Imagenes.Count > 0)
-                            {
-                                producto.Imagenes = productoExistente.Imagenes;
-                            }
-                            else
-                            {
-                                producto.Imagenes = new List<ProductoImagen>();
-                            }
-                        }
+                        producto.Imagenes = productoExistente.Imagenes;
                     }
                     else
                     {
-                        Producto productoExistente = negocio.ObtenerPorId(producto.IdProducto);
-                        if (productoExistente != null && productoExistente.Imagenes != null && productoExistente.Imagenes.Count > 0)
-                        {
-                            producto.Imagenes = productoExistente.Imagenes;
-                        }
-                        else
-                        {
-                            producto.Imagenes = new List<ProductoImagen>();
-                        }
+                        producto.Imagenes = new List<ProductoImagen>();
                     }
 
                     negocio.Modificar(producto);
+
+                    if (fileImagen.HasFile)
+                    {
+                        HttpFileCollection archivos = Request.Files;
+                        ImagenNegocio imagenNegocio = new ImagenNegocio();
+                        
+                        for (int i = 0; i < archivos.Count; i++)
+                        {
+                            HttpPostedFile archivo = archivos[i];
+                            if (archivo != null && archivo.ContentLength > 0 && !string.IsNullOrEmpty(archivo.FileName))
+                            {
+                                string nombreArchivo = GuardarImagenArchivo(archivo, producto.IdProducto);
+                                if (!string.IsNullOrEmpty(nombreArchivo))
+                                {
+                                    imagenNegocio.Agregar(producto.IdProducto, nombreArchivo);
+                                }
+                            }
+                        }
+                    }
+
                     MostrarMensaje("Producto actualizado correctamente.", false);
                 }
                 else
@@ -223,14 +228,20 @@ namespace TPC_ProgIII
 
                     if (fileImagen.HasFile)
                     {
-                        string nombreArchivo = GuardarImagen(fileImagen, producto.IdProducto);
-                        if (!string.IsNullOrEmpty(nombreArchivo))
+                        HttpFileCollection archivos = Request.Files;
+                        ImagenNegocio imagenNegocio = new ImagenNegocio();
+                        
+                        for (int i = 0; i < archivos.Count; i++)
                         {
-                            AccesoDatos datos = new AccesoDatos();
-                            datos.setearConsulta("INSERT INTO Imagen (IdProducto, UrlImagen) VALUES (@IdProducto, @UrlImagen)");
-                            datos.setearParametro("@IdProducto", producto.IdProducto);
-                            datos.setearParametro("@UrlImagen", nombreArchivo);
-                            datos.ejecutarAccion();
+                            HttpPostedFile archivo = archivos[i];
+                            if (archivo != null && archivo.ContentLength > 0 && !string.IsNullOrEmpty(archivo.FileName))
+                            {
+                                string nombreArchivo = GuardarImagenArchivo(archivo, producto.IdProducto);
+                                if (!string.IsNullOrEmpty(nombreArchivo))
+                                {
+                                    imagenNegocio.Agregar(producto.IdProducto, nombreArchivo);
+                                }
+                            }
                         }
                     }
                 }
@@ -243,11 +254,11 @@ namespace TPC_ProgIII
             }
         }
 
-        private string ValidarImagen(FileUpload fileUpload)
+        private string ValidarImagenArchivo(HttpPostedFile archivo)
         {
             try
             {
-                string extension = Path.GetExtension(fileUpload.FileName).ToLower();
+                string extension = Path.GetExtension(archivo.FileName).ToLower();
                 string[] extensionesPermitidas = { ".jpg", ".jpeg", ".png", ".gif" };
                 
                 if (!extensionesPermitidas.Contains(extension))
@@ -255,7 +266,7 @@ namespace TPC_ProgIII
                     return "Formato de imagen no v&aacute;lido. Use JPG, PNG o GIF.";
                 }
 
-                if (fileUpload.PostedFile.ContentLength > 2 * 1024 * 1024)
+                if (archivo.ContentLength > 2 * 1024 * 1024)
                 {
                     return "La imagen es demasiado grande. M&aacute;ximo 2MB.";
                 }
@@ -268,22 +279,22 @@ namespace TPC_ProgIII
             }
         }
 
-        private string GuardarImagen(FileUpload fileUpload, int idProducto)
+        private string GuardarImagenArchivo(HttpPostedFile archivo, int idProducto)
         {
             try
             {
-                byte[] imagenBytes = new byte[fileUpload.PostedFile.ContentLength];
-                fileUpload.PostedFile.InputStream.Position = 0;
-                fileUpload.PostedFile.InputStream.Read(imagenBytes, 0, imagenBytes.Length);
+                byte[] imagenBytes = new byte[archivo.ContentLength];
+                archivo.InputStream.Position = 0;
+                archivo.InputStream.Read(imagenBytes, 0, imagenBytes.Length);
 
-                string extension = Path.GetExtension(fileUpload.FileName).ToLower();
+                string extension = Path.GetExtension(archivo.FileName).ToLower();
                 string carpetaImagenes = Server.MapPath("~/assets/img/productos/");
                 if (!Directory.Exists(carpetaImagenes))
                 {
                     Directory.CreateDirectory(carpetaImagenes);
                 }
 
-                string nombreArchivo = $"producto_{idProducto}_{DateTime.Now.Ticks}{extension}";
+                string nombreArchivo = $"producto_{idProducto}_{DateTime.Now.Ticks}_{Guid.NewGuid().ToString().Substring(0, 8)}{extension}";
                 string rutaCompleta = Path.Combine(carpetaImagenes, nombreArchivo);
 
                 File.WriteAllBytes(rutaCompleta, imagenBytes);
@@ -294,6 +305,30 @@ namespace TPC_ProgIII
             {
                 MostrarMensaje("Error al guardar la imagen: " + ex.Message, true);
                 return null;
+            }
+        }
+
+        protected void repImagenesActuales_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "EliminarImagen")
+            {
+                try
+                {
+                    int idImagen = Convert.ToInt32(e.CommandArgument);
+                    ImagenNegocio imagenNegocio = new ImagenNegocio();
+                    imagenNegocio.Eliminar(idImagen);
+
+                    if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+                    {
+                        int idProducto = int.Parse(Request.QueryString["id"]);
+                        CargarProducto(idProducto);
+                        MostrarMensaje("Imagen eliminada correctamente.", false);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MostrarMensaje("Error al eliminar la imagen: " + ex.Message, true);
+                }
             }
         }
 

@@ -4,13 +4,35 @@
     <style>
         .product-thumb {
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.2s, border-color 0.2s;
+            border: 2px solid transparent;
         }
         .product-thumb:hover {
             transform: scale(1.05);
             border-color: #dc3545;
         }
+        .product-thumb.active {
+            border-color: #dc3545;
+            border-width: 3px;
+        }
     </style>
+    <script>
+        function cambiarImagenPrincipal(urlImagen, elemento) {
+            var imgPrincipal = document.getElementById('<%= imgProductoPrincipal.ClientID %>');
+            if (imgPrincipal) {
+                imgPrincipal.src = urlImagen;
+            }
+            
+            var thumbs = document.querySelectorAll('.product-thumb');
+            thumbs.forEach(function(thumb) {
+                thumb.classList.remove('active');
+            });
+            
+            if (elemento) {
+                elemento.classList.add('active');
+            }
+        }
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -42,11 +64,12 @@
                             <asp:Image ID="imgProductoPrincipal" runat="server" CssClass="w-100 h-100 object-fit-contain p-3" AlternateText="Imagen del producto" />
                         </div>
 
+                        <!-- Galería de Miniaturas -->
                         <div class="d-flex flex-wrap justify-content-center gap-2">
-                            <asp:Repeater ID="repImagenes" runat="server">
+                            <asp:Repeater ID="repImagenes" runat="server" OnItemDataBound="repImagenes_ItemDataBound">
                                 <ItemTemplate>
                                     <asp:Image runat="server" 
-                                        ImageUrl='<%# Eval("UrlImagen") %>' 
+                                        ID="imgThumbnail"
                                         CssClass="img-thumbnail product-thumb" 
                                         Width="80" Height="80" 
                                         style="object-fit: cover;" />

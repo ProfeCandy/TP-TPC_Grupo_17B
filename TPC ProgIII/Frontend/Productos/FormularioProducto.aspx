@@ -60,14 +60,31 @@
                         </div>
 
                         <div class="col-12">
-                            <label for="fileImagen" class="form-label fw-semibold">Imagen del Producto</label>
-                            <asp:FileUpload ID="fileImagen" runat="server" CssClass="form-control" accept="image/*" />
-                            <small class="text-muted">Formatos permitidos: JPG, PNG, GIF. Tama&ntilde;o m&aacute;ximo: 2MB.</small>
+                            <label for="fileImagen" class="form-label fw-semibold">Imágenes del Producto</label>
+                            <asp:FileUpload ID="fileImagen" runat="server" CssClass="form-control" accept="image/*" AllowMultiple="true" />
+                            <small class="text-muted">Formatos permitidos: JPG, PNG, GIF. Tama&ntilde;o m&aacute;ximo: 2MB por imagen. Podés seleccionar m&uacute;ltiples archivos.</small>
                             
-                            <asp:Panel ID="pnlImagenActual" runat="server" Visible="false" CssClass="mt-3">
-                                <label class="form-label fw-semibold">Imagen actual:</label>
-                                <div class="mt-2">
-                                    <asp:Image ID="imgActual" runat="server" CssClass="img-thumbnail" style="max-width: 300px; max-height: 200px;" />
+                            <asp:Panel ID="pnlImagenesActuales" runat="server" Visible="false" CssClass="mt-4">
+                                <label class="form-label fw-semibold mb-3">Imágenes actuales:</label>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <asp:Repeater ID="repImagenesActuales" runat="server" OnItemCommand="repImagenesActuales_ItemCommand">
+                                        <ItemTemplate>
+                                            <div class="position-relative" style="width: 150px;">
+                                                <asp:Image ID="imgProducto" runat="server" 
+                                                    ImageUrl='<%# ResolveUrl(Eval("UrlImagen").ToString()) %>' 
+                                                    CssClass="img-thumbnail w-100" 
+                                                    style="height: 150px; object-fit: cover;" />
+                                                <asp:LinkButton ID="btnEliminarImagen" runat="server" 
+                                                    CommandArgument='<%# Eval("IdImagen") %>'
+                                                    CommandName="EliminarImagen"
+                                                    CssClass="btn btn-sm btn-danger position-absolute top-0 end-0 m-1"
+                                                    OnClientClick="return confirm('¿Estás seguro de que deseas eliminar esta imagen?');"
+                                                    style="z-index: 10;">
+                                                    <i class="bi bi-x-lg"></i>
+                                                </asp:LinkButton>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                 </div>
                             </asp:Panel>
                         </div>

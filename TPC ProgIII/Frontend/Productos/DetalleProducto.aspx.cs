@@ -48,10 +48,27 @@ namespace Frontend
 
                     if (producto.Imagenes != null && producto.Imagenes.Count > 0)
                     {
-                        imgProductoPrincipal.ImageUrl = producto.ImagenPrincipal;
+                        string primeraImagen = producto.Imagenes[0].UrlImagen;
+                        if (!string.IsNullOrEmpty(primeraImagen))
+                        {
+                            imgProductoPrincipal.ImageUrl = ResolveUrl(primeraImagen);
+                        }
+                        else
+                        {
+                            imgProductoPrincipal.ImageUrl = ResolveUrl("~/assets/img/placeholder.jpg");
+                        }
 
                         repImagenes.DataSource = producto.Imagenes;
                         repImagenes.DataBind();
+                        
+                        string script = @"
+                            document.addEventListener('DOMContentLoaded', function() {
+                                var firstThumb = document.querySelector('.product-thumb');
+                                if (firstThumb) {
+                                    firstThumb.classList.add('active');
+                                }
+                            });";
+                        ClientScript.RegisterStartupScript(this.GetType(), "ActivarPrimeraImagen", script, true);
                     }
                     else
                     {
@@ -73,6 +90,23 @@ namespace Frontend
             panelMensajes.Visible = true;
             lblMensaje.Text = mensaje;
         }
+        protected void repImagenes_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                ProductoImagen imagen = (ProductoImagen)e.Item.DataItem;
+                Image imgThumbnail = (Image)e.Item.FindControl("imgThumbnail");
+                
+                if (imgThumbnail != null && imagen != null)
+                {
+                    string urlImagen = ResolveUrl(imagen.UrlImagen);
+                    imgThumbnail.ImageUrl = urlImagen;
+                    imgThumbnail.Attributes["onclick"] = $"cambiarImagenPrincipal('{urlImagen}', this);";
+                    imgThumbnail.Attributes["data-image-url"] = urlImagen;
+                }
+            }
+        }
+
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
         {
             int idProducto = Convert.ToInt32(Request.QueryString["id"]);
