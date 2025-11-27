@@ -243,7 +243,7 @@
                 
                                 <asp:Panel ID="pnlInfoMP" runat="server" Visible="false" CssClass="mt-3 ps-4 border-start border-3 border-primary bg-light py-2 pe-2">
                                     <p class="mb-0 small text-muted">
-                                        Al finalizar, serás redirigido a la plataforma segura de MercadoPago para completar tu compra con tarjeta, efectivo o dinero en cuenta.
+                                        Tranqui! Esto es un simuladorde compra. No te vamos a pedir la tarjeta ni a cobrarte nada real...por ahora. Tu plata está a salvo con nosotros.
                                     </p>
                                 </asp:Panel>
                             </div>

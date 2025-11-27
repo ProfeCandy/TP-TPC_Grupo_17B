@@ -137,7 +137,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="txtNuevaMarca" class="form-label">Nombre de la Marca</label>
-                        <asp:TextBox ID="txtNuevaMarca" runat="server" CssClass="form-control" placeholder="Ej: Brembo, NGK, etc."></asp:TextBox>
+                        <asp:TextBox ID="txtNuevaMarca" runat="server" CssClass="form-control" placeholder="Ej: Brembo, NGK, etc." oninput="this.value = this.value.replace(/[0-9]/g, '');"></asp:TextBox>
                     </div>
                     <asp:Panel ID="pnlMensajeMarca" runat="server" Visible="false" CssClass="alert mb-0">
                         <asp:Label ID="lblMensajeMarca" runat="server"></asp:Label>
@@ -162,7 +162,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="txtNuevaCategoria" class="form-label">Nombre de la Categor&iacute;a</label>
-                        <asp:TextBox ID="txtNuevaCategoria" runat="server" CssClass="form-control" placeholder="Ej: Frenos, Motor, etc."></asp:TextBox>
+                        <asp:TextBox ID="txtNuevaCategoria" runat="server" CssClass="form-control" placeholder="Ej: Frenos, Motor, etc." oninput="this.value = this.value.replace(/[0-9]/g, '');"></asp:TextBox>
                     </div>
                     <asp:Panel ID="pnlMensajeCategoria" runat="server" Visible="false" CssClass="alert mb-0">
                         <asp:Label ID="lblMensajeCategoria" runat="server"></asp:Label>
