@@ -89,6 +89,21 @@ namespace Negocio
                 else
                 {
                     var responseBody = await response.Body.ReadAsStringAsync().ConfigureAwait(false);
+                    
+                    if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    {
+                        string mensajeError = "El email remitente no está verificado en SendGrid. ";
+                        if (responseBody.Contains("Sender Identity"))
+                        {
+                            mensajeError += "Por favor, verifica el email '" + EmailFrom + "' en tu cuenta de SendGrid o cambia EmailModoDesarrollo a 'true' en Web.config.";
+                        }
+                        else
+                        {
+                            mensajeError += "Verifica tu configuración de SendGrid.";
+                        }
+                        throw new Exception(mensajeError);
+                    }
+                    
                     throw new Exception($"SendGrid retornó un código de estado inesperado: {response.StatusCode}. Respuesta: {responseBody}");
                 }
             }
