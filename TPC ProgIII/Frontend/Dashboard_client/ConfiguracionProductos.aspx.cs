@@ -195,8 +195,19 @@ namespace Frontend.Dashboard_client
                 }
                 catch (Exception ex)
                 {
-                    lblMensajeCategoria.Text = "Error al eliminar la categor&iacute;a: " + ex.Message;
-                    lblMensajeCategoria.CssClass = "alert alert-danger";
+                    string mensajeError = ex.Message;
+                    
+                    // Verificar si es un error de foreign key constraint
+                    if (mensajeError.Contains("REFERENCE constraint") || mensajeError.Contains("FK_") || mensajeError.Contains("foreign key"))
+                    {
+                        lblMensajeCategoria.Text = "No se puede eliminar esta categor&iacute;a porque hay productos que la est&aacute;n utilizando. Primero deb&eacute;s eliminar o cambiar la categor&iacute;a de los productos asociados.";
+                        lblMensajeCategoria.CssClass = "alert alert-warning";
+                    }
+                    else
+                    {
+                        lblMensajeCategoria.Text = "Error al eliminar la categor&iacute;a: " + mensajeError;
+                        lblMensajeCategoria.CssClass = "alert alert-danger";
+                    }
                     lblMensajeCategoria.Visible = true;
                 }
             }
@@ -274,8 +285,19 @@ namespace Frontend.Dashboard_client
                 }
                 catch (Exception ex)
                 {
-                    lblMensajeMarca.Text = "Error al eliminar la marca: " + ex.Message;
-                    lblMensajeMarca.CssClass = "alert alert-danger";
+                    string mensajeError = ex.Message;
+                    
+                    // Verificar si es un error de foreign key constraint
+                    if (mensajeError.Contains("REFERENCE constraint") || mensajeError.Contains("FK_") || mensajeError.Contains("foreign key"))
+                    {
+                        lblMensajeMarca.Text = "No se puede eliminar esta marca porque hay productos que la est&aacute;n utilizando. Primero deb&eacute;s eliminar o cambiar la marca de los productos asociados.";
+                        lblMensajeMarca.CssClass = "alert alert-warning";
+                    }
+                    else
+                    {
+                        lblMensajeMarca.Text = "Error al eliminar la marca: " + mensajeError;
+                        lblMensajeMarca.CssClass = "alert alert-danger";
+                    }
                     lblMensajeMarca.Visible = true;
                 }
             }
