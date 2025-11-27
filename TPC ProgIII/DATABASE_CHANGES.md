@@ -217,6 +217,8 @@ DBCC CHECKIDENT ('Categoria', RESEED, 9);
 GO
 ```
 
+**AGREGO NOTICIAS**
+```sql
 -- Insert de noticias
 INSERT INTO Noticias (Titulo, Cuerpo, FechaPublicacion, Categoria, ImagenUrl, Activa)
 VALUES
@@ -239,14 +241,12 @@ VALUES
 ('Actualización de catálogo', 'Se incorporaron más de 50 nuevos productos al catálogo digital.', '2024-04-05 00:00:00.000', 'Tecnología', NULL, 1),
 
 ('Nueva funcionalidad en la app', 'Ya podés recibir notificaciones personalizadas desde nuestra aplicación móvil.', '2024-04-12 00:00:00.000', 'Tecnología', NULL, 1);
+```
 
+**AGREGO TABLAS DE RESERVA DE STOCK**
 
+```sql
 -- Creacion de tabla de reserva de stock
-CREATE INDEX IX_ReservaStock_FechaExpiracion ON ReservaStock(FechaExpiracion);
-CREATE INDEX IX_ReservaStock_SessionId ON ReservaStock(SessionId);
-CREATE INDEX IX_ReservaStock_IdProducto ON ReservaStock(IdProducto);
-
-
 CREATE TABLE ReservaStock (
     IdReserva INT IDENTITY(1,1) PRIMARY KEY,
     IdProducto INT NOT NULL,
@@ -256,3 +256,7 @@ CREATE TABLE ReservaStock (
     FechaExpiracion DATETIME NOT NULL,
     FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto) ON DELETE CASCADE
 );
+CREATE INDEX IX_ReservaStock_FechaExpiracion ON ReservaStock(FechaExpiracion);
+CREATE INDEX IX_ReservaStock_SessionId ON ReservaStock(SessionId);
+CREATE INDEX IX_ReservaStock_IdProducto ON ReservaStock(IdProducto);
+```
