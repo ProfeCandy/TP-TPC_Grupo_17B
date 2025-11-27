@@ -17,6 +17,14 @@ namespace Frontend
             {
                 Response.Redirect("~/Inicio.aspx");
             }
+
+            string mensaje = Request.QueryString["mensaje"];
+            if (mensaje == "passwordRestablecida")
+            {
+                panelError.Visible = true;
+                panelError.CssClass = "alert alert-success";
+                lblError.Text = "Tu contraseña ha sido restablecida exitosamente. Ya podés iniciar sesión.";
+            }
         }
         protected void btnIngresar_Click(object sender, EventArgs e)
         {

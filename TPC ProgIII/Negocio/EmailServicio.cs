@@ -101,7 +101,7 @@ namespace Negocio
 
         public bool EnviarConfirmacionRegistro(string email, string nombre, string token)
         {
-            string urlConfirmacion = $"{SitioUrl}/ConfirmarEmail.aspx?token={token}";
+            string urlConfirmacion = $"{SitioUrl}/Usuarios/ConfirmarEmail.aspx?token={token}";
             string cuerpo = $@"
                 <html>
                 <body style='font-family: Arial, sans-serif;'>
@@ -119,7 +119,7 @@ namespace Negocio
 
         public bool EnviarRecuperacionPassword(string email, string nombre, string token)
         {
-            string urlRecuperacion = $"{SitioUrl}/RestablecerPassword.aspx?token={token}";
+            string urlRecuperacion = $"{SitioUrl}/Usuarios/RestablecerPassword.aspx?token={token}";
             string cuerpo = $@"
                 <html>
                 <body style='font-family: Arial, sans-serif;'>

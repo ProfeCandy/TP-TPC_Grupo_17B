@@ -14,6 +14,8 @@
                             <p class="text-muted small">Ingresá tu nueva clave segura.</p>
                         </div>
 
+                        <asp:Label ID="lblMensaje" runat="server" Visible="false" CssClass="d-block alert alert-info text-center mb-4"></asp:Label>
+
                         <div class="mb-3">
                             <div class="form-floating">
                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" Placeholder="Nueva Contraseña" TextMode="Password"></asp:TextBox>
