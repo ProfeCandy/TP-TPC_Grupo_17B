@@ -302,7 +302,7 @@ namespace Frontend
             nuevo.Clave = passwordTemporal;
 
             nuevo.Rol = new Rol();
-            nuevo.Rol.IdRol = 2;
+            nuevo.Rol.IdRol = 1;
             nuevo.Activo = true;
 
             // Si selecciona Domicilio le guardamos la informacion en el perfil
